@@ -2,19 +2,22 @@
 
 <h3>With :</h3>
 
-<input type="text" ng-model="textLine" show="isPasswordsShown" password-wrapper >
-<input type="text" ng-model="textLine" show="isPasswordsShown" password-wrapper >
+<div class="col-md-5">
+    <input type="text" ng-model="textLine" show="isPasswordsShown" password-wrapper>
+    <input type="text" ng-model="textLine" show="isPasswordsShown" password-wrapper>
 
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
+    <br/>
+    <br/>
+    <br/>
 
-<h3>Without:</h3>
+    <h3>Without:</h3>
 
-<input  type="text" ng-model="textLine">
+    <input type="text" ng-model="textLine">
 
-<input  type="text" ng-model="textLine" class="password-input">
+    <input type="checkbox" ng-model="isPasswordsShown"/> Show passwords <span>{{isPasswordsShown}}</span>
 
-<input type="checkbox" ng-model="isPasswordsShown"/> Show passwords <span>{{isPasswordsShown}}</span>
+    <br/>
+    <br/>
+    <br/>
+
+</div>

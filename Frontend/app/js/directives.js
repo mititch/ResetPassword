@@ -32,11 +32,20 @@ angular.module('myApp.directives', []).
     )
     .directive('passwordWrapper', ['$log',
         function ($log) {
+            var passwordButtonElement = angular.element(
+                '<span class="input-group-addon"' +
+                    ' ng-click="toggleInput()">' +
+                    '{{buttonTitle}}' +
+                '</span >')
+
             return {
                 //require : '?ngModel',
-                template : '<div>' +
-                    '<!--div ng-transclude=""></div-->' +
-                    '<button ng-click="toggleInput()">{{buttonTitle}}</button>' +
+                template : '<div class="input-group">' +
+                    '<span class="input-group-btn">'+
+                        '<button class="btn btn-default" ng-click="toggleInput()">'+
+                            '<span class="glyphicon" ng-class="{\'glyphicon-eye-close\': toggle, \'glyphicon-eye-open\': !toggle}"></span>'+
+                        '</button>'+
+                    '</span>'+
                     '</div>',
                 transclude : 'element',
                 priority: 500,
@@ -46,9 +55,16 @@ angular.module('myApp.directives', []).
                 },
                 compile : function (tElement, tAttrs, trancludeLinkFn){
 
+                    //tElement.append(passwordButtonElement);
+
                     return function (scope, element, attrs, ngModelCtrl) {
                         var inputElement = trancludeLinkFn(scope.$parent, function (clone) {
+                            clone.addClass('form-control');
+                            //attr('type','text');
                         });
+                        /*var passwordElement = trancludeLinkFn(scope.$parent, function (clone) {
+                            clone.attr('type','password');
+                        });*/
 
                         scope.toggle = false;
 
@@ -63,16 +79,13 @@ angular.module('myApp.directives', []).
                         scope.$watch('toggle', function(value) {
                             if (value) {
                                 inputElement.attr('type', 'text');
-                                scope.buttonTitle = 'Hide';
+
                             } else {
                                 inputElement.attr('type', 'password');
-                                scope.buttonTitle = 'Show';
                             }
                         });
 
-                        element.append(inputElement);
-
-
+                        element.prepend(inputElement);
 
                     }
                 }
