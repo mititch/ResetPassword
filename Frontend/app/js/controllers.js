@@ -13,7 +13,7 @@ angular.module('myApp.controllers', []).
         $scope.isPasswordsShown = false;
 
         $scope.saveChanges = function () {
-
+            $scope.password.done = true;
         };
   }])
   .controller('About', ['$scope', function($scope){
@@ -26,6 +26,6 @@ angular.module('myApp.controllers', []).
         $scope.isPasswordsShown = false;
 
         $scope.saveChanges = function () {
-
+            $scope.password.done = true;
         };
   }]);

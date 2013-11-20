@@ -39,7 +39,7 @@ angular.module('myApp.directives', []).
                 '</span >')
 
             return {
-                //require : '?ngModel',
+                require : '?^ngForm',
                 restrict : "A",
                 template : '<div class="input-group">' +
                 '<span class="input-group-btn">'+
@@ -51,23 +51,28 @@ angular.module('myApp.directives', []).
                 '</span>'+
                 '</div>',
                 transclude : 'element',
-                priority: 500,
+                //priority: 500,
                 replace: true,
+                //terminal: true,
                 scope : {
                   show : '='
                 },
+                //controller : []
                 compile : function (tElement, tAttrs, trancludeLinkFn){
 
                     //tElement.append(passwordButtonElement);
+//                    tAttrs.removeAttr('name');
+                    //tElement.removeAttr('name');
+                    //tElement.removeAttr('ng-model');
 
-                    return function (scope, element, attrs, ngModelCtrl) {
-
-                        element.removeAttr('name');
+                    return function (scope, element, attrs, ngFormCtrl) {
+                        //element.removeAttr('name');
+                        //element.removeAttr('ng-model');
 
                         var inputElement = trancludeLinkFn(scope.$parent, function (clone) {
                             clone.addClass('form-control');
-                            //attr('type','text');
                         });
+
                         /*var passwordElement = trancludeLinkFn(scope.$parent, function (clone) {
                             clone.attr('type','password');
                         });*/
