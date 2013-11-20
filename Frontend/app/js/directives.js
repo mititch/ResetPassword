@@ -40,13 +40,16 @@ angular.module('myApp.directives', []).
 
             return {
                 //require : '?ngModel',
+                restrict : "A",
                 template : '<div class="input-group">' +
-                    '<span class="input-group-btn">'+
-                        '<button class="btn btn-default" ng-click="toggleInput()">'+
-                            '<span class="glyphicon" ng-class="{\'glyphicon-eye-close\': toggle, \'glyphicon-eye-open\': !toggle}"></span>'+
-                        '</button>'+
-                    '</span>'+
-                    '</div>',
+                '<span class="input-group-btn">'+
+                '<button class="btn btn-default" ng-click="toggleInput()">'+
+                '<span class="glyphicon" ' +
+                    'ng-class="{\'glyphicon-eye-close\': toggle, \'glyphicon-eye-open\': !toggle}">' +
+                '</span>'+
+                '</button>'+
+                '</span>'+
+                '</div>',
                 transclude : 'element',
                 priority: 500,
                 replace: true,
@@ -58,6 +61,9 @@ angular.module('myApp.directives', []).
                     //tElement.append(passwordButtonElement);
 
                     return function (scope, element, attrs, ngModelCtrl) {
+
+                        element.removeAttr('name');
+
                         var inputElement = trancludeLinkFn(scope.$parent, function (clone) {
                             clone.addClass('form-control');
                             //attr('type','text');

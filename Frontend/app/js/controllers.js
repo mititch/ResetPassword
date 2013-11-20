@@ -3,10 +3,29 @@
 /* Controllers */
 
 angular.module('myApp.controllers', []).
-  controller('MyCtrl1', ['$scope', function($scope) {
-        $scope.textLine = 'some text';
-        $scope.isPasswordsShown = false;
-  }])
-  .controller('MyCtrl2', [function() {
+  controller('ResetPassword', ['$scope', function($scope) {
 
+        $scope.password = {
+            text : '',
+            confirmation : ''
+        };
+
+        $scope.isPasswordsShown = false;
+
+        $scope.saveChanges = function () {
+
+        };
+  }])
+  .controller('About', ['$scope', function($scope){
+
+        $scope.password = {
+            text : '',
+            confirmation : ''
+        };
+
+        $scope.isPasswordsShown = false;
+
+        $scope.saveChanges = function () {
+
+        };
   }]);
