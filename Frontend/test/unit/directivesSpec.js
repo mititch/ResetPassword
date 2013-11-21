@@ -305,6 +305,20 @@ describe('directives', function () {
 
             });
 
+            describe('in "form" tag', function () {
+
+                it('should not update element $dirty value', function () {
+
+                    var template = '<form name="form"><password name="textLineInput" ng-model="data.textLine" show-input="data.isPasswordsShown"></password><form>'
+
+                    var element = createDirective(defaultData, template);
+
+                    return expect($rootScope.form.textLineInput.$dirty).toBe(false);
+
+                });
+
+            })
+
         });
 
         describe('when the model changes', function () {

@@ -15,6 +15,14 @@ angular.module('myApp.controllers', []).
         $scope.saveChanges = function () {
             $scope.password.done = true;
         };
+
+        $scope.generatePassword = function ($event) {
+            $scope.isPasswordsShown = false;
+
+            $event.preventDefault();
+            $scope.isPasswordsShown = true;
+        };
+
   }])
   .controller('About', ['$scope', function($scope){
 
@@ -28,4 +36,5 @@ angular.module('myApp.controllers', []).
         $scope.saveChanges = function () {
             $scope.password.done = true;
         };
+
   }]);

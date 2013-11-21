@@ -27,7 +27,6 @@ angular.module('myApp.directives', []).
                     '</span>' +
                     '</div>',
                 replace: true,
-                priority : 500,
                 scope: {
                     showInput: '='
                 },
@@ -66,6 +65,68 @@ angular.module('myApp.directives', []).
                 }
             }
 
+        }]
+    )
+    .directive('minLength', ['$log',
+        function ($log) {
+            return {
+                require: '?ngModel',
+                restrict: 'A',
+                link: function (scope, element, attrs, ngModelCtrl) {
+                    if(!ngModelCtrl) return; // do nothing if no ng-model
+
+                    // Add parser for this value
+                    ngModelCtrl.$parsers.push(function(viewValue) {
+                        validateMinLength(viewValue, null);
+                        return viewValue;
+                    });
+
+                    // Observe the other value
+                    attrs.$observe('minLength', function (value) {
+                        validateMinLength(null, value);
+                    });
+
+                    var validateMinLength = function(innerValue, minLengthAttr) {
+
+                        var value = innerValue || ngModelCtrl.$viewValue || '';
+                        var length = minLengthAttr || attrs.minLength;
+
+                        // set validity
+                        ngModelCtrl.$setValidity('minLength', value.length >= length);
+                    };
+                }
+            }
+        }]
+    )
+    .directive('equals', ['$log',
+        function ($log) {
+            return {
+                require: '?ngModel',
+                restrict: 'A',
+                link: function (scope, element, attrs, ngModelCtrl) {
+                    if(!ngModelCtrl) return; // do nothing if no ng-model
+
+                    // Add parser for this value
+                    ngModelCtrl.$parsers.push(function(viewValue) {
+                        validateEquals(viewValue, null);
+                        return viewValue;
+                    });
+
+                    // Observe the other value
+                    attrs.$observe('equals', function (val) {
+                        validateEquals(null, val);
+                    });
+
+                    var validateEquals = function(innerValue, outerValue) {
+
+                        var val1 = innerValue || ngModelCtrl.$viewValue;
+                        var val2 = outerValue || attrs.equals;
+
+                        // set validity
+                        ngModelCtrl.$setValidity('equals', val1 === val2);
+                    };
+                }
+            }
         }]
     )
     .directive('passwordWrapper', ['$log',
