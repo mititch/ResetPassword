@@ -15,10 +15,7 @@ angular.module('myApp.resources', ['ngResource'])
             };
             Resource.generate = function () {
                 return $http.get(connectionUrl).then(function (response) {
-                    var result = [];
-                    angular.forEach(response.data, function (value, key) {
-                        result[key] = new Resource(value);
-                    });
+                    var result = new Resource(response.data);
                     return result;
                 });
             };
@@ -27,7 +24,7 @@ angular.module('myApp.resources', ['ngResource'])
                 return Resource.generate();
             };
 
-            Resource.save = function (data) {
+            Resource.reset = function (data) {
                 return $http.post(connectionUrl, data)
                     .then(function (response) {
                         // TODO: notify success
@@ -39,8 +36,8 @@ angular.module('myApp.resources', ['ngResource'])
                     }
                 );
             };
-            Resource.prototype.$save = function () {
-                return Resource.save(this);
+            Resource.prototype.$reset = function () {
+                return Resource.reset(this);
             };
 
             return Resource;

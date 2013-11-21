@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Backend.Models;
+using System.Web;
 
 namespace Backend.Controllers
 {
@@ -13,17 +14,30 @@ namespace Backend.Controllers
         // GET api/password
         public Password Get()
         {
+            HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Origin", "*");
             return new Password {Text = GeneratePassword()};
+        }
+
+        // OPTIONS api/password
+        public HttpResponseMessage Options([FromBody]Password value)
+        {
+            HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Origin", "*");
+            HttpContext.Current.Response.Headers.Remove("Content-Type");
+            return ResetPassword(value);
         }
 
         // POST api/password
         public HttpResponseMessage Post([FromBody]Password value)
         {
+            return ResetPassword(value);
+        }
+
+        private HttpResponseMessage ResetPassword(Password value)
+        {
             HttpResponseMessage result;
             
             if (ModelState.IsValid)
             {
-                ResetPassword(value.Text);
                 result = new HttpResponseMessage(HttpStatusCode.OK);
             }
             else
@@ -40,10 +54,6 @@ namespace Backend.Controllers
             return "newpassword";
         }
 
-        private void ResetPassword(String passwordText)
-        {
-            
-        }
 
     }
 }

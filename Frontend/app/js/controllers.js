@@ -13,7 +13,7 @@ angular.module('myApp.controllers', [])
         $scope.isPasswordsShown = false;
 
         $scope.saveChanges = function () {
-            $scope.password.$save();
+            $scope.password.$reset();
         };
 
         $scope.generatePassword = function ($event) {
@@ -21,7 +21,8 @@ angular.module('myApp.controllers', [])
 
             Password.generate().then(
                 function(password){
-                    $scope.password = password;
+                    $scope.password.text = password.Text;
+                    $scope.password.confirmation = password.Text;
                     $scope.isPasswordsShown = true;
                 },
                 function(message){

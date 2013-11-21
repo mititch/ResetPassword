@@ -201,4 +201,53 @@ angular.module('myApp.directives', []).
                 }
             }
         }]
-    );
+    )
+    .directive('field', ['$log',
+
+        function ($log) {
+
+            function getLabelContent(element) {
+                var label = element.find('label');
+                return label[0] && label.html();
+            }
+
+            function getValidationMessageMap(element) {
+                var messageFns = {};
+                var validators = element.find('validator');
+                angular.forEach(validators, function(validator) {
+                    validator = angular.element(validator);
+                    messageFns[validator.attr('key')] =
+                        $interpolate(validator.text());
+                });
+                return messageFns;
+            }
+
+            function loadTemplate(template) {
+                return $http.get(template, {cache:$templateCache})
+                    .then(function(response) {
+                        return angular.element(response.data);
+                    }, function(response) {
+                        throw new Error('Template not found: ' + template);
+                    });
+            }
+
+            return {
+                restrict:'E',
+                priority: 100,
+                terminal: true,
+                compile: function(element, attrs) {
+                    ...
+                    var validationMgs = getValidationMessageMap(element);
+                    var labelContent = getLabelContent(element);
+                    element.html('');
+                    return function postLink(scope, element, attrs) {
+                        var template = attrs.template || 'input.html';
+                        loadTemplate(template).then(function(templateElement) {
+                            ...
+                        });
+                    };
+                }
+            }
+        }]
+    )
+;
