@@ -19,7 +19,7 @@ angular.module('myApp.controllers', []).
   .controller('About', ['$scope', function($scope){
 
         $scope.password = {
-            text : '',
+            text : 'sdfsdfsdf',
             confirmation : ''
         };
 

@@ -11,9 +11,10 @@
         <label class="col-sm-3 control-label">Password</label>
 
         <div class="col-sm-9">
-            <!--password-wrapper show="isPasswordsShown"-->
-            <input name="passwordText" type="text" ng-model="password.text" required>
 
+            <!--input type="text" ng-model="password.text" name="passwordText" required-->
+
+            <password show-input="isPasswordsShown" ng-model="password.text" name="passwordText" required></password>
         </div>
     </div>
     {{form.passwordText.$dirty}} - {{form.passwordText.$invalid}} - {{form.$invalid}}
@@ -23,6 +24,16 @@
             <!--span ng-show="form.inputPassword.$error.email">This is not a valid password.</span-->
         </div>
     </div>
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label">Input</label>
+
+        <div class="col-sm-9">
+            <input type="text" ng-model="password.text">
+            {{password.text}}
+        </div>
+    </div>
+
 
     <button class="btn btn-primary" ng-click="saveChanges()" ng-disabled="form.$invalid">Save changes</button>
 

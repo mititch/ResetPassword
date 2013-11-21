@@ -4,30 +4,68 @@
 
 
 angular.module('myApp.directives', []).
-    directive('appVersion', ['version', function(version) {
-        return function(scope, elm, attrs) {
-        elm.text(version);
+    directive('appVersion', ['version', function (version) {
+        return function (scope, elm, attrs) {
+            elm.text(version);
         };
     }])
-    .directive('passwordInput', ['$log',
+    .directive('password', ['$log',
         function ($log) {
 
-            var formatter = function(value) {
-                if (value) {
-                    return value.toUpperCase();
-                }
-            }
             return {
-                require : 'ngModel',
-                restrict: 'C',
-                link : function (scope, element, attrs, ngModelCtrl) {
-                    ngModelCtrl.$formatters.push(formatter);
-                    ngModelCtrl.$parsers.push(formatter);
-                    /*ngModelCtrl.$render = function () {
-                        element.attr('value' ,'0' + ngModelCtrl.$viewValue);
-                    };*/
+                require: '?ngModel',
+                restrict: "E",
+                template: '<div class="input-group">' +
+                    '<input type="text" class="form-control" ng-if="toggle" ng-model="data.innerInputModel">' +
+                    '<input type="password" class="form-control" ng-if="!toggle" ng-model="data.innerInputModel">' +
+                    '<span class="input-group-btn">' +
+                    '<button class="btn btn-default" ng-click="toggleInput()">' +
+                    '<span class="glyphicon" ' +
+                    'ng-class="{\'glyphicon-eye-close\': toggle, \'glyphicon-eye-open\': !toggle}">' +
+                    '</span>' +
+                    '</button>' +
+                    '</span>' +
+                    '</div>',
+                replace: true,
+                priority : 500,
+                scope: {
+                    showInput: '='
+                },
+                link: function (scope, element, attrs, ngModelCtrl) {
+
+                    // For ng-if scope inheritance
+                    scope.data = {};
+
+                    scope.toggle = false;
+
+                    scope.toggleInput = function () {
+                        scope.toggle = !scope.toggle;
+                    };
+
+                    scope.$watch('showInput', function (value) {
+                        scope.toggle = value;
+                    });
+
+                    if (ngModelCtrl) {
+                        scope.$watch('data.innerInputModel', function (value) {
+
+                            // prevent $dirty set for model
+                            if (value !== ngModelCtrl.$viewValue) {
+                                ngModelCtrl.$setViewValue(value);
+                            }
+                        });
+
+                        ngModelCtrl.$render = function () {
+
+                            // prevent $dirty set for model
+                            if (ngModelCtrl.$viewValue) {
+                                scope.data.innerInputModel = ngModelCtrl.$viewValue;
+                            }
+                        };
+                    }
                 }
             }
+
         }]
     )
     .directive('passwordWrapper', ['$log',
@@ -36,29 +74,29 @@ angular.module('myApp.directives', []).
                 '<span class="input-group-addon"' +
                     ' ng-click="toggleInput()">' +
                     '{{buttonTitle}}' +
-                '</span >')
+                    '</span >')
 
             return {
-                require : '?^ngForm',
-                restrict : "A",
-                template : '<div class="input-group">' +
-                '<span class="input-group-btn">'+
-                '<button class="btn btn-default" ng-click="toggleInput()">'+
-                '<span class="glyphicon" ' +
+                require: '?^ngForm',
+                restrict: "A",
+                template: '<div class="input-group">' +
+                    '<span class="input-group-btn">' +
+                    '<button class="btn btn-default" ng-click="toggleInput()">' +
+                    '<span class="glyphicon" ' +
                     'ng-class="{\'glyphicon-eye-close\': toggle, \'glyphicon-eye-open\': !toggle}">' +
-                '</span>'+
-                '</button>'+
-                '</span>'+
-                '</div>',
-                transclude : 'element',
+                    '</span>' +
+                    '</button>' +
+                    '</span>' +
+                    '</div>',
+                transclude: 'element',
                 //priority: 500,
                 replace: true,
                 //terminal: true,
-                scope : {
-                  show : '='
+                scope: {
+                    show: '='
                 },
                 //controller : []
-                compile : function (tElement, tAttrs, trancludeLinkFn){
+                compile: function (tElement, tAttrs, trancludeLinkFn) {
 
                     //tElement.append(passwordButtonElement);
 //                    tAttrs.removeAttr('name');
@@ -74,20 +112,20 @@ angular.module('myApp.directives', []).
                         });
 
                         /*var passwordElement = trancludeLinkFn(scope.$parent, function (clone) {
-                            clone.attr('type','password');
-                        });*/
+                         clone.attr('type','password');
+                         });*/
 
                         scope.toggle = false;
 
-                        scope.toggleInput = function(){
+                        scope.toggleInput = function () {
                             scope.toggle = !scope.toggle;
                         };
 
-                        scope.$watch('show', function(value) {
+                        scope.$watch('show', function (value) {
                             scope.toggle = value;
                         });
 
-                        scope.$watch('toggle', function(value) {
+                        scope.$watch('toggle', function (value) {
                             if (value) {
                                 inputElement.attr('type', 'text');
 
