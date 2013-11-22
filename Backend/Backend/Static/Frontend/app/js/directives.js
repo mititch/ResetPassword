@@ -2,24 +2,19 @@
 
 /* Directives */
 
-
-angular.module('myApp.directives', []).
-    directive('appVersion', ['version', function (version) {
-        return function (scope, elm, attrs) {
-            elm.text(version);
-        };
-    }])
+angular.module('myApp.directives', [])
     .directive('password', ['$log',
         function ($log) {
-
             return {
                 require: '?ngModel',
                 restrict: "E",
                 template: '<div class="input-group">' +
-                    '<input type="text" class="form-control" ng-if="toggle" ng-model="data.innerInputModel">' +
-                    '<input type="password" class="form-control" ng-if="!toggle" ng-model="data.innerInputModel">' +
+                    '<input type="text" class="form-control" ' +
+                        'ng-if="toggle" ng-model="data.innerInputModel" ng-disabled="disableInputs">' +
+                    '<input type="password" class="form-control" ' +
+                        'ng-if="!toggle" ng-model="data.innerInputModel" ng-disabled="disableInputs">' +
                     '<span class="input-group-btn">' +
-                    '<button class="btn btn-default" ng-click="toggleInput()">' +
+                    '<button class="btn btn-default" ng-click="toggleInput()" ng-disabled="disableInputs">' +
                     '<span class="glyphicon" ' +
                     'ng-class="{\'glyphicon-eye-close\': toggle, \'glyphicon-eye-open\': !toggle}">' +
                     '</span>' +
@@ -28,7 +23,9 @@ angular.module('myApp.directives', []).
                     '</div>',
                 replace: true,
                 scope: {
-                    showInput: '='
+                    showInput: '=',
+                    //TODO : test it
+                    disableInputs : '=ngDisabled'
                 },
                 link: function (scope, element, attrs, ngModelCtrl) {
 
@@ -46,8 +43,8 @@ angular.module('myApp.directives', []).
                     });
 
                     if (ngModelCtrl) {
-                        scope.$watch('data.innerInputModel', function (value) {
 
+                        scope.$watch('data.innerInputModel', function (value) {
                             // prevent $dirty set for model
                             if (value !== ngModelCtrl.$viewValue) {
                                 ngModelCtrl.$setViewValue(value);
@@ -55,7 +52,6 @@ angular.module('myApp.directives', []).
                         });
 
                         ngModelCtrl.$render = function () {
-
                             // prevent $dirty set for model
                             if (ngModelCtrl.$viewValue) {
                                 scope.data.innerInputModel = ngModelCtrl.$viewValue;
@@ -75,12 +71,11 @@ angular.module('myApp.directives', []).
                 link: function (scope, element, attrs, ngModelCtrl) {
                     if (!ngModelCtrl) return; // do nothing if no ng-model
 
-                    // Add parser for this value
+                    // Add parser and formatter for value in pipeline
                     ngModelCtrl.$parsers.push(function (viewValue) {
                         validateMinLength(viewValue, null);
                         return viewValue;
                     });
-
                     ngModelCtrl.$formatters.push(function (value) {
                         validateMinLength(value, null);
                         return value;
@@ -103,6 +98,7 @@ angular.module('myApp.directives', []).
             }
         }]
     )
+
     .directive('equals', ['$log',
         function ($log) {
             return {
@@ -140,128 +136,7 @@ angular.module('myApp.directives', []).
             }
         }]
     )
-    .directive('passwordWrapper', ['$log',
-        function ($log) {
-            var passwordButtonElement = angular.element(
-                '<span class="input-group-addon"' +
-                    ' ng-click="toggleInput()">' +
-                    '{{buttonTitle}}' +
-                    '</span >')
-
-            return {
-                require: '?^ngForm',
-                restrict: "A",
-                template: '<div class="input-group">' +
-                    '<span class="input-group-btn">' +
-                    '<button class="btn btn-default" ng-click="toggleInput()">' +
-                    '<span class="glyphicon" ' +
-                    'ng-class="{\'glyphicon-eye-close\': toggle, \'glyphicon-eye-open\': !toggle}">' +
-                    '</span>' +
-                    '</button>' +
-                    '</span>' +
-                    '</div>',
-                transclude: 'element',
-                //priority: 500,
-                replace: true,
-                //terminal: true,
-                scope: {
-                    show: '='
-                },
-                //controller : []
-                compile: function (tElement, tAttrs, trancludeLinkFn) {
-
-                    //tElement.append(passwordButtonElement);
-//                    tAttrs.removeAttr('name');
-                    //tElement.removeAttr('name');
-                    //tElement.removeAttr('ng-model');
-
-                    return function (scope, element, attrs, ngFormCtrl) {
-                        //element.removeAttr('name');
-                        //element.removeAttr('ng-model');
-
-                        var inputElement = trancludeLinkFn(scope.$parent, function (clone) {
-                            clone.addClass('form-control');
-                        });
-
-                        /*var passwordElement = trancludeLinkFn(scope.$parent, function (clone) {
-                         clone.attr('type','password');
-                         });*/
-
-                        scope.toggle = false;
-
-                        scope.toggleInput = function () {
-                            scope.toggle = !scope.toggle;
-                        };
-
-                        scope.$watch('show', function (value) {
-                            scope.toggle = value;
-                        });
-
-                        scope.$watch('toggle', function (value) {
-                            if (value) {
-                                inputElement.attr('type', 'text');
-
-                            } else {
-                                inputElement.attr('type', 'password');
-                            }
-                        });
-
-                        element.prepend(inputElement);
-
-                    }
-                }
-            }
-        }]
-    )
-    .directive('field_old', ['$log',
-
-        function ($log) {
-
-            function getLabelContent(element) {
-                var label = element.find('label');
-                return label[0] && label.html();
-            }
-
-            function getValidationMessageMap(element) {
-                var messageFns = {};
-                var validators = element.find('validator');
-                angular.forEach(validators, function (validator) {
-                    validator = angular.element(validator);
-                    messageFns[validator.attr('key')] =
-                        $interpolate(validator.text());
-                });
-                return messageFns;
-            }
-
-            function loadTemplate(template) {
-                return $http.get(template, {cache: $templateCache})
-                    .then(function (response) {
-                        return angular.element(response.data);
-                    }, function (response) {
-                        throw new Error('Template not found: ' + template);
-                    });
-            }
-
-            return {
-                restrict: 'E',
-                priority: 100,
-                terminal: true,
-                compile: function (element, attrs) {
-                    //...
-                    var validationMgs = getValidationMessageMap(element);
-                    var labelContent = getLabelContent(element);
-                    element.html('');
-                    return function postLink(scope, element, attrs) {
-                        var template = attrs.template || 'input.html';
-                        loadTemplate(template).then(function (templateElement) {
-                            //...
-                        });
-                    };
-                }
-            }
-        }]
-    )
-    .directive('field', ['$log',
+    .directive('fieldWrapper', ['$log',
         function ($log) {
 
             var divElement = angular.element('<div></div>');
@@ -276,14 +151,12 @@ angular.module('myApp.directives', []).
                     var labelColumns = tAttrs.labelColumns;
                     var fieldColumns = tAttrs.fieldColumns;
 
-                    var fieldFullName = tAttrs.field;
-                    var fieldName = tAttrs.field.split('.')[1];
+                    var fieldFullName = tAttrs.fieldWrapper;
+                    var fieldName = tAttrs.fieldWrapper.split('.')[1];
 
                     tElement.addClass('form-group');
 
                     tElement.children().wrap(divElement.clone().addClass('col-sm-' + fieldColumns));
-
-                    //var wrapper element.html().wrap(divElement.clone().addClass('AAAA'));
 
                     var validatorsContainer = divElement.clone().
                         addClass('col-sm-offset-' + labelColumns).
@@ -295,11 +168,11 @@ angular.module('myApp.directives', []).
 
                     angular.forEach(validationData, function (value, key) {
                         validatorsContainer.append(spanElement.clone()
+                            .addClass('text-danger')
                             .attr('ng-show', fieldFullName + '.$error.' + key)
                             .html(value)
                         );
                     });
-
 
                     tElement.prepend(labelElement.clone()
                         .addClass('control-label')
@@ -312,6 +185,32 @@ angular.module('myApp.directives', []).
                     return function (scope, element, attrs, ngModelCtrl) {
 
                     }
+                }
+            }
+        }]
+    )
+    .directive('notificationPanel', ['notificationsStorage',
+        function (notificationsStorage) {
+
+            return {
+                template :
+                    '<div>' +
+                        '<div ng-repeat="notification in notifications" class="alert alert-{{notification.type}}">' +
+                        '{{notification.text}}' +
+                        '<button ng-click="removeNotification($index)" ' +
+                            'type="button" class="close" aria-hidden="true">&times;</button>' +
+                        '</div>' +
+                    '</div>',
+                restrict: 'EA',
+                replace : true,
+                link : function (scope) {
+
+                    scope.notifications = notificationsStorage.notifications;
+
+                    scope.removeNotification = function (index) {
+                        notificationsStorage.remove(index);
+                    };
+
                 }
             }
         }]

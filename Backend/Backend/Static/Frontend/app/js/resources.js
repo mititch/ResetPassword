@@ -3,21 +3,27 @@
 /* Resources */
 
 angular.module('myApp.resources', ['ngResource'])
-    //TODO change to array injection
-    .factory('passwordResource', function ($http) {
+    .factory('passwordResource', ['$http', 'apiUrl', '$q' , function ($http, apiUrl, $q) {
         return function (resourceName) {
 
             var connectionUrl =
-                'http://localhost:5869/api/' + resourceName;
+                apiUrl.baselUrl + resourceName;
 
+            // Prepare resource constructor
             var Resource = function (data) {
                 angular.extend(this, data);
             };
+
             Resource.generate = function () {
-                return $http.get(connectionUrl).then(function (response) {
-                    var result = new Resource(response.data);
-                    return result;
-                });
+                return $http.get(connectionUrl).then(
+                    function (response) {
+                        var result = new Resource(response.data);
+                        return result;
+                    }, function (response) {
+
+                        return $q.reject();
+                    }
+                );
             };
 
             Resource.prototype.$generate = function () {
@@ -25,23 +31,22 @@ angular.module('myApp.resources', ['ngResource'])
             };
 
             Resource.reset = function (data) {
-                return $http.post(connectionUrl, data)
-                    .then(function (response) {
-                        // TODO: notify success
-                        return response;
+                return $http.post(connectionUrl, data).then(
+                    function (response) {
+                        return $q.defer().resolve();
                     },
                     function (response) {
-                        // TODO: notify alert
-                        return response;
+                        return $q.reject();
                     }
                 );
             };
+
             Resource.prototype.$reset = function () {
                 return Resource.reset(this);
             };
 
             return Resource;
         };
-    });
+    }]);
 
 

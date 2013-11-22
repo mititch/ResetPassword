@@ -3,49 +3,59 @@
 /* Controllers */
 
 angular.module('myApp.controllers', [])
-    .controller('ResetPassword', ['$scope', 'Password', '$log', function($scope, Password, $log) {
+    .controller('ResetPassword', ['$scope', 'Password', '$log', 'notificationsStorage',
+        function ($scope, Password, $log, notificationsStorage) {
 
-        $scope.password = new Password({
-            text : '',
-            confirmation : ''
-        });
+            $scope.password = new Password({
+                text: '',
+                confirmation: ''
+            });
 
-        $scope.isPasswordsShown = false;
-
-        $scope.saveChanges = function () {
-            $scope.password.$reset();
-        };
-
-        $scope.generatePassword = function ($event) {
             $scope.isPasswordsShown = false;
+            $scope.disableInputs = false;
 
-            Password.generate().then(
-                function(password){
-                    $scope.password.text = password.Text;
-                    $scope.password.confirmation = password.Text;
-                    $scope.isPasswordsShown = true;
-                },
-                function(message){
-                    $log.log('Error ' + message);
-                }
-            );
+            $scope.saveChanges = function () {
+                $scope.disableInputs = true;
+                $scope.password.$reset().then(
+                    function () {
+                        notificationsStorage.add('success', 'Password is changed.');
+                        $scope.form.$setPristine();
+                        $scope.disableInputs = false;
+                    },
+                    function () {
+                        notificationsStorage.add('danger', 'Server can not generate password.');
+                        $scope.disableInputs = false;
+                    }
+                );
+            };
 
-            $event.preventDefault();
+            $scope.disableEnable = function () {
+                $scope.disableInputs = !$scope.disableInputs;
+            }
 
-        };
+            $scope.generatePassword = function ($event) {
+                $scope.isPasswordsShown = false;
+                $scope.disableInputs = true;
 
-  }])
-  .controller('About', ['$scope', function($scope){
+                Password.generate().then(
+                    function (password) {
+                        $scope.password.text = password.Text;
+                        $scope.password.confirmation = password.Text;
+                        $scope.isPasswordsShown = true;
+                        $scope.disableInputs = false;
+                        $scope.form.$setDirty();
+                        notificationsStorage.add('success', 'New password generated');
+                    },
+                    function (message) {
+                        notificationsStorage.add('danger', 'Server can not reset password.');
+                        $scope.disableInputs = false;
+                    }
+                );
 
-        $scope.password = {
-            text : 'sdfsdfsdf',
-            confirmation : ''
-        };
+                $event.preventDefault();
 
-        $scope.isPasswordsShown = false;
+            };
 
-        $scope.saveChanges = function () {
-            $scope.password.done = true;
-        };
-
-  }]);
+        }])
+    .controller('About', ['$scope', function ($scope) {
+    }]);

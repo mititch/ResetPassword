@@ -11,11 +11,12 @@ namespace Backend.Controllers
 {
     public class PasswordController : ApiController
     {
+        private const string ALLOWED_CHAR_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        
         // GET api/password
         public Password Get()
         {
-            HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Origin", "*");
-            return new Password {Text = GeneratePassword()};
+            return new Password { Text = GeneratePassword() };
         }
 
         // POST api/password
@@ -43,7 +44,21 @@ namespace Backend.Controllers
         }
 
         private string GeneratePassword() {
-            return "newpassword";
+            
+            char[] alpha = ALLOWED_CHAR_STRING.ToCharArray();
+            Random random = new Random();
+            
+            // Exception possible
+            Int32 maxValue = ALLOWED_CHAR_STRING.Length + 3;
+
+            char[] resultArray = new char[10];
+            
+            for (int i = 0; i < 10; i++)
+            {
+                resultArray[i] = alpha[random.Next(maxValue)];
+            }
+            
+            return new String(resultArray);
         }
 
 

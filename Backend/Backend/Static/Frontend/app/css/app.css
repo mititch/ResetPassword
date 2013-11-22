@@ -4,15 +4,14 @@ body {
     padding-top: 50px;
 }
 
-.starter-template {
-    padding: 40px 15px;
-    text-align: center;
+.main-view {
+    height: 500px;
 }
 
-.css-form input.ng-invalid.ng-dirty {
-    background-color: #f8bebe;
+div.ng-invalid.ng-dirty input{
+    background-color: #f8dbe4 !important;
 }
 
-/*.css-form input.ng-valid.ng-dirty {
-    background-color: #78FA89;
-}*/
+div.ng-valid.ng-dirty input {
+    background-color: #dffae1;
+}

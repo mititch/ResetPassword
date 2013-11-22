@@ -9,7 +9,8 @@ namespace Backend.Models
     public class Password
     {
         [Required]
-        [MinLength(4)]
+        // Validation error possible
+        [MinLength(5)]
         public String Text { get; set; }
     }
 }

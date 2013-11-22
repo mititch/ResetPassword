@@ -8,9 +8,9 @@ namespace Backend.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public RedirectResult Index()
         {
-            return View();
+            return Redirect("~/Static/Frontend/app/index.html");
         }
     }
 }
