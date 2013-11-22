@@ -22,7 +22,7 @@ namespace Backend.Controllers
         public HttpResponseMessage Options([FromBody]Password value)
         {
             HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Origin", "*");
-            HttpContext.Current.Response.Headers.Remove("Content-Type");
+            //HttpContext.Current.Response.Headers.Remove("Content-Type");
             return ResetPassword(value);
         }
 

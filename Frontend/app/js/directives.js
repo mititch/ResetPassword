@@ -236,14 +236,14 @@ angular.module('myApp.directives', []).
                 priority: 100,
                 terminal: true,
                 compile: function(element, attrs) {
-                    ...
+                    //...
                     var validationMgs = getValidationMessageMap(element);
                     var labelContent = getLabelContent(element);
                     element.html('');
                     return function postLink(scope, element, attrs) {
                         var template = attrs.template || 'input.html';
                         loadTemplate(template).then(function(templateElement) {
-                            ...
+                            //...
                         });
                     };
                 }
