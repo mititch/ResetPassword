@@ -1,0 +1,34 @@
+<p>This is the partial for view About.</p>
+<p>
+    Showing of 'interpolate' filter:
+    {{ 'Current version is v%VERSION%.' | interpolate }}
+</p>
+
+
+<form name="form" class="form-horizontal css-form" novalidate>
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label" >Password</label>
+        <div class="col-sm-9" >
+            <password show-input="isPasswordsShown" name="passwordText" ng-model="password.text" min-length="4" required/>
+        </div>
+        <div class="col-sm-offset-3 col-sm-9" ng-show="form.passwordText.$dirty || form.passwordText.$invalid">
+            <span ng-show="form.passwordText.$error.required">Required field.</span>
+            <span ng-show="!form.passwordText.$error.required && form.passwordText.$error.minLength">Password to short.</span>
+        </div>
+    </div>
+
+    <div field="form.passwordText"
+        label-text="Password"
+        label-columns="3"
+        field-columns="9"
+        validators="{'required' : 'Required field.', 'minLength' : 'Password to short.'}"/>
+        <password show-input="isPasswordsShown" name="passwordText" ng-model="password.text" min-length="4" required/>
+    </div>
+
+    data - {{password.text}}
+
+
+    <button class="btn btn-primary" ng-click="saveChanges()" ng-disabled="form.$invalid">Save changes</button>
+
+</form>
