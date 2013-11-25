@@ -12,5 +12,11 @@ namespace Backend.Models
         // Validation error possible
         [MinLength(5)]
         public String Text { get; set; }
+
+
+        [Required]
+        // Validation error possible
+        [MinLength(5)]
+        public String Confirmation { get; set; }
     }
 }

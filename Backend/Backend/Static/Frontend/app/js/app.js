@@ -4,7 +4,6 @@
 angular.module('myApp', [
         'ngRoute',
         'myApp.filters',
-        'myApp.resources',
         'myApp.services',
         'myApp.directives',
         'myApp.controllers'

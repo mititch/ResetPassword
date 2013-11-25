@@ -6,10 +6,7 @@ angular.module('myApp.controllers', [])
     .controller('ResetPassword', ['$scope', 'Password', '$log', 'notificationsStorage',
         function ($scope, Password, $log, notificationsStorage) {
 
-            $scope.password = new Password({
-                text: '',
-                confirmation: ''
-            });
+            $scope.password = new Password();
 
             $scope.isPasswordsShown = false;
             $scope.disableInputs = false;
@@ -23,31 +20,25 @@ angular.module('myApp.controllers', [])
                         $scope.disableInputs = false;
                     },
                     function () {
-                        notificationsStorage.add('danger', 'Server can not generate password.');
+                        notificationsStorage.add('danger', 'Server can not reset password.');
                         $scope.disableInputs = false;
                     }
                 );
             };
 
-            $scope.disableEnable = function () {
-                $scope.disableInputs = !$scope.disableInputs;
-            }
-
             $scope.generatePassword = function ($event) {
                 $scope.isPasswordsShown = false;
                 $scope.disableInputs = true;
 
-                Password.generate().then(
-                    function (password) {
-                        $scope.password.text = password.Text;
-                        $scope.password.confirmation = password.Text;
+                $scope.password.$generate().then(
+                    function () {
                         $scope.isPasswordsShown = true;
                         $scope.disableInputs = false;
                         $scope.form.$setDirty();
                         notificationsStorage.add('success', 'New password generated');
                     },
-                    function (message) {
-                        notificationsStorage.add('danger', 'Server can not reset password.');
+                    function () {
+                        notificationsStorage.add('danger', 'Server can not generate password.');
                         $scope.disableInputs = false;
                     }
                 );

@@ -1,34 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-using Backend.Models;
-using System.Web;
-
-namespace Backend.Controllers
+﻿namespace Backend.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Net;
+    using System.Net.Http;
+    using System.Web.Http;
+    using Backend.Models;
+    using System.Web;
+
     public class PasswordController : ApiController
     {
-        private const string ALLOWED_CHAR_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        
+        private const string VALID_CHARACTERS_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+        private const Int32 PASSWORD_LENGTH = 10;
+
         // GET api/password
         public Password Get()
         {
-            return new Password { Text = GeneratePassword() };
+            String newPassword = GeneratePassword();
+            
+            return new Password
+            {
+                Text = newPassword,
+                Confirmation = newPassword
+            };
         }
 
         // POST api/password
         public HttpResponseMessage Post([FromBody]Password value)
         {
-            return ResetPassword(value);
-        }
-
-        private HttpResponseMessage ResetPassword(Password value)
-        {
             HttpResponseMessage result;
-            
+
+            if (value.Text != value.Confirmation)
+            {
+                ModelState.AddModelError("Confirmation", "Passwords not equals");
+            }
+
             if (ModelState.IsValid)
             {
                 result = new HttpResponseMessage(HttpStatusCode.OK);
@@ -40,22 +48,21 @@ namespace Backend.Controllers
             }
 
             return result;
-
         }
 
         private string GeneratePassword() {
             
-            char[] alpha = ALLOWED_CHAR_STRING.ToCharArray();
+            Char[] validCharacters = VALID_CHARACTERS_STRING.ToCharArray();
             Random random = new Random();
             
             // Exception possible
-            Int32 maxValue = ALLOWED_CHAR_STRING.Length + 3;
+            Int32 maxValue = VALID_CHARACTERS_STRING.Length + 3;
 
-            char[] resultArray = new char[10];
+            Char[] resultArray = new Char[PASSWORD_LENGTH];
             
-            for (int i = 0; i < 10; i++)
+            for (Int32 i = 0; i < 10; i++)
             {
-                resultArray[i] = alpha[random.Next(maxValue)];
+                resultArray[i] = validCharacters[random.Next(maxValue)];
             }
             
             return new String(resultArray);

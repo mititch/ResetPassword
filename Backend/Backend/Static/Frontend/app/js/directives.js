@@ -147,7 +147,7 @@ angular.module('myApp.directives', [])
                 restrict: 'A',
                 priority: 100,
                 compile: function (tElement, tAttrs) {
-
+                    // TODO: use transclusion
                     var labelColumns = tAttrs.labelColumns;
                     var fieldColumns = tAttrs.fieldColumns;
 
@@ -189,6 +189,7 @@ angular.module('myApp.directives', [])
             }
         }]
     )
+
     .directive('notificationPanel', ['notificationsStorage',
         function (notificationsStorage) {
 
