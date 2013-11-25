@@ -10,9 +10,9 @@ angular.module('myApp.directives', [])
                 restrict: "E",
                 template: '<div class="input-group">' +
                     '<input type="text" class="form-control" ' +
-                        'ng-if="toggle" ng-model="data.innerInputModel" ng-disabled="disableInputs">' +
+                    'ng-if="toggle" ng-model="data.innerInputModel" ng-disabled="disableInputs">' +
                     '<input type="password" class="form-control" ' +
-                        'ng-if="!toggle" ng-model="data.innerInputModel" ng-disabled="disableInputs">' +
+                    'ng-if="!toggle" ng-model="data.innerInputModel" ng-disabled="disableInputs">' +
                     '<span class="input-group-btn">' +
                     '<button class="btn btn-default" ng-click="toggleInput()" ng-disabled="disableInputs">' +
                     '<span class="glyphicon" ' +
@@ -24,8 +24,7 @@ angular.module('myApp.directives', [])
                 replace: true,
                 scope: {
                     showInput: '=',
-                    //TODO : test it
-                    disableInputs : '=ngDisabled'
+                    disableInputs: '=ngDisabled'
                 },
                 link: function (scope, element, attrs, ngModelCtrl) {
 
@@ -147,7 +146,6 @@ angular.module('myApp.directives', [])
                 restrict: 'A',
                 priority: 100,
                 compile: function (tElement, tAttrs) {
-                    // TODO: use transclusion
                     var labelColumns = tAttrs.labelColumns;
                     var fieldColumns = tAttrs.fieldColumns;
 
@@ -189,22 +187,72 @@ angular.module('myApp.directives', [])
             }
         }]
     )
+    .directive('fieldTransWrapper', ['$log',
+        function ($log) {
 
-    .directive('notificationPanel', ['notificationsStorage',
-        function (notificationsStorage) {
+            var divElement = angular.element('<div></div>');
+            var labelElement = angular.element('<label></label>');
+            var spanElement = angular.element('<span></span>');
 
             return {
-                template :
-                    '<div>' +
-                        '<div ng-repeat="notification in notifications" class="alert alert-{{notification.type}}">' +
-                        '{{notification.text}}' +
-                        '<button ng-click="removeNotification($index)" ' +
-                            'type="button" class="close" aria-hidden="true">&times;</button>' +
-                        '</div>' +
+                restrict: 'A',
+                template: '<div class="form-group">' +
+                    '<label class="control-label col-sm-{{labelColumns}}">{{labelText}}</label>' +
+                    '<div class="col-sm-{{fieldColumns}}" ng-transclude>' +
+                    '</div>' +
+                    '<div class="col-sm-offset-{{labelColumns}} col-sm-{{fieldColumns}}>" ' +
+                    'ng-show="showValidators()">' +
+                    '<span ng-repeat="(key, value) in validatorsData()" class="text-danger" ng-show="showValidator(key)">' +
+                    '{{value}}' +
+                    '</span>' +
+                    '</div>' +
+                    '</div>',
+                transclude: true,
+                replace: true,
+                priority: 600,
+                scope: {
+                    labelColumns: '@',
+                    fieldColumns: '@',
+                    fieldFullName: '@fieldTransWrapper',
+                    validators: '@validators',
+                    labelText: '@'
+                },
+                compile: function (tElement, tAttrs) {
+
+                    return function (scope, element, attrs) {
+                        // todo future use for input name
+                        scope.showValidators = function () {
+                            return scope.$parent.$eval(scope.fieldFullName + '.$dirty && '+ scope.fieldFullName +' .$invalid');
+                        };
+
+                        scope.showValidator = function(key) {
+                            return scope.$parent.$eval(scope.fieldFullName + '.$error.' + key);
+                        }
+
+                        scope.fieldName = function () {
+                            return scope.fieldFullName.split('.')[1];
+                        };
+                        scope.validatorsData = function () {
+                            return angular.fromJson(scope.validators.replace(/'/g, '\"'));
+                        };
+                    }
+                }
+            }
+        }]
+    )
+    .directive('notificationPanel', ['notificationsStorage',
+        function (notificationsStorage) {
+            return {
+                template: '<div>' +
+                    '<div ng-repeat="notification in notifications" class="alert alert-{{notification.type}}">' +
+                    '{{notification.text}}' +
+                    '<button ng-click="removeNotification($index)" ' +
+                    'type="button" class="close" aria-hidden="true">&times;</button>' +
+                    '</div>' +
                     '</div>',
                 restrict: 'EA',
-                replace : true,
-                link : function (scope) {
+                replace: true,
+                link: function (scope) {
 
                     scope.notifications = notificationsStorage.notifications;
 
