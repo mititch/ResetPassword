@@ -3,6 +3,7 @@
 /* Directives */
 
 angular.module('myApp.directives', [])
+    // Can show a password in open or hidden mode
     .directive('password', ['$log',
         function ($log) {
             return {
@@ -29,20 +30,24 @@ angular.module('myApp.directives', [])
                 link: function (scope, element, attrs, ngModelCtrl) {
 
                     // For ng-if scope inheritance
+                    // save the inner input data as object field
                     scope.data = {};
 
                     scope.toggle = false;
 
+                    // Switch the demonstration mode
                     scope.toggleInput = function () {
                         scope.toggle = !scope.toggle;
                     };
 
+                    // Add watcher for switch the demonstration mode from outside scope
                     scope.$watch('showInput', function (value) {
                         scope.toggle = value;
                     });
 
                     if (ngModelCtrl) {
 
+                        // Track when the input element changes the value
                         scope.$watch('data.innerInputModel', function (value) {
                             // prevent $dirty set for model
                             if (value !== ngModelCtrl.$viewValue) {
@@ -50,6 +55,7 @@ angular.module('myApp.directives', [])
                             }
                         });
 
+                        // Track when the outside model changed
                         ngModelCtrl.$render = function () {
                             // prevent $dirty set for model
                             if (ngModelCtrl.$viewValue) {
@@ -62,42 +68,46 @@ angular.module('myApp.directives', [])
 
         }]
     )
+    // Add min length validation for the input element
     .directive('minLength', ['$log',
         function ($log) {
             return {
                 require: '?ngModel',
                 restrict: 'A',
                 link: function (scope, element, attrs, ngModelCtrl) {
-                    if (!ngModelCtrl) return; // do nothing if no ng-model
 
-                    // Add parser and formatter for value in pipeline
-                    ngModelCtrl.$parsers.push(function (viewValue) {
-                        validateMinLength(viewValue, null);
-                        return viewValue;
-                    });
-                    ngModelCtrl.$formatters.push(function (value) {
-                        validateMinLength(value, null);
-                        return value;
-                    });
+                    // Do nothing if no ng-model
+                    if (ngModelCtrl) {
 
-                    // Observe the other value
-                    attrs.$observe('minLength', function (value) {
-                        validateMinLength(null, value);
-                    });
+                        // Add parser and formatter for value in pipeline
+                        ngModelCtrl.$parsers.push(function (viewValue) {
+                            validateMinLength(viewValue, null);
+                            return viewValue;
+                        });
+                        ngModelCtrl.$formatters.push(function (value) {
+                            validateMinLength(value, null);
+                            return value;
+                        });
 
-                    var validateMinLength = function (innerValue, minLengthAttr) {
+                        // Observe the other value
+                        attrs.$observe('minLength', function (value) {
+                            validateMinLength(null, value);
+                        });
 
-                        var value = innerValue || ngModelCtrl.$viewValue || '';
-                        var length = minLengthAttr || attrs.minLength;
+                        var validateMinLength = function (innerValue, minLengthAttr) {
 
-                        // set validity
-                        ngModelCtrl.$setValidity('minLength', value.length >= length);
-                    };
+                            var value = innerValue || ngModelCtrl.$viewValue || '';
+                            var length = minLengthAttr || attrs.minLength;
+
+                            // set validity
+                            ngModelCtrl.$setValidity('minLength', value.length >= length);
+                        };
+                    }
                 }
             }
         }]
     )
-
+    // Add equals validation for the input element
     .directive('equals', ['$log',
         function ($log) {
             return {
@@ -135,6 +145,7 @@ angular.module('myApp.directives', [])
             }
         }]
     )
+    // Wrap input with styling and validation elements
     .directive('fieldWrapper', ['$log',
         function ($log) {
 
@@ -144,7 +155,7 @@ angular.module('myApp.directives', [])
 
             return {
                 restrict: 'A',
-                priority: 100,
+                priority: 500,
                 compile: function (tElement, tAttrs) {
                     var labelColumns = tAttrs.labelColumns;
                     var fieldColumns = tAttrs.fieldColumns;
@@ -187,6 +198,7 @@ angular.module('myApp.directives', [])
             }
         }]
     )
+    // Wrap input with styling and validation elements (used transclusion)
     .directive('fieldTransWrapper', ['$log',
         function ($log) {
 
@@ -209,7 +221,7 @@ angular.module('myApp.directives', [])
                     '</div>',
                 transclude: true,
                 replace: true,
-                priority: 600,
+                priority: 500,
                 scope: {
                     labelColumns: '@',
                     fieldColumns: '@',
@@ -217,21 +229,22 @@ angular.module('myApp.directives', [])
                     validators: '@validators',
                     labelText: '@'
                 },
-                compile: function (tElement, tAttrs) {
+                compile: function (tElement, tAttrs, transLinkFn) {
 
                     return function (scope, element, attrs) {
-                        // todo future use for input name
+
                         scope.showValidators = function () {
-                            return scope.$parent.$eval(scope.fieldFullName + '.$dirty && '+ scope.fieldFullName +' .$invalid');
+                            return scope.$parent.$eval(scope.fieldFullName + '.$dirty && ' + scope.fieldFullName + ' .$invalid');
                         };
 
-                        scope.showValidator = function(key) {
+                        scope.showValidator = function (key) {
                             return scope.$parent.$eval(scope.fieldFullName + '.$error.' + key);
                         }
 
                         scope.fieldName = function () {
                             return scope.fieldFullName.split('.')[1];
                         };
+
                         scope.validatorsData = function () {
                             return angular.fromJson(scope.validators.replace(/'/g, '\"'));
                         };

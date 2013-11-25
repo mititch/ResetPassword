@@ -6,43 +6,55 @@ angular.module('myApp.controllers', [])
     .controller('ResetPassword', ['$scope', 'Password', '$log', 'notificationsStorage',
         function ($scope, Password, $log, notificationsStorage) {
 
+            // Create empty instance
             $scope.password = new Password();
 
-            $scope.isPasswordsShown = false;
+            // Setting the hidden password mode for the all password inputs
+            $scope.showPasswords = false;
+
+            // Setting the form inputs to active state
             $scope.disableInputs = false;
 
+            // Requesting to save the model
             $scope.saveChanges = function () {
                 $scope.disableInputs = true;
+
                 $scope.password.$reset().then(
                     function () {
+                        // On success
                         notificationsStorage.add('success', 'Password is changed.');
                         $scope.form.$setPristine();
                         $scope.disableInputs = false;
                     },
                     function () {
+                        // On failure
                         notificationsStorage.add('danger', 'Server can not reset password.');
                         $scope.disableInputs = false;
                     }
                 );
             };
 
+            // Requesting new password
             $scope.generatePassword = function ($event) {
-                $scope.isPasswordsShown = false;
+                $scope.showPasswords = false;
                 $scope.disableInputs = true;
 
                 $scope.password.$generate().then(
                     function () {
-                        $scope.isPasswordsShown = true;
+                        // On success
+                        $scope.showPasswords = true;
                         $scope.disableInputs = false;
                         $scope.form.$setDirty();
                         notificationsStorage.add('success', 'New password generated');
                     },
                     function () {
+                        // On failure
                         notificationsStorage.add('danger', 'Server can not generate password.');
                         $scope.disableInputs = false;
                     }
                 );
 
+                // stop event propagation
                 $event.preventDefault();
 
             };
