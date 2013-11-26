@@ -6,20 +6,25 @@ angular.module('myApp', [
         'myApp.filters',
         'myApp.services',
         'myApp.directives',
-        'myApp.controllers'
+        'myApp.controllers',
+        'myApp.components.validation',
+        'myApp.components.ui',
+        'myApp.components.notifications',
+        'myApp.pages.password',
+        'myApp.pages.about'
     ])
     .config(['apiUrlProvider', function (apiUrlProvider) {
         // Setup base url for the application resources
         apiUrlProvider.setBaseUrl('http://localhost:5869/api/');
     }])
+    .config(['notificationsNewProvider', function (notificationsNewProvider) {
+        // Setup base url for the application resources
+        notificationsNewProvider.notificationTemplateUrl('templates/notification.tpl.html');
+    }])
+    /*.run(["notificationsNew", function (notificationsNew) {
+        notificationsNew.initialize();
+    }])*/
     .config(['$routeProvider', function ($routeProvider) {
         // Setup routes
-        $routeProvider.when('/about', {
-            templateUrl: 'partials/about.html',
-            controller: 'About'
-        });
-        $routeProvider.when('/reset-password', {
-            templateUrl: 'partials/reset-password.html',
-            controller: 'ResetPassword'});
         $routeProvider.otherwise({redirectTo: '/about'});
     }]);

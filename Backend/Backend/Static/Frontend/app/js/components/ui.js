@@ -1,12 +1,13 @@
 'use strict';
 
-/* Directives */
+/**
+ * Created by mititch on 26.11.13.
+ */
 
-angular.module('myApp.directives', [])
+angular.module('myApp.components.ui', [])
     // Custom input
     // Can show a password in open or hidden mode
-    // TODO: Obsolete - use ui-password-input
-    .directive('password', ['$log',
+    .directive('uiPasswordInput', ['$log',
         function ($log) {
             return {
                 require: '?ngModel',
@@ -54,9 +55,6 @@ angular.module('myApp.directives', [])
                         );
                     }
 
-                    //TODO: add default value
-                    //scope.disableInputs = false;
-
                     if (ngModelCtrl) {
 
                         // Track when the input element changes the value
@@ -80,89 +78,9 @@ angular.module('myApp.directives', [])
 
         }]
     )
-    // Add min length validation for the input element
-    .directive('minLengthOLD', ['$log',
-        function ($log) {
-            return {
-                require: '?ngModel',
-                restrict: 'A',
-                link: function (scope, element, attrs, ngModelCtrl) {
-
-                    // Do nothing if no ng-model
-                    if (ngModelCtrl) {
-
-                        // Add parser and formatter for value in pipeline
-                        ngModelCtrl.$parsers.push(function (viewValue) {
-                            validateMinLength(viewValue, null);
-                            return viewValue;
-                        });
-                        ngModelCtrl.$formatters.push(function (value) {
-                            validateMinLength(value, null);
-                            return value;
-                        });
-
-                        // Observe the other value
-                        attrs.$observe('minLength', function (value) {
-                            validateMinLength(null, value);
-                        });
-
-                        var validateMinLength = function (innerValue, minLengthAttr) {
-
-                            var value = innerValue || ngModelCtrl.$viewValue || '';
-                            var length = minLengthAttr || attrs.minLength;
-
-                            // set validity
-                            ngModelCtrl.$setValidity('minLength', value.length >= length);
-                        };
-                    }
-                }
-            }
-        }]
-    )
-    // Add equals validation for the input element
-    .directive('equalsOLD', ['$log',
-        function ($log) {
-            return {
-                require: '?ngModel',
-                restrict: 'A',
-                link: function (scope, element, attrs, ngModelCtrl) {
-
-                    // do nothing if no ng-model
-                    if (ngModelCtrl) {
-
-                        // Add parser for this value
-                        ngModelCtrl.$parsers.push(function (viewValue) {
-                            validateEquals(viewValue, null);
-                            return viewValue;
-                        });
-
-                        // Add formatter for this value
-                        ngModelCtrl.$formatters.push(function (value) {
-                            validateEquals(value, null);
-                            return value;
-                        });
-
-                        // Observe the other value
-                        attrs.$observe('equals', function (val) {
-                            validateEquals(null, val);
-                        });
-
-                        var validateEquals = function (innerValue, outerValue) {
-
-                            var val1 = innerValue || ngModelCtrl.$viewValue;
-                            var val2 = outerValue || attrs.equals;
-
-                            // set validity
-                            ngModelCtrl.$setValidity('equals', val1 === val2);
-                        };
-                    }
-                }
-            }
-        }]
-    )
     // Wrap input with styling and validation elements
     // Not creates a new scope
-    .directive('fieldWrapper', ['$log',
+    .directive('uiFormField', ['$log',
         function ($log) {
 
             var divElement = angular.element('<div></div>');
@@ -171,13 +89,14 @@ angular.module('myApp.directives', [])
 
             return {
                 restrict: 'A',
+                // TODO check this
                 priority: 500,
                 compile: function (tElement, tAttrs) {
                     var labelColumns = tAttrs.labelColumns;
                     var fieldColumns = tAttrs.fieldColumns;
 
-                    var fieldFullName = tAttrs.fieldWrapper;
-                    var fieldName = tAttrs.fieldWrapper.split('.')[1];
+                    var fieldFullName = tAttrs.uiFormField;
+                    var fieldName = tAttrs.uiFormField.split('.')[1];
 
                     tElement.addClass('form-group');
 
@@ -216,7 +135,7 @@ angular.module('myApp.directives', [])
     )
     // Wrap input with styling and validation elements (uses transclusion)
     // Creates a new scope
-    .directive('fieldTransWrapper', ['$log',
+    .directive('uiTranscludedFormField', ['$log',
         function ($log) {
 
             var divElement = angular.element('<div></div>');
@@ -239,17 +158,20 @@ angular.module('myApp.directives', [])
                     '</div>',
                 transclude: true,
                 replace: true,
+                // TODO check this
                 priority: 500,
                 scope: {
                     labelColumns: '@',
                     fieldColumns: '@',
-                    fieldFullName: '@fieldTransWrapper',
-                    validators: '@validators',
+                    fieldFullName: '@uiTranscludedFormField',
+                    validators: '@',
                     labelText: '@'
                 },
                 compile: function (tElement, tAttrs, transLinkFn) {
 
                     return function (scope, element, attrs) {
+
+                        // TODO : fix bag with validators margin
 
                         // Add show validators watch
                         scope.showValidators = function () {
@@ -267,33 +189,6 @@ angular.module('myApp.directives', [])
                             return angular.fromJson(scope.validators.replace(/'/g, '\"'));
                         };
                     }
-                }
-            }
-        }]
-    )
-    // Shows a notifications from storage
-    .directive('notificationPanel', ['notificationsStorage',
-        function (notificationsStorage) {
-            return {
-                template: '<div>' +
-                    '<div ng-repeat="notification in notifications" class="alert alert-{{notification.type}}">' +
-                    '{{notification.text}}' +
-                    '<button ng-click="removeNotification($index)" ' +
-                    'type="button" class="close" aria-hidden="true">&times;</button>' +
-                    '</div>' +
-                    '</div>',
-                restrict: 'EA',
-                replace: true,
-                link: function (scope) {
-
-                    // Get notifications from storage
-                    scope.notifications = notificationsStorage.notifications;
-
-                    // Remove notification from storage by index
-                    scope.removeNotification = function (index) {
-                        notificationsStorage.remove(index);
-                    };
-
                 }
             }
         }]

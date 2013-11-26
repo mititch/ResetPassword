@@ -120,7 +120,6 @@
     <Content Include="Static\Frontend\.idea\vcs.xml" />
     <Content Include="Static\Frontend\.idea\workspace.xml" />
     <Content Include="Static\Frontend\app\css\app.css" />
-    <Content Include="Static\Frontend\app\index-async.html" />
     <Content Include="Static\Frontend\app\index.html" />
     <Content Include="Static\Frontend\app\js\app.js" />
     <Content Include="Static\Frontend\app\js\controllers.js" />
@@ -404,10 +403,6 @@
     <Content Include="Static\Frontend\app\lib\ui-bootstrap\ui-bootstrap-tpls-0.6.0.min.js" />
     <Content Include="Static\Frontend\app\partials\about.html" />
     <Content Include="Static\Frontend\app\partials\reset-password.html" />
-    <Content Include="Static\Frontend\app\test.html" />
-    <Content Include="Static\Frontend\config\karma-e2e.conf.js" />
-    <Content Include="Static\Frontend\config\karma.conf.js" />
-    <Content Include="Static\Frontend\karma.conf.js" />
     <Content Include="Static\Frontend\scripts\web-server.js" />
     <Content Include="Static\Frontend\test\e2e\runner.html" />
     <Content Include="Static\Frontend\test\e2e\scenarios.js" />
@@ -431,6 +426,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Static\Frontend\app\img\" />
+    <Folder Include="Static\Frontend\config\" />
     <Folder Include="Static\Frontend\logs\" />
   </ItemGroup>
   <ItemGroup>
@@ -442,7 +438,6 @@
     <None Include="Static\Frontend\.gitignore" />
     <None Include="Static\Frontend\.idea\.name" />
     <None Include="Static\Frontend\.idea\Frontend.iml" />
-    <None Include="Static\Frontend\.travis.yml" />
     <None Include="Static\Frontend\app\lib\angular\angular-animate.min.js.map" />
     <None Include="Static\Frontend\app\lib\angular\angular-cookies.min.js.map" />
     <None Include="Static\Frontend\app\lib\angular\angular-loader.min.js.map" />
@@ -457,9 +452,6 @@
     <None Include="Static\Frontend\app\lib\bootstrap\fonts\glyphicons-halflings-regular.svg" />
     <None Include="Static\Frontend\app\lib\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
     <None Include="Static\Frontend\app\lib\bootstrap\fonts\glyphicons-halflings-regular.woff" />
-    <None Include="Static\Frontend\LICENSE" />
-    <None Include="Static\Frontend\package.json" />
-    <None Include="Static\Frontend\README.md" />
     <None Include="Static\Frontend\scripts\e2e-test.bat" />
     <None Include="Static\Frontend\scripts\e2e-test.sh" />
     <None Include="Static\Frontend\scripts\test.bat" />
