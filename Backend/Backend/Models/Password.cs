@@ -1,22 +1,50 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.ComponentModel.DataAnnotations;
-
-namespace Backend.Models
+﻿namespace Backend.Models
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
+
+    /// <summary>
+    /// Password view model
+    /// </summary>
     public class Password
     {
+        //
+        // Fields
+        //
+
+        // Password confirmation string
+        private String confirmation;
+
+        // Password string
+        private String text;
+        
+        //
+        // Properties
+        //
+
+        /// <summary>
+        /// Gets and sets password confirmation fiels
+        /// </summary>
         [Required]
         // Validation error possible
-        [MinLength(5)]
-        public String Text { get; set; }
+        [StringLength(int.MaxValue, MinimumLength = 5)]
+        public String Confirmation
+        {
+            get { return this.confirmation; }
+            set { this.confirmation = value; }
+        }
 
-
+        /// <summary>
+        /// Gets and sets password test fiels
+        /// </summary>
         [Required]
         // Validation error possible
-        [MinLength(5)]
-        public String Confirmation { get; set; }
+        [StringLength(int.MaxValue, MinimumLength = 5)]
+        public String Text 
+        {
+            get { return this.text; }
+            set { this.text = value; }
+        }
+
     }
 }

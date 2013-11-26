@@ -4,8 +4,10 @@
 
 angular.module('myApp.services', [])
 
+    // After configuration returns resource API ULRs
     .provider('apiUrl', function() {
 
+        // API base url
         this.baselUrl = '';
 
         // Provider setup method
@@ -15,32 +17,45 @@ angular.module('myApp.services', [])
 
         this.$get = function() {
             return {
+                // Returns a password api url
                 passwordApiUrl : this.baselUrl + 'password'
             };
         };
 
     })
 
+    // Saves applications notifications
+    // Provide access to add and remove operations
     .factory('notificationsStorage', function () {
-        return {
-            notifications: [{type: 'info', text: "Application started"}],
 
+        return {
+            // Notifications storage
+            notifications: [],
+
+            // Add new notifications
             add:function (type, text) {
+
+                // Remove old notification
                 if (this.notifications.length > 2) {
                     this.remove(0);
                 }
+
                 this.notifications.push(
                     {type: type, text: text}
                 );
             },
 
+            // Remove notifications
             remove : function (index) {
                 this.notifications.splice(index, 1);
             }
         };
     })
-    .factory('Password', ['$http', 'apiUrl', '$q' , function ($http, apiUrl, $q) {
 
+    // Password custom Angular resource
+    .factory('Password', ['$http', 'apiUrl', function ($http, apiUrl) {
+
+        // Get connection url from provider
         var connectionUrl = apiUrl.passwordApiUrl;
 
         // Prepare resource constructor
@@ -51,13 +66,16 @@ angular.module('myApp.services', [])
         };
 
         // Add class method
+        // Requests a new password generation
         Resource.generate = function (data) {
 
+            // Make request
             var promise = $http.get(connectionUrl);
 
             // Update instance on success
             promise.then(
                 function (response) {
+                    //On success update instance
                     data.text = response.data.Text;
                     data.confirmation = response.data.Confirmation;
                 }
@@ -73,6 +91,7 @@ angular.module('myApp.services', [])
         };
 
         // Add class method
+        // Requests password reset
         Resource.reset = function (data) {
 
             // Make post request and return promise to caller
@@ -84,6 +103,7 @@ angular.module('myApp.services', [])
             return Resource.reset(this);
         };
 
+        // Return constructor function
         return Resource;
 
     }])

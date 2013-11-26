@@ -3,6 +3,7 @@
 /* Directives */
 
 angular.module('myApp.directives', [])
+    // Custom input
     // Can show a password in open or hidden mode
     .directive('password', ['$log',
         function ($log) {
@@ -146,6 +147,7 @@ angular.module('myApp.directives', [])
         }]
     )
     // Wrap input with styling and validation elements
+    // Not creates a new scope
     .directive('fieldWrapper', ['$log',
         function ($log) {
 
@@ -198,7 +200,8 @@ angular.module('myApp.directives', [])
             }
         }]
     )
-    // Wrap input with styling and validation elements (used transclusion)
+    // Wrap input with styling and validation elements (uses transclusion)
+    // Creates a new scope
     .directive('fieldTransWrapper', ['$log',
         function ($log) {
 
@@ -213,8 +216,9 @@ angular.module('myApp.directives', [])
                     '<div class="col-sm-{{fieldColumns}}" ng-transclude>' +
                     '</div>' +
                     '<div class="col-sm-offset-{{labelColumns}} col-sm-{{fieldColumns}}>" ' +
-                    'ng-show="showValidators()">' +
-                    '<span ng-repeat="(key, value) in validatorsData()" class="text-danger" ng-show="showValidator(key)">' +
+                        'ng-show="showValidators()">' +
+                    '<span ng-repeat="(key, value) in validatorsData()" ' +
+                        'class="text-danger" ng-show="showValidator(key)">' +
                     '{{value}}' +
                     '</span>' +
                     '</div>' +
@@ -233,18 +237,18 @@ angular.module('myApp.directives', [])
 
                     return function (scope, element, attrs) {
 
+                        // Add show validators watch
                         scope.showValidators = function () {
-                            return scope.$parent.$eval(scope.fieldFullName + '.$dirty && ' + scope.fieldFullName + ' .$invalid');
+                            return scope.$parent.$eval(scope.fieldFullName + '.$dirty && '
+                                + scope.fieldFullName + ' .$invalid');
                         };
 
+                        // Add show validator watch
                         scope.showValidator = function (key) {
                             return scope.$parent.$eval(scope.fieldFullName + '.$error.' + key);
                         }
 
-                        scope.fieldName = function () {
-                            return scope.fieldFullName.split('.')[1];
-                        };
-
+                        // Prepare validators data for repeater
                         scope.validatorsData = function () {
                             return angular.fromJson(scope.validators.replace(/'/g, '\"'));
                         };
@@ -253,6 +257,7 @@ angular.module('myApp.directives', [])
             }
         }]
     )
+    // Shows a notifications from storage
     .directive('notificationPanel', ['notificationsStorage',
         function (notificationsStorage) {
             return {
@@ -267,8 +272,10 @@ angular.module('myApp.directives', [])
                 replace: true,
                 link: function (scope) {
 
+                    // Get notifications from storage
                     scope.notifications = notificationsStorage.notifications;
 
+                    // Remove notification from storage by index
                     scope.removeNotification = function (index) {
                         notificationsStorage.remove(index);
                     };

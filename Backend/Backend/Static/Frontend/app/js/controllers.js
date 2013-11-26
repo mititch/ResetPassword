@@ -19,6 +19,7 @@ angular.module('myApp.controllers', [])
             $scope.saveChanges = function () {
                 $scope.disableInputs = true;
 
+                // Call to resource API
                 $scope.password.$reset().then(
                     function () {
                         // On success
@@ -39,6 +40,7 @@ angular.module('myApp.controllers', [])
                 $scope.showPasswords = false;
                 $scope.disableInputs = true;
 
+                // Call to resource API
                 $scope.password.$generate().then(
                     function () {
                         // On success

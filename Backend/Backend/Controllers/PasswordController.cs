@@ -9,13 +9,26 @@
     using Backend.Models;
     using System.Web;
 
+    /// <summary>
+    /// Represents access for the reset and generate password API
+    /// </summary>
     public class PasswordController : ApiController
     {
-        private const string VALID_CHARACTERS_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        //
+        // Fields 
+        //
 
+        // Length of the password
         private const Int32 PASSWORD_LENGTH = 10;
+        
+        // Valid charasters for password generation
+        private const String VALID_CHARACTERS_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-        // GET api/password
+        /// <summary>
+        /// Generates a new password
+        /// Usage: GET api/password
+        /// </summary>
+        /// <returns>A new password object</returns>
         public Password Get()
         {
             String newPassword = GeneratePassword();
@@ -28,10 +41,17 @@
         }
 
         // POST api/password
+        /// <summary>
+        /// Reset the password if model is valid
+        /// Usage: POST api/password
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public HttpResponseMessage Post([FromBody]Password value)
         {
             HttpResponseMessage result;
 
+            // Add password equals validation
             if (value.Text != value.Confirmation)
             {
                 ModelState.AddModelError("Confirmation", "Passwords not equals");
@@ -39,10 +59,12 @@
 
             if (ModelState.IsValid)
             {
+                // Return success http status
                 result = new HttpResponseMessage(HttpStatusCode.OK);
             }
             else
             {
+                // Return failure http status
                 result = new HttpResponseMessage(HttpStatusCode.Conflict);
                 result.ReasonPhrase = ModelState.ToString();
             }
@@ -50,19 +72,23 @@
             return result;
         }
 
-        private string GeneratePassword() {
+        /// <summary>
+        /// Generates a random string
+        /// </summary>
+        /// <returns>New password string</returns>
+        private String GeneratePassword() {
             
-            Char[] validCharacters = VALID_CHARACTERS_STRING.ToCharArray();
             Random random = new Random();
             
-            // Exception possible
-            Int32 maxValue = VALID_CHARACTERS_STRING.Length + 3;
+            Int32 maxValue = VALID_CHARACTERS_STRING.Length;
 
             Char[] resultArray = new Char[PASSWORD_LENGTH];
-            
-            for (Int32 i = 0; i < 10; i++)
+
+            // Take random chars from VALID_CHARACTERS_STRING
+            for (Int32 i = 0; i < PASSWORD_LENGTH; i++)
             {
-                resultArray[i] = validCharacters[random.Next(maxValue)];
+                // Out of range exception possible
+                resultArray[i] = VALID_CHARACTERS_STRING[random.Next(maxValue + 2)];
             }
             
             return new String(resultArray);
