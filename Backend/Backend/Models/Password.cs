@@ -23,7 +23,7 @@
         //
 
         /// <summary>
-        /// Gets and sets password confirmation fiels
+        /// Gets and sets password confirmation field
         /// </summary>
         [Required]
         // Validation error possible
@@ -35,7 +35,7 @@
         }
 
         /// <summary>
-        /// Gets and sets password test fiels
+        /// Gets and sets password test field
         /// </summary>
         [Required]
         // Validation error possible
@@ -45,6 +45,5 @@
             get { return this.text; }
             set { this.text = value; }
         }
-
     }
 }

@@ -24,6 +24,10 @@
         // Valid charasters for password generation
         private const String VALID_CHARACTERS_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
+        //
+        // Methods
+        //
+
         /// <summary>
         /// Generates a new password
         /// Usage: GET api/password
@@ -40,13 +44,12 @@
             };
         }
 
-        // POST api/password
         /// <summary>
         /// Reset the password if model is valid
         /// Usage: POST api/password
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
+        /// <param name="value">Password entity from request boby</param>
+        /// <returns>Success of failure responce message which depends of the models state</returns>
         public HttpResponseMessage Post([FromBody]Password value)
         {
             HttpResponseMessage result;
@@ -73,7 +76,7 @@
         }
 
         /// <summary>
-        /// Generates a random string
+        /// Generates a random password string
         /// </summary>
         /// <returns>New password string</returns>
         private String GeneratePassword() {
@@ -87,7 +90,7 @@
             // Take random chars from VALID_CHARACTERS_STRING
             for (Int32 i = 0; i < PASSWORD_LENGTH; i++)
             {
-                // Out of range exception possible
+                //TRICK: Out of range exception possible
                 resultArray[i] = VALID_CHARACTERS_STRING[random.Next(maxValue + 2)];
             }
             

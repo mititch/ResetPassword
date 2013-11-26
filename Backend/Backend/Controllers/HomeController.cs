@@ -4,15 +4,16 @@
     using System.Web.Mvc;
 
     /// <summary>
-    /// Main application controller
+    /// Default application controller
     /// </summary>
     public class HomeController : Controller
     {
         /// <summary>
-        /// Redirect request to static page
+        /// Default controller action
         /// </summary>
         public RedirectResult Index()
         {
+            /// Redirect request to static page
             return Redirect("~/Static/Frontend/app/index.html");
         }
     }
