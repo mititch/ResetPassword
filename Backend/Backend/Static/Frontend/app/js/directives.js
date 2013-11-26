@@ -25,7 +25,7 @@ angular.module('myApp.directives', [])
                     '</div>',
                 replace: true,
                 scope: {
-                    showInput: '=',
+                    showInput: '&',
                     disableInputs: '=ngDisabled'
                 },
                 link: function (scope, element, attrs, ngModelCtrl) {
@@ -42,9 +42,19 @@ angular.module('myApp.directives', [])
                     };
 
                     // Add watcher for switch the demonstration mode from outside scope
-                    scope.$watch('showInput', function (value) {
-                        scope.toggle = value;
-                    });
+                    if (attrs.showInput) {
+                        scope.$watch(
+                            function () {
+                                return scope.showInput();
+                            },
+                            function (value) {
+                                scope.toggle = value;
+                            }
+                        );
+                    }
+
+                    //TODO: add default value
+                    //scope.disableInputs = false;
 
                     if (ngModelCtrl) {
 
