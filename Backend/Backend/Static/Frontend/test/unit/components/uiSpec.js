@@ -43,6 +43,8 @@ describe('myApp.components.ui', function () {
 
     });
 
+    //TODO: ui-form-field-wrapper TEST
+
     describe('ui-password-input directive', function () {
 
         var DEFAULT_TEMPLATE =
