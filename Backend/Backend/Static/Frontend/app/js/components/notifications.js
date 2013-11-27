@@ -2,128 +2,101 @@
 
 /**
  * Created by mititch on 26.11.13.
+ *
  */
 
 angular.module('myApp.components.notifications', [])
-    .constant('DEFAULT_TEMPLATE_URL', 'notification.tpl.html')
     // Saves applications notifications
     // Provide access to add and remove operations
     // Configures with notification template url
-    .provider('notificationsNew', function () {
+    .provider('notifications', function () {
 
         var self = this;
 
-        //Base template
-        self.templateUrl = '';
+        // Notifications storage
+        self.notifications = [];
 
-        // Provider setup method
-        this.notificationTemplateUrl = function (templateUrl) {
+        // Max count of saved notifications
+        self.maxCount = 2;
+
+        // Setup notifications provider
+        // templateUrl - URL of notification HTML template
+        //      template may contains
+        //          "notification.type" link - to show notification type
+        //          "notification.text" link - to show notification text
+        //          "removeNotification($index)" call - to remove current notification
+        // maxCount - max count of saved notifications
+        self.initialize = function (templateUrl, maxCount) {
+
+            // Save template URL
             self.templateUrl = templateUrl;
 
+            // Save notifications max count
+            self.maxCount = maxCount || self.maxCount;
         };
 
-        this.$get = ['$q', 'DEFAULT_TEMPLATE_URL', '$http', '$templateCache', '$interpolate', function ($q, DEFAULT_TEMPLATE_URL, $http, $templateCache, $interpolate) {
-
-            function loadTemplate(templateUrl) {
-                return $http.get(templateUrl, {cache: $templateCache}).then(
-                    function (response) {
-                        return response.data;
-                    }
-                    , function (response) {
-                        throw new Error('Template not found: ' + template);
-                    });
-            }
+        this.$get = ['$templateCache', function ($templateCache) {
 
             return {
-                // Notifications storage
-                notifications: {type : 'success', text : 'Notification!'},
+                // Returns a notifications array
+                getNotifications: function () {
+                    return self.notifications;
+                },
 
-                // Add new notifications
+                // Returns a template URL
+                getTemplateUrl: function () {
+                    return self.templateUrl;
+                },
+
+                // Add new notification
                 add: function (type, text) {
 
-                    // Remove old notification
-                    if (this.notifications.length > 2) {
+                    // Remove old notification if storage is full
+                    if (self.notifications.length >= self.maxCount) {
                         this.remove(0);
                     }
 
-                    this.notifications.push(
+                    // Add notification to storage
+                    self.notifications.push(
                         {type: type, text: text}
                     );
                 },
 
-                // Remove notifications
+                // Remove notification from storage by index
                 remove: function (index) {
-                    this.notifications.splice(index, 1);
-                },
-
-                // Return template url
-                initialize: function () {
-                    var deferred = $q.defer()
-
-                    loadTemplate(self.templateUrl).then(function (data) {
-                        var template = $interpolate(data);
-                        var scope = { type:'{{notification.type}}', text:'{{notification.text}}', closeFn:'removeNotification($index)' };
-                        var element = template(scope);
-                        $templateCache.put(DEFAULT_TEMPLATE_URL, element);
-                        deferred.resolve('a');
-                    });
-
-                    return deferred.promise;
+                    self.notifications.splice(index, 1);
                 }
             };
         }];
 
     })
 
-    .directive('notificationPanelNew', ['$compile', 'notificationsNew', 'DEFAULT_TEMPLATE_URL', '$http', '$templateCache', '$interpolate',
-        function ($compile, notificationsNew, DEFAULT_TEMPLATE_URL, $http, $templateCache, $interpolate) {
-
-            /*function loadTemplate(templateUrl) {
-                return $http.get(templateUrl, {cache: $templateCache}).then(
-                    function (response) {
-                        return response.data;
-                    }
-                    , function (response) {
-                        throw new Error('Template not found: ' + template);
-                    });
-            }*/
-
-            var ngIncludeElement = angular.element('<ng-include src=' + DEFAULT_TEMPLATE_URL + '></ng-include>')
-
+    // Shows a notifications from storage
+    // Before usage notification provider should be initialized with notifications template URL
+    .directive('notificationsPanel', ['notifications',
+        function (notifications) {
             return {
-                template:
-                    '<div ng-repeat="notification in notifications">' +
-                    '{{notification.text}}' +
+                template: '<div ng-repeat="notification in notifications">' +
+                    '<ng-include src="templateUrl"></ng-include>' +
                     '</div>',
                 restrict: 'A',
-                //replace: true,
-                compile: function (tElement, tAttrs) {
+                scope: {},
+                link: function (scope, element, attrs) {
 
-                    var nt = notificationsNew.notifications;
-                    //tElement.append(ngIncludeElement);
-
-                    /*loadTemplate(notificationsNew.getTemplateUrl()).then(function (data) {
-                        var template = $interpolate(data);
-                        var scope = { type:'{{notification.type}}', text:'{{notification.text}}', closeFn:'removeNotification($index)' };
-                        var element = template(scope);
-                        $templateCache.put('DEFAULT_TEMPLATE_URL', element);
-                    });*/
-
-                    return function (scope, element, attrs) {
-
-                        //scope.templatePath = DEFAULT_TEMPLATE_URL;
-                        scope.a = notificationsNew.initialize();
-
-                        // Get notifications from storage
-                        scope.notifications = notificationsNew.notifications;
-
-                        // Remove notification from storage by index
-                        scope.removeNotification = function (index) {
-                            notificationsNew.remove(index);
-                        };
-
+                    // Get template url
+                    scope.templateUrl = notifications.getTemplateUrl();
+                    if (!scope.templateUrl) {
+                        throw new Error('Notification template url is not set. You must initialize notification provider before usage.');
                     }
+
+                    // Get notifications from storage
+                    scope.notifications = notifications.getNotifications();
+
+                    // Remove notification from storage by index
+                    scope.removeNotification = function (index) {
+                        notifications.remove(index);
+                    };
                 }
             }
         }]
-    )
+    );

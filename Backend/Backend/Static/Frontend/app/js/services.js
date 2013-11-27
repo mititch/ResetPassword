@@ -23,35 +23,6 @@ angular.module('myApp.services', [])
         };
 
     })
-
-    // Saves applications notifications
-    // Provide access to add and remove operations
-    .factory('notificationsStorage', function () {
-
-        return {
-            // Notifications storage
-            notifications: [],
-
-            // Add new notifications
-            add:function (type, text) {
-
-                // Remove old notification
-                if (this.notifications.length > 2) {
-                    this.remove(0);
-                }
-
-                this.notifications.push(
-                    {type: type, text: text}
-                );
-            },
-
-            // Remove notifications
-            remove : function (index) {
-                this.notifications.splice(index, 1);
-            }
-        };
-    })
-
     // Password custom Angular resource
     .factory('Password', ['$http', 'apiUrl', function ($http, apiUrl) {
 

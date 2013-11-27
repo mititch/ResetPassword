@@ -13,18 +13,17 @@ module.exports = function(config) {
 
 
         files : [
-            '../../vendors/angular/angular.js',
-            '../../vendors/angular/angular-*.js',
+            'vendors/angular/angular.js',
+            'vendors/angular/angular-*.js',
             'test/lib/angular/angular-mocks.js',
             'app/js/**/*.js',
-            'test/unit/servicesSpec.js',
-            'test/unit/directivesSpec.js'
+            'test/unit/components/validationSpec.js',
         ],
 
         exclude : [
-            'app/lib/angular/angular-loader.js',
-            'app/lib/angular/*.min.js',
-            'app/lib/angular/angular-scenario.js'
+            'vendors/angular/angular-loader.js',
+            'vendors/angular/*.min.js',
+            'vendors/angular/angular-scenario.js'
         ],
 
 

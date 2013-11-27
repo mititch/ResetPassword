@@ -12,23 +12,6 @@ describe('service', function () {
 
     }));
 
-    describe('notificationsStorage', function () {
-
-        var $http, $httpBackend;
-        var notificationsStorage;
-
-        beforeEach(inject(function (_$http_, _$httpBackend_) {
-            $http = _$http_;
-            $httpBackend = _$httpBackend_;
-        }));
-
-        beforeEach(inject(function (_notificationsStorage_) {
-            notificationsStorage = _notificationsStorage_;
-        }));
-
-    });
-
-
     describe('Password', function () {
 
         var $http, $httpBackend;

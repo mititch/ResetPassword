@@ -10,8 +10,8 @@ angular.module('myApp.pages.password', [])
             controller: 'PasswordPage'
         });
     }])
-    .controller('PasswordPage', ['$scope', 'Password', '$log', 'notificationsStorage',
-        function ($scope, Password, $log, notificationsStorage) {
+    .controller('PasswordPage', ['$scope', 'Password', '$log', 'notifications',
+        function ($scope, Password, $log, notifications) {
 
             // Create empty instance
             $scope.password = new Password();
@@ -31,13 +31,13 @@ angular.module('myApp.pages.password', [])
                 $scope.password.$reset().then(
                     function () {
                         // On success
-                        notificationsStorage.add('success', 'Password is changed.');
+                        notifications.add('success', 'Password is changed.');
                         $scope.form.$setPristine();
                         $scope.disableInputs = false;
                     },
                     function () {
                         // On failure
-                        notificationsStorage.add('danger', 'Server can not reset password.');
+                        notifications.add('danger', 'Server can not reset password.');
                         $scope.disableInputs = false;
                     }
                 );
@@ -55,11 +55,11 @@ angular.module('myApp.pages.password', [])
                         $scope.showPasswords = true;
                         $scope.disableInputs = false;
                         $scope.form.$setDirty();
-                        notificationsStorage.add('success', 'New password generated');
+                        notifications.add('success', 'New password generated');
                     },
                     function () {
                         // On failure
-                        notificationsStorage.add('danger', 'Server can not generate password.');
+                        notifications.add('danger', 'Server can not generate password.');
                         $scope.disableInputs = false;
                     }
                 );

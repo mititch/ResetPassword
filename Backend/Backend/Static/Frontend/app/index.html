@@ -50,15 +50,13 @@
         </nav>
     </div>
 </header>
-
+    <div ng-include="'templates/test.tpl.html'"></div>
     <div class="container">
+
         <div class="row main-view" ng-view></div>
 
-        <div notification-panel></div>
+        <div notifications-panel></div>
     </div>
-
-<p>----</p>
-<div notification-panel-new></div>
 
     <script src="../vendors/angular/angular.js"></script>
     <script src="../vendors/angular/angular-route.js"></script>

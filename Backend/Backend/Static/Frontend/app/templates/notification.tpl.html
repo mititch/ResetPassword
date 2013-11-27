@@ -1,5 +1,5 @@
-<div class="alert alert-{{type}}">
-    {{text}}
-    <button ng-click="{{closeFn}}"
-            type="button" class="close" aria-hidden="true">&times;</button>
+<div class="alert alert-{{notification.type}}">
+    {{notification.text}}
+    <button ng-click="removeNotification($index)"
+    type="button" class="close" aria-hidden="true">&times;</button>
 </div>

@@ -271,31 +271,4 @@ angular.module('myApp.directives', [])
             }
         }]
     )
-    // Shows a notifications from storage
-    .directive('notificationPanel', ['notificationsStorage',
-        function (notificationsStorage) {
-            return {
-                template: '<div>' +
-                    '<div ng-repeat="notification in notifications" class="alert alert-{{notification.type}}">' +
-                    '{{notification.text}}' +
-                    '<button ng-click="removeNotification($index)" ' +
-                    'type="button" class="close" aria-hidden="true">&times;</button>' +
-                    '</div>' +
-                    '</div>',
-                restrict: 'EA',
-                replace: true,
-                link: function (scope) {
-
-                    // Get notifications from storage
-                    scope.notifications = notificationsStorage.notifications;
-
-                    // Remove notification from storage by index
-                    scope.removeNotification = function (index) {
-                        notificationsStorage.remove(index);
-                    };
-
-                }
-            }
-        }]
-    )
 ;

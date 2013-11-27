@@ -17,13 +17,10 @@ angular.module('myApp', [
         // Setup base url for the application resources
         apiUrlProvider.setBaseUrl('http://localhost:5869/api/');
     }])
-    .config(['notificationsNewProvider', function (notificationsNewProvider) {
+    .config(['notificationsProvider', function (notificationsProvider) {
         // Setup base url for the application resources
-        notificationsNewProvider.notificationTemplateUrl('templates/notification.tpl.html');
+        notificationsProvider.initialize('templates/notification.tpl.html', 3);
     }])
-    /*.run(["notificationsNew", function (notificationsNew) {
-        notificationsNew.initialize();
-    }])*/
     .config(['$routeProvider', function ($routeProvider) {
         // Setup routes
         $routeProvider.otherwise({redirectTo: '/about'});
