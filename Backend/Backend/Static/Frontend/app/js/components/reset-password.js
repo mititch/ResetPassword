@@ -4,40 +4,91 @@
  * Created by mititch on 26.11.13.
  */
 
-angular.module('myApp.components.resetPassword', ['ui.bootstrap'])
+angular.module('myApp.components.resetPassword', ['ui.bootstrap.modal'])
 
     // Saves applications notifications
     // Provide access to add and remove operations
     // Configures with notification template url
-    .provider('resetPassword', function () {
+    .provider('resetPassword', ['$provide', function ($provide) {
 
-        var self = this;
-
-        // Setup ui provider
+        // Setup reset password provider
         // apiUrl - ULR to password reset API
-        self.initialize = function (apiUrl) {
-
-            self.apiUrl = apiUrl;
+        this.initialize = function (apiUrl) {
+            $provide.constant('PASSWORD_API_URL', apiUrl);
         };
 
-        this.$get = ['$templateCache', '$modal', '$rootScope', function ($templateCache, $modal, $rootScope) {
+        this.$get = ['$templateCache', '$modal', 'Password', function ($templateCache, $modal, Password) {
 
-            var ModalInstanceCtrl = function ($scope, $modalInstance, data) {
+            var ModalInstanceCtrl = function ($scope, $modalInstance, passwordText) {
 
-                $scope.data = {
+                    // Create Password instance
+                    $scope.password = new Password({
+                        text : passwordText,
+                        confirmation : passwordText
+                    });
 
-                    password: data
+                    // Setting the hidden password mode for the all password inputs
+                    $scope.showPasswords = false;
 
-                }
+                    // Setting the form inputs to active state
+                    // TODO fix bag with "a" element disabling
+                    $scope.disableInputs = false;
 
-                $scope.ok = function () {
-                    $modalInstance.close($scope.data.password);
+                    // Requesting to save the model
+                    $scope.saveChanges = function () {
+                        $scope.disableInputs = true;
+
+                        // Call to resource API
+                        $scope.password.$reset().then(
+                            function () {
+                                // On success
+                                notifications.add('success', 'Password is changed.');
+                                $scope.form.$setPristine();
+                                $scope.disableInputs = false;
+                            },
+                            function () {
+                                // On failure
+                                notifications.add('danger', 'Server can not reset password.');
+                                $scope.disableInputs = false;
+                            }
+                        );
+                    };
+
+                    // Requesting new password
+                    $scope.generatePassword = function ($event) {
+                        $scope.showPasswords = false;
+                        $scope.disableInputs = true;
+
+                        // Call to resource API
+                        $scope.password.$generate().then(
+                            function () {
+                                // On success
+                                $scope.showPasswords = true;
+                                $scope.disableInputs = false;
+                                $scope.form.$setDirty();
+                                notifications.add('success', 'New password generated');
+                            },
+                            function () {
+                                // On failure
+                                notifications.add('danger', 'Server can not generate password.');
+                                $scope.disableInputs = false;
+                            }
+                        );
+
+                        // stop event propagation
+                        $event.preventDefault();
+
+                    };
+
+                    //OLD
+                    /*$scope.ok = function () {
+                        $modalInstance.close($scope.data.password);
+                    };
+
+                    $scope.cancel = function () {
+                        $modalInstance.dismiss();*/
                 };
 
-                $scope.cancel = function () {
-                    $modalInstance.dismiss();
-                };
-            };
 
             return {
 
@@ -46,10 +97,9 @@ angular.module('myApp.components.resetPassword', ['ui.bootstrap'])
 
                     var modalInstance = $modal.open({
                         templateUrl: 'templates/reset-password/dialog.tpl.html',
-                        //scope : $rootScope,
                         controller: ModalInstanceCtrl,
                         resolve: {
-                            data: function () {
+                            passwordText: function () {
                                 return passwordText;
                             }
                         }
@@ -60,90 +110,61 @@ angular.module('myApp.components.resetPassword', ['ui.bootstrap'])
             };
         }];
 
-    })
+    }])
 
-    // Custom input
-    // Can show a password in open or hidden mode
-    .directive('uiPasswordInputfgvsdbdfgn', ['$log', 'ui',
-        function ($log, ui) {
+    // Password custom Angular resource
+    .factory('Password', ['$http', 'PASSWORD_API_URL', function ($http, PASSWORD_API_URL) {
 
-            var configurationObject = {
-                require: '?ngModel',
-                restrict: "E",
-                replace: true,
-                scope: {
-                    showInput: '&',
-                    disableInputs: '=ngDisabled'
-                },
-                link: function (scope, element, attrs, ngModelCtrl) {
+        // Get connection url from provider
+        var connectionUrl = PASSWORD_API_URL;
 
-                    // For ng-if scope inheritance
-                    // save the inner input data as object field
-                    scope.data = {};
+        // Prepare resource constructor
+        var Resource = function (data) {
+            this.text = '';
+            this.confirmation = '';
+            angular.extend(this, data);
+        };
 
-                    scope.toggle = false;
+        // Add class method
+        // Requests a new password generation
+        Resource.generate = function (data) {
 
-                    // Switch the demonstration mode
-                    scope.toggleInput = function () {
-                        scope.toggle = !scope.toggle;
-                    };
+            // Make request
+            var promise = $http.get(connectionUrl);
 
-                    // Add watcher for switch the demonstration mode from outside scope
-                    if (attrs.showInput) {
-                        scope.$watch(
-                            function () {
-                                return scope.showInput();
-                            },
-                            function (value) {
-                                scope.toggle = value;
-                            }
-                        );
-                    }
-
-                    if (ngModelCtrl) {
-
-                        // Track when the input element changes the value
-                        scope.$watch('data.innerInputModel', function (value) {
-                            // prevent $dirty set for model
-                            if (value !== ngModelCtrl.$viewValue) {
-                                ngModelCtrl.$setViewValue(value);
-                            }
-                        });
-
-                        // Track when the outside model changed
-                        ngModelCtrl.$render = function () {
-                            // prevent $dirty set for model
-                            if (ngModelCtrl.$viewValue) {
-                                scope.data.innerInputModel = ngModelCtrl.$viewValue;
-                            }
-                        };
-                    }
+            // Update instance on success
+            promise.then(
+                function (response) {
+                    //On success update instance
+                    data.text = response.data.Text;
+                    data.confirmation = response.data.Confirmation;
                 }
-            }
+            );
 
-            // Get custom template URL
-            var templateUrl = ui.getTemplateUrl('uiPasswordInput');
+            // Return promise to caller
+            return promise;
+        };
 
-            if (templateUrl) {
-                // Use custom template
-                configurationObject.templateUrl = templateUrl;
-            } else {
-                // Use default template
-                configurationObject.template = '<div class="input-group">' +
-                    '<input type="text" class="form-control" ' +
-                    'ng-if="toggle" ng-model="data.innerInputModel" ng-disabled="disableInputs">' +
-                    '<input type="password" class="form-control" ' +
-                    'ng-if="!toggle" ng-model="data.innerInputModel" ng-disabled="disableInputs">' +
-                    '<span class="input-group-btn">' +
-                    '<button class="btn btn-default" ng-click="toggleInput()" ng-disabled="disableInputs">' +
-                    '<span class="glyphicon" ' +
-                    'ng-class="{\'glyphicon-eye-close\': toggle, \'glyphicon-eye-open\': !toggle}">' +
-                    '</span>' +
-                    '</button>' +
-                    '</span>' +
-                    '</div>';
-            }
+        // Add instance method
+        Resource.prototype.$generate = function () {
+            return Resource.generate(this);
+        };
 
-            return configurationObject;
-        }]
-    );
+        // Add class method
+        // Requests password reset
+        Resource.reset = function (data) {
+
+            // Make post request and return promise to caller
+            return $http.post(connectionUrl, data);
+        };
+
+        // Add instance method
+        Resource.prototype.$reset = function () {
+            return Resource.reset(this);
+        };
+
+        // Return constructor function
+        return Resource;
+
+    }])
+    ;

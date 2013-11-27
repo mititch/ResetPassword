@@ -24,7 +24,7 @@ angular.module('myApp.services', [])
 
     })
     // Password custom Angular resource
-    .factory('Password', ['$http', 'apiUrl', function ($http, apiUrl) {
+    .factory('PasswordOLD', ['$http', 'apiUrl', function ($http, apiUrl) {
 
         // Get connection url from provider
         var connectionUrl = apiUrl.passwordApiUrl;

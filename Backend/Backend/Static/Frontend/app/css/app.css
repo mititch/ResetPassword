@@ -15,3 +15,19 @@ div.ng-invalid.ng-dirty input{
 div.ng-valid.ng-dirty input {
     background-color: #dffae1;
 }
+
+/* ui bootstrap fix */
+
+.modal {
+    display: block;
+}
+.modal-body:before,
+.modal-body:after {
+    display: table;
+    content: " ";
+}
+.modal-header:before,
+.modal-header:after {
+    display: table;
+    content: " ";
+}
