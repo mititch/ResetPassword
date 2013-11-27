@@ -23,26 +23,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="validationSpec.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/unit/components/validationSpec.js">
+      <file leaf-file-name="directives.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/js/directives.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="0" selection-start="813" selection-end="813" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1088">
-              <folding>
-                <element signature="e#1242#3314#0" expanded="false" />
-                <element signature="e#3393#6468#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="validation.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/js/components/validation.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="43" selection-start="75" selection-end="102" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
-              <folding>
-                <element signature="e#192#1641#0" expanded="false" />
-                <element signature="e#1724#3160#0" expanded="false" />
-              </folding>
+            <state line="218" column="36" selection-start="8637" selection-end="8637" vertical-scroll-proportion="0.0" vertical-offset="3953" max-vertical-offset="4760">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -50,11 +35,17 @@
       <file leaf-file-name="ui.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/js/components/ui.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="31" selection-start="187" selection-end="202" vertical-scroll-proportion="0.17411226" vertical-offset="1" max-vertical-offset="1615">
-              <folding>
-                <element signature="e#3278#5333#0" expanded="false" />
-                <element signature="e#5483#7882#0" expanded="false" />
-              </folding>
+            <state line="151" column="24" selection-start="5495" selection-end="5495" vertical-scroll-proportion="0.7234042" vertical-offset="2057" max-vertical-offset="3655">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="password.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/pages/password/password.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="14" column="28" selection-start="588" selection-end="588" vertical-scroll-proportion="-9.153846" vertical-offset="0" max-vertical-offset="935">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -62,31 +53,19 @@
       <file leaf-file-name="uiSpec.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/unit/components/uiSpec.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="153" column="166" selection-start="5599" selection-end="5599" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3944">
+            <state line="153" column="166" selection-start="5599" selection-end="5599" vertical-scroll-proportion="0.0" vertical-offset="714" max-vertical-offset="3944">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="notificationsSpec.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/unit/components/notificationsSpec.js">
+      <file leaf-file-name="notifications.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/js/components/notifications.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="51" column="57" selection-start="1789" selection-end="1789" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
+            <state line="8" column="0" selection-start="115" selection-end="2234" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="799">
               <folding>
-                <element signature="e#186#1728#0" expanded="false" />
-                <element signature="e#248#568#0" expanded="false" />
-                <element signature="e#1789#5236#0" expanded="false" />
-                <element signature="e#2389#2789#0" expanded="false" />
+                <element signature="e#298#2233#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="servicesSpec.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/unit/servicesSpec.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="0" selection-start="257" selection-end="257" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="2431">
-              <folding />
             </state>
           </provider>
         </entry>
@@ -94,7 +73,7 @@
       <file leaf-file-name="karma.conf.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/unit/karma.conf.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="47" selection-start="626" selection-end="626" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1292">
+            <state line="22" column="19" selection-start="570" selection-end="570" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1292">
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -102,28 +81,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="filtersSpec.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/unit/filtersSpec.js">
+      <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425">
+            <state line="25" column="38" selection-start="1005" selection-end="1005" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="646">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="notification.tpl.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/templates/notification.tpl.html">
+      <file leaf-file-name="services.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/js/services.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="25" selection-start="73" selection-end="73" vertical-scroll-proportion="-0.65384614" vertical-offset="0" max-vertical-offset="170">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="directivesSpec.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/unit/directivesSpec.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="226" column="4" selection-start="0" selection-end="13360" vertical-scroll-proportion="0.0" vertical-offset="3207" max-vertical-offset="7293">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="1479">
               <folding />
             </state>
           </provider>
@@ -139,22 +109,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/js/components/ui.js" />
-        <option value="$PROJECT_DIR$/app/pages/password/password.html" />
-        <option value="$PROJECT_DIR$/app/pages/password/password.js" />
-        <option value="$PROJECT_DIR$/app/pages/about/about.html" />
-        <option value="$PROJECT_DIR$/app/templates/test.tpl.html" />
         <option value="$PROJECT_DIR$/app/templates/notification.tpl.html" />
-        <option value="$PROJECT_DIR$/app/index.html" />
         <option value="$PROJECT_DIR$/app/js/services.js" />
-        <option value="$PROJECT_DIR$/app/js/directives.js" />
         <option value="$PROJECT_DIR$/app/js/components/notifications.js" />
         <option value="$PROJECT_DIR$/test/unit/components/notificationsSpec.js" />
-        <option value="$PROJECT_DIR$/app/js/app.js" />
         <option value="$PROJECT_DIR$/test/unit/servicesSpec.js" />
         <option value="$PROJECT_DIR$/test/unit/components/uiSpec.js" />
         <option value="$PROJECT_DIR$/test/unit/components/validationSpec.js" />
+        <option value="$PROJECT_DIR$/app/index.html" />
+        <option value="$PROJECT_DIR$/app/templates/ui/ui-password-input.tpl.html" />
         <option value="$PROJECT_DIR$/test/unit/karma.conf.js" />
+        <option value="$PROJECT_DIR$/app/js/directives.js" />
+        <option value="$PROJECT_DIR$/app/del.html" />
+        <option value="$PROJECT_DIR$/app/js/app.js" />
+        <option value="$PROJECT_DIR$/app/templates/ui/ui-form-field-wrapper.tpl.html" />
+        <option value="$PROJECT_DIR$/app/pages/password/password.html" />
+        <option value="$PROJECT_DIR$/app/js/components/ui.js" />
       </list>
     </option>
   </component>
@@ -293,6 +263,90 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Frontend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Frontend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="notifications" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Frontend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Frontend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="password" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Frontend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Frontend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Frontend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Frontend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -343,11 +397,11 @@
       <recent name="C:\Users\mititch\Documents\GitHub\ResetPassword\Frontend\app\js" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\mititch\Documents\GitHub\ResetPassword\Backend\Backend\Static\Frontend\app\templates\notifications" />
       <recent name="C:\Users\mititch\Documents\GitHub\ResetPassword\Backend\Backend\Static\Frontend\app\pages\password" />
       <recent name="C:\Users\mititch\Documents\GitHub\ResetPassword\Backend\Backend\Static\Frontend\app\pages\about" />
       <recent name="C:\Users\mititch\Documents\GitHub\ResetPassword\Backend\Backend\Static\Frontend\Vendors" />
       <recent name="C:\Users\mititch\Documents\GitHub\ResetPassword\Backend\Backend\Static\Frontend\test\e2e" />
-      <recent name="C:\Users\mititch\Documents\GitHub\ResetPassword\Backend\Backend\Static\Frontend\test\unit" />
     </key>
   </component>
   <component name="RunManager" selected="Karma.karma.conf.js">
@@ -455,17 +509,17 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295583" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36151278" sideWeight="0.4995759" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18186611" sideWeight="0.63292545" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18186611" sideWeight="0.81312567" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3997735" sideWeight="0.49915966" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29105324" sideWeight="0.50084037" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36707452" sideWeight="0.7588235" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1868743" sideWeight="0.7588235" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36151278" sideWeight="0.4995759" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -485,63 +539,7 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/pages/password/password.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="3" selection-start="57" selection-end="57" vertical-scroll-proportion="-0.68" vertical-offset="51" max-vertical-offset="1309">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/pages/about/about.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="0" selection-start="22" selection-end="22" vertical-scroll-proportion="-1.3076923" vertical-offset="0" max-vertical-offset="374">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="8" selection-start="2140" selection-end="2171" vertical-scroll-proportion="-20.153847" vertical-offset="445" max-vertical-offset="1360">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="58" selection-start="433" selection-end="433" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/components/notifications.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="52" selection-start="1752" selection-end="1752" vertical-scroll-proportion="0.0" vertical-offset="970" max-vertical-offset="1819">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/unit/servicesSpec.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="0" selection-start="257" selection-end="257" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="2431">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/lib/angular/angular-mocks.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="0" selection-start="313" selection-end="313" vertical-scroll-proportion="-4.7900553" vertical-offset="2754" max-vertical-offset="35564">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/unit/filtersSpec.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="666">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/notification.tpl.html">
+    <entry file="file://$PROJECT_DIR$/app/templates/notifications/notification.tpl.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="1" column="25" selection-start="73" selection-end="73" vertical-scroll-proportion="-0.65384614" vertical-offset="0" max-vertical-offset="170">
           <folding />
@@ -552,34 +550,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="226" column="4" selection-start="0" selection-end="13360" vertical-scroll-proportion="0.0" vertical-offset="3207" max-vertical-offset="7293">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/unit/components/notificationsSpec.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="57" selection-start="1789" selection-end="1789" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
-          <folding>
-            <element signature="e#186#1728#0" expanded="false" />
-            <element signature="e#248#568#0" expanded="false" />
-            <element signature="e#1789#5236#0" expanded="false" />
-            <element signature="e#2389#2789#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/unit/components/uiSpec.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="153" column="166" selection-start="5599" selection-end="5599" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3944">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/unit/karma.conf.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="47" selection-start="626" selection-end="626" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1292">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -603,13 +573,95 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/test/unit/components/notificationsSpec.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="57" selection-start="1789" selection-end="1789" vertical-scroll-proportion="0.15578465" vertical-offset="0" max-vertical-offset="873">
+          <folding>
+            <element signature="e#186#1728#0" expanded="false" />
+            <element signature="e#1789#5236#0" expanded="false" />
+            <element signature="e#2389#2789#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="55" column="0" selection-start="2076" selection-end="2076" vertical-scroll-proportion="-18.846153" vertical-offset="445" max-vertical-offset="1343">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/components/notifications.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="0" selection-start="115" selection-end="2234" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="799">
+          <folding>
+            <element signature="e#298#2233#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/services.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1479">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/unit/karma.conf.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="19" selection-start="570" selection-end="570" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1292">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/directives.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="218" column="36" selection-start="8637" selection-end="8637" vertical-scroll-proportion="0.0" vertical-offset="3443" max-vertical-offset="4760">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="38" selection-start="1005" selection-end="1005" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="646">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/ui/ui-form-field-wrapper.tpl.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="21" selection-start="107" selection-end="107" vertical-scroll-proportion="0.05007364" vertical-offset="0" max-vertical-offset="679">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/ui/ui-password-input.tpl.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="11" selection-start="547" selection-end="547" vertical-scroll-proportion="0.17525773" vertical-offset="0" max-vertical-offset="679">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/pages/password/password.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="28" selection-start="588" selection-end="588" vertical-scroll-proportion="-9.153846" vertical-offset="0" max-vertical-offset="935">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/unit/components/uiSpec.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="153" column="166" selection-start="5599" selection-end="5599" vertical-scroll-proportion="0.0" vertical-offset="1405" max-vertical-offset="3944">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/js/components/ui.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="31" selection-start="187" selection-end="202" vertical-scroll-proportion="0.17411226" vertical-offset="1" max-vertical-offset="1615">
-          <folding>
-            <element signature="e#3278#5333#0" expanded="false" />
-            <element signature="e#5483#7882#0" expanded="false" />
-          </folding>
+        <state line="151" column="24" selection-start="5495" selection-end="5495" vertical-scroll-proportion="0.7234042" vertical-offset="2057" max-vertical-offset="3655">
+          <folding />
         </state>
       </provider>
     </entry>

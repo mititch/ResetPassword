@@ -1,0 +1,12 @@
+<div class="form-group">
+    <label class="control-label col-sm-{{format().offset}}">
+        {{labelText}}
+    </label>
+    <div class="col-sm-{{format().size}}" ng-transclude>
+    </div>
+    <div class="col-sm-offset-{{format().offset}} col-sm-{{format().size}}" ng-show="isFieldInvalid()">
+        <span ng-repeat="(key, message) in validation()" class="text-danger" ng-show="isValidatorFail(key)">
+            {{message}}
+        </span>
+    </div>
+</div>

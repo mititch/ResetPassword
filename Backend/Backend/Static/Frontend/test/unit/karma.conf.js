@@ -17,7 +17,7 @@ module.exports = function(config) {
             'vendors/angular/angular-*.js',
             'test/lib/angular/angular-mocks.js',
             'app/js/**/*.js',
-            'test/unit/components/validationSpec.js',
+            'test/unit/components/uiSpec.js',
         ],
 
         exclude : [

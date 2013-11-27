@@ -162,7 +162,7 @@ angular.module('myApp.directives', [])
     )
     // Wrap input with styling and validation elements
     // Not creates a new scope
-    .directive('fieldWrapper', ['$log',
+    .directive('fieldWrapperOLD', ['$log',
         function ($log) {
 
             var divElement = angular.element('<div></div>');
@@ -216,7 +216,7 @@ angular.module('myApp.directives', [])
     )
     // Wrap input with styling and validation elements (uses transclusion)
     // Creates a new scope
-    .directive('fieldTransWrapper', ['$log',
+    .directive('fieldTransWrapperOLD', ['$log',
         function ($log) {
 
             var divElement = angular.element('<div></div>');

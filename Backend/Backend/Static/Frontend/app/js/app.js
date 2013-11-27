@@ -17,9 +17,14 @@ angular.module('myApp', [
         // Setup base url for the application resources
         apiUrlProvider.setBaseUrl('http://localhost:5869/api/');
     }])
-    .config(['notificationsProvider', function (notificationsProvider) {
-        // Setup base url for the application resources
-        notificationsProvider.initialize('templates/notification.tpl.html', 3);
+    .config(['notificationsProvider', 'uiProvider', function (notificationsProvider, uiProvider) {
+        // Setup notification template url and notifications max count
+        notificationsProvider.initialize('templates/notifications/notification.tpl.html', 3);
+        // Setup ui templates urls
+        uiProvider.initialize({
+            uiPasswordInput : 'templates/ui/ui-password-input.tpl.html',
+            uiFormFieldWrapper : 'templates/ui/ui-form-field-wrapper.tpl.html'
+        });
     }])
     .config(['$routeProvider', function ($routeProvider) {
         // Setup routes
