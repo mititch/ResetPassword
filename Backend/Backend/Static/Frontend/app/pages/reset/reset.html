@@ -1,7 +1,18 @@
 <h3> RESET page</h3>
 
-<p>
-    <label>Object password:</label>
-    <input type="text" ng-model="someObject.password" />
-    <button class="btn" ng-click="resetPasswordClick(someObject.password)">Reset</button>
-</p>
+<table class="table">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Password</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in itemsArray">
+        <td>{{$index}}</td>
+        <td>{{item.password}}</td>
+        <td><button class="btn btn-primary btn-xs" ng-click="resetPasswordAction($index)">Reset</button></td>
+    </tr>
+    </tbody>
+</table>

@@ -17,6 +17,7 @@ angular.module('myApp', [
     ])
     .config(['apiUrlProvider', function (apiUrlProvider) {
         // Setup base url for the application resources
+        // TODO Obsolete delete this
         apiUrlProvider.setBaseUrl('http://localhost:5869/api/');
     }])
     .config(['notificationsProvider', 'uiProvider',

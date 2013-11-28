@@ -13,14 +13,5 @@ angular.module('myApp.pages.about', [])
         });
     }])
     .controller('AboutPage', ['$scope', function ($scope) {
-
-        $scope.showPasswords = true;
-
-        $scope.disableInputs = false;
-
-        $scope.password = {
-            text: 'someText',
-            confirmation : 'someConfirmation'
-        };
     }])
 ;

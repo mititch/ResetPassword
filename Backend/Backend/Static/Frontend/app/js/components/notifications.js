@@ -37,6 +37,16 @@ angular.module('myApp.components.notifications', [])
 
         this.$get = ['$templateCache', function ($templateCache) {
 
+            if (!self.templateUrl) {
+                $templateCache.put('default-notification.tpl.html',
+                    '<div class="alert alert-{{notification.type}}">' +
+                        '{{notification.text}}' +
+                        '<button ng-click="removeNotification($index)"' +
+                        'type="button" class="close" aria-hidden="true">&times;</button>' +
+                        '</div>'
+                );
+            }
+
             return {
                 // Returns a notifications array
                 getNotifications: function () {
@@ -68,35 +78,30 @@ angular.module('myApp.components.notifications', [])
                 }
             };
         }];
-
     })
 
     // Shows a notifications from storage
     // Before usage notification provider should be initialized with notifications template URL
-    .directive('notificationsPanel', ['notifications',
-        function (notifications) {
-            return {
-                template: '<div ng-repeat="notification in notifications">' +
-                    '<ng-include src="templateUrl"></ng-include>' +
-                    '</div>',
-                restrict: 'A',
-                scope: {},
-                link: function (scope, element, attrs) {
+    .directive('notificationsPanel', ['notifications', function (notifications) {
+        return {
+            template: '<div ng-repeat="notification in notifications">' +
+                '<ng-include src="templateUrl"></ng-include>' +
+                '</div>',
+            restrict: 'A',
+            scope: {},
+            link: function (scope, element, attrs) {
 
-                    // Get template url
-                    scope.templateUrl = notifications.getTemplateUrl();
-                    if (!scope.templateUrl) {
-                        throw new Error('Notification template url is not set. You must initialize notification provider before usage.');
-                    }
+                // Get template url from storage or use default
+                scope.templateUrl = notifications.getTemplateUrl() || 'default-notification.tpl.html';
 
-                    // Get notifications from storage
-                    scope.notifications = notifications.getNotifications();
+                // Get notifications from storage
+                scope.notifications = notifications.getNotifications();
 
-                    // Remove notification from storage by index
-                    scope.removeNotification = function (index) {
-                        notifications.remove(index);
-                    };
-                }
+                // Remove notification from storage by index
+                scope.removeNotification = function (index) {
+                    notifications.remove(index);
+                };
             }
-        }]
-    );
+        }
+    }])
+;

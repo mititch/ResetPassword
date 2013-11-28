@@ -13,7 +13,7 @@ angular.module('myApp.components.ui', [])
 
         var self = this;
 
-        // Templates storage
+        // Templates URL storage
         self.templates = {};
 
         // Setup ui provider
@@ -23,8 +23,6 @@ angular.module('myApp.components.ui', [])
         self.initialize = function (configurationObject) {
             angular.extend(self.templates, configurationObject)
         };
-
-        // todo add default templates
 
         this.$get = ['$templateCache', function ($templateCache) {
 
@@ -49,17 +47,19 @@ angular.module('myApp.components.ui', [])
                 replace: true,
                 scope: {
                     showInput: '&',
+                    ngModel : '=',
                     disableInputs: '=ngDisabled'
                 },
                 link: function (scope, element, attrs, ngModelCtrl) {
 
-                    // For ng-if scope inheritance
-                    // save the inner input data as object field
+                    // Save the inner input data as object field
+                    // Important for ng-if scope inheritance
                     scope.data = {};
 
+                    // Shows of hides inputs text
                     scope.toggle = false;
 
-                    // Switch the demonstration mode
+                    // Switch the inputs text demonstration mode
                     scope.toggleInput = function () {
                         scope.toggle = !scope.toggle;
                     };
@@ -68,9 +68,11 @@ angular.module('myApp.components.ui', [])
                     if (attrs.showInput) {
                         scope.$watch(
                             function () {
+                                // If outside value changed
                                 return scope.showInput();
                             },
                             function (value) {
+                                // Apply changes
                                 scope.toggle = value;
                             }
                         );
@@ -78,20 +80,23 @@ angular.module('myApp.components.ui', [])
 
                     if (ngModelCtrl) {
 
-                        // Track when the input element changes the value
-                        scope.$watch('data.innerInputModel', function (value) {
-                            // prevent $dirty set for model
-                            if (value !== ngModelCtrl.$viewValue) {
+                        // Watch when the input element changes the value
+                        scope.$watch('data.innerInputModel', function (value, oldValue) {
+
+                            // Angular ng-model behavior fix
+                            // set $dirty if model changed outside input
+                            // prevent $dirty set for model from first update
+                            if (value != oldValue) {
+                                // Update ng-model value
                                 ngModelCtrl.$setViewValue(value);
                             }
                         });
 
-                        // Track when the outside model changed
+                        // Update inner model then render called
                         ngModelCtrl.$render = function () {
-                            // prevent $dirty set for model
-                            if (ngModelCtrl.$viewValue) {
-                                scope.data.innerInputModel = ngModelCtrl.$viewValue;
-                            }
+
+                            scope.data.innerInputModel = ngModelCtrl.$viewValue;
+
                         };
                     }
                 }
@@ -128,8 +133,9 @@ angular.module('myApp.components.ui', [])
     .directive('uiFormFieldWrapper', ['$log', 'ui',
         function ($log, ui) {
 
+            // Parses attribute text to JS object
             var parseAttributeData = function (data) {
-                // angular.fromJson works only with double quotes
+                // FIX: angular.fromJson works only with double quotes
                 return angular.fromJson(data.replace(/'/g, '\"'));
             }
 

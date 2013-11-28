@@ -1,5 +1,7 @@
 angular.module('ui.bootstrap.modal', [])
     // Add templates
+
+    //TODO remove to template
     .run(["$templateCache", function ($templateCache) {
         $templateCache.put("template/modal/backdrop.html",
             '<div class="modal-backdrop fade" ng-class="{in: animate}" ng-style="{\'z-index\': 1040 + index*10}"></div>'

@@ -8,26 +8,20 @@ body {
     height: 500px;
 }
 
+/* Inputs validation visualization*/
 div.ng-invalid.ng-dirty input{
     background-color: #f8dbe4 !important;
 }
-
 div.ng-valid.ng-dirty input {
     background-color: #dffae1;
 }
 
-/* ui bootstrap fix */
-
-.modal {
+/* Notifications*/
+.notifications-container {
+    z-index: 1200;
     display: block;
-}
-.modal-body:before,
-.modal-body:after {
-    display: table;
-    content: " ";
-}
-.modal-header:before,
-.modal-header:after {
-    display: table;
-    content: " ";
+    right: 30px;
+    top: 60px;
+    position : fixed;
+    width: 300px;
 }

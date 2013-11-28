@@ -92,6 +92,7 @@
             {
                 //TRICK: Out of range exception possible
                 resultArray[i] = VALID_CHARACTERS_STRING[random.Next(maxValue + 2)];
+                //resultArray[i] = VALID_CHARACTERS_STRING[random.Next(maxValue)];
             }
             
             return new String(resultArray);
