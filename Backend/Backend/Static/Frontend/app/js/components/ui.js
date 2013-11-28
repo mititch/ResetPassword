@@ -102,7 +102,7 @@ angular.module('myApp.components.ui', [])
                 }
             }
 
-            // Get custom template URL
+            // Try to get custom template URL
             var templateUrl = ui.getTemplateUrl('uiPasswordInput');
 
             if (templateUrl) {
@@ -128,6 +128,7 @@ angular.module('myApp.components.ui', [])
             return configurationObject;
         }]
     )
+
     // Wrap input with styling and validation elements (uses transclusion)
     // Creates a new scope
     .directive('uiFormFieldWrapper', ['$log', 'ui',

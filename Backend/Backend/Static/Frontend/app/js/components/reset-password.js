@@ -27,13 +27,19 @@ angular.module('myApp.components.resetPassword', ['ui.bootstrap.modal'])
 
         this.$get = ['$templateCache', '$modal', 'Password', '$injector', function ($templateCache, $modal, Password, $injector) {
 
-
+            // Inject notifications service if it present in collection
             if ($injector.has('notifications'))
             {
                 var notifications = $injector.get('notifications');
             }
 
-            var ModalInstanceCtrl = function ($scope, $modalInstance, passwordText) {
+            var ModalInstanceCtrl = function ($scope, $modalInstance, passwordText, customData) {
+
+                // Setting the hidden password mode for the all password inputs
+                $scope.showPasswords = false;
+
+                // Setting the form inputs to the active state
+                $scope.disableInputs = false;
 
                 // Create Password instance
                 $scope.password = new Password({
@@ -41,19 +47,12 @@ angular.module('myApp.components.resetPassword', ['ui.bootstrap.modal'])
                     confirmation: passwordText
                 });
 
-                // Setting the hidden password mode for the all password inputs
-                $scope.showPasswords = false;
-
-                // Setting the form inputs to active state
-                // TODO fix bag with "a" element disabling
-                $scope.disableInputs = false;
-
-                // Requesting to save the model
-                $scope.saveChanges = function () {
+                // Requests a server to save the password update
+                $scope.applyChanges = function () {
                     $scope.disableInputs = true;
 
-                    // Call to resource API
-                    $scope.password.$reset().then(
+                    // Call to server API with some specific server data
+                    $scope.password.$reset(customData).then(
                         function () {
                             // On success
                             $scope.disableInputs = false;
@@ -71,7 +70,7 @@ angular.module('myApp.components.resetPassword', ['ui.bootstrap.modal'])
                     );
                 };
 
-                // Requesting new password
+                // Requests a server to generate new password
                 $scope.generatePassword = function ($event) {
 
                     $scope.showPasswords = false;
@@ -84,7 +83,7 @@ angular.module('myApp.components.resetPassword', ['ui.bootstrap.modal'])
                             $scope.showPasswords = true;
                             $scope.disableInputs = false;
                             // If notifications service has been injected notify user
-                            !notifications || notifications.add('success', 'New password generated');
+                            !notifications || notifications.add('success', 'New password generated.');
                         },
                         function () {
                             // On failure
@@ -95,7 +94,7 @@ angular.module('myApp.components.resetPassword', ['ui.bootstrap.modal'])
                     );
                 };
 
-                // Close dialog without changes
+                // Close dialog without apply changes
                 $scope.cancel = function () {
                     // Reject dialog result promise
                     $modalInstance.dismiss();
@@ -106,18 +105,22 @@ angular.module('myApp.components.resetPassword', ['ui.bootstrap.modal'])
             return {
 
                 // Open password reset dialog
-                reset: function (scope) {
+                reset: function (scope, customData) {
 
-                    // Create dialog istance
+                    // Create and open dialog
                     var modalInstance = $modal.open({
                         templateUrl: self.templateUrl,  //Get templateUrl from provider
                         controller: ModalInstanceCtrl,
                         scope: scope,
                         resolve: {
-
-                            // Send empty password to dialog
+                            // Pass empty password to dialog
                             passwordText: function () {
                                 return '';
+                            },
+                            // Pass some specific server data
+                            // which can be object identity
+                            customData : function () {
+                                return customData
                             }
                         }
                     });
@@ -166,10 +169,10 @@ angular.module('myApp.components.resetPassword', ['ui.bootstrap.modal'])
 
         // Add instance method
         Resource.prototype.$generate = function () {
-            // Call to class method with this
+
+            // Call to class method
             return Resource.generate(this);
         };
-
 
         // Requests password reset methods
         // Add class method
@@ -180,9 +183,13 @@ angular.module('myApp.components.resetPassword', ['ui.bootstrap.modal'])
         };
 
         // Add instance method
-        Resource.prototype.$reset = function () {
-            // Call to class method with this
-            return Resource.reset(this);
+        Resource.prototype.$reset = function (customData) {
+
+            // Extend specific server data with this
+            angular.extend(customData, this);
+
+            // Call to class method
+            return Resource.reset(customData);
         };
 
         // Return constructor function

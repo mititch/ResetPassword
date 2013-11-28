@@ -4,6 +4,10 @@
 
 describe('myApp.components.notifications', function () {
 
+    //
+    //  notifications service
+    //
+
     describe('notifications service', function () {
 
         var notifications;
@@ -48,6 +52,10 @@ describe('myApp.components.notifications', function () {
             return expect(notifications.getNotifications().length).toBe(3);
         });
     });
+
+    //
+    //  notification-panel directive
+    //
 
     describe('notification-panel directive', function () {
 

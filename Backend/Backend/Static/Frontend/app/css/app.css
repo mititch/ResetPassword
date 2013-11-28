@@ -1,5 +1,4 @@
 /* app css stylesheet */
-
 body {
     padding-top: 50px;
 }
@@ -8,15 +7,16 @@ body {
     height: 500px;
 }
 
-/* Inputs validation visualization*/
+/* Inputs validation visualization styles*/
 div.ng-invalid.ng-dirty input{
     background-color: #f8dbe4 !important;
 }
+
 div.ng-valid.ng-dirty input {
     background-color: #dffae1;
 }
 
-/* Notifications*/
+/* Notifications styles*/
 .notifications-container {
     z-index: 1200;
     display: block;

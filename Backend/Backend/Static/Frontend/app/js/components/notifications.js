@@ -6,9 +6,9 @@
  */
 
 angular.module('myApp.components.notifications', [])
-    // Saves applications notifications
+
+    // Stores application notifications
     // Provide access to add and remove operations
-    // Configures with notification template url
     .provider('notifications', function () {
 
         var self = this;
@@ -19,7 +19,7 @@ angular.module('myApp.components.notifications', [])
         // Max count of saved notifications
         self.maxCount = 2;
 
-        // Setup notifications provider
+        // Configures a notifications provider
         // templateUrl - URL of notification HTML template
         //      template may contains
         //          "notification.type" link - to show notification type
@@ -37,18 +37,20 @@ angular.module('myApp.components.notifications', [])
 
         this.$get = ['$templateCache', function ($templateCache) {
 
+            // If service was not configured register default notification template
             if (!self.templateUrl) {
                 $templateCache.put('default-notification.tpl.html',
                     '<div class="alert alert-{{notification.type}}">' +
-                        '{{notification.text}}' +
-                        '<button ng-click="removeNotification($index)"' +
-                        'type="button" class="close" aria-hidden="true">&times;</button>' +
-                        '</div>'
+                    '{{notification.text}}' +
+                    '<button ng-click="removeNotification($index)"' +
+                    'type="button" class="close" aria-hidden="true">&times;</button>' +
+                    '</div>'
                 );
             }
 
             return {
-                // Returns a notifications array
+
+                // Returns a notifications list
                 getNotifications: function () {
                     return self.notifications;
                 },
@@ -81,7 +83,6 @@ angular.module('myApp.components.notifications', [])
     })
 
     // Shows a notifications from storage
-    // Before usage notification provider should be initialized with notifications template URL
     .directive('notificationsPanel', ['notifications', function (notifications) {
         return {
             template: '<div ng-repeat="notification in notifications">' +
