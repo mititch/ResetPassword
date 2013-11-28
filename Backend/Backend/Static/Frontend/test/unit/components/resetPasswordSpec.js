@@ -7,12 +7,6 @@ describe('myApp.components.resetPassword', function () {
     var API_URL = 'http:/someUrl.com/';
     var TEMPLATE_Url = 'some.template.tpl.html';
 
-    /*beforeEach(module('myApp.components.resetPassword', function (resetPassword) {
-
-     resetPassword.initialize(API_URL);
-
-     }));*/
-
     //
     //  Password resource
     //
@@ -42,19 +36,41 @@ describe('myApp.components.resetPassword', function () {
 
         describe('then resetPassword provides was configured', function () {
 
-            angular.mock.module('ui.bootstrap.modal')
+            beforeEach(function () {
 
-            beforeEach(module('myApp.components.resetPassword', function (resetPassword) {
+                module('myApp.components.resetPassword');
 
-                resetPassword.initialize(API_URL, TEMPLATE_Url);
+                module(function (resetPasswordProvider) {
 
-             }));
+                    resetPasswordProvider.initialize(API_URL, TEMPLATE_Url);
 
-            beforeEach(inject(function (_$http_, _$httpBackend_, _Password_) {
-                $http = _$http_;
-                $httpBackend = _$httpBackend_;
-                Password = _Password_;
-            }));
+                });
+
+                // Provide any mocks needed
+                module(function ($provide) {
+
+                    var mockNotificationService = {
+                        getNotifications: function () {
+                            return mockNotifications
+                        },
+                        getTemplateUrl: function () {
+                            return 'templateUrl';
+                        },
+                        remove: function (index) {
+                        }
+                    };
+
+                    $provide.value('$mobile', mockNotificationService);
+                });
+
+                inject(function (_$http_, _$httpBackend_, _Password_) {
+                    $http = _$http_;
+                    $httpBackend = _$httpBackend_;
+                    Password = _Password_;
+                });
+
+            })
+
 
             afterEach(function () {
                 $httpBackend.verifyNoOutstandingExpectation();

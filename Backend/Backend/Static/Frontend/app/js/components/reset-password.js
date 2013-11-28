@@ -6,6 +6,88 @@
 
 angular.module('myApp.components.resetPassword', ['ui.bootstrap.modal'])
 
+    // ModalCtrl factory
+    // Returns a ModalCtrl instance
+    .factory('ModalCtrl', [ 'Password', '$injector' , function (Password, $injector) {
+
+        // Declare notifications service link
+        var notifications = false;
+
+        // Inject notifications service if it present in collection
+        if ($injector.has('notifications')) {
+            notifications = $injector.get('notifications');
+        }
+
+        return function ($scope, $modalInstance, passwordText, customData) {
+
+            // Setting the hidden password mode for the all password inputs
+            $scope.showPasswords = false;
+
+            // Setting the form inputs to the active state
+            $scope.disableInputs = false;
+
+            // Create Password instance
+            $scope.password = new Password({
+                text: passwordText,
+                confirmation: passwordText
+            });
+
+            // Requests a server to save the password update
+            $scope.applyChanges = function () {
+                $scope.disableInputs = true;
+
+                // Call to server API with some specific server data
+                $scope.password.$reset(customData).then(
+                    function () {
+                        // On success
+                        $scope.disableInputs = false;
+                        $modalInstance.close($scope.password.text);
+                        // If notifications service has been injected notify user
+                        !notifications || notifications.add('success', 'Password is changed.');
+
+                    },
+                    function () {
+                        // On failure
+                        $scope.disableInputs = false;
+                        // If notifications service has been injected notify user
+                        !notifications || notifications.add('danger', 'Server can not reset password.');
+                    }
+                );
+            };
+
+            // Requests a server to generate new password
+            $scope.generatePassword = function ($event) {
+
+                $scope.showPasswords = false;
+                $scope.disableInputs = true;
+
+                // Call to resource API
+                $scope.password.$generate().then(
+                    function () {
+                        // On success
+                        $scope.showPasswords = true;
+                        $scope.disableInputs = false;
+                        // If notifications service has been injected notify user
+                        !notifications || notifications.add('success', 'New password generated.');
+                    },
+                    function () {
+                        // On failure
+                        $scope.disableInputs = false;
+                        // If notifications service has been injected notify user
+                        !notifications || notifications.add('danger', 'Server can not generate password.');
+                    }
+                );
+            };
+
+            // Close dialog without apply changes
+            $scope.cancel = function () {
+                // Reject dialog result promise
+                $modalInstance.dismiss();
+            }
+
+        }
+    }])
+
     // Saves applications notifications
     // Provide access to add and remove operations
     // Configures with notification template url
@@ -25,82 +107,7 @@ angular.module('myApp.components.resetPassword', ['ui.bootstrap.modal'])
             self.templateUrl = templateUrl;
         };
 
-        this.$get = ['$templateCache', '$modal', 'Password', '$injector', function ($templateCache, $modal, Password, $injector) {
-
-            // Inject notifications service if it present in collection
-            if ($injector.has('notifications'))
-            {
-                var notifications = $injector.get('notifications');
-            }
-
-            var ModalInstanceCtrl = function ($scope, $modalInstance, passwordText, customData) {
-
-                // Setting the hidden password mode for the all password inputs
-                $scope.showPasswords = false;
-
-                // Setting the form inputs to the active state
-                $scope.disableInputs = false;
-
-                // Create Password instance
-                $scope.password = new Password({
-                    text: passwordText,
-                    confirmation: passwordText
-                });
-
-                // Requests a server to save the password update
-                $scope.applyChanges = function () {
-                    $scope.disableInputs = true;
-
-                    // Call to server API with some specific server data
-                    $scope.password.$reset(customData).then(
-                        function () {
-                            // On success
-                            $scope.disableInputs = false;
-                            $modalInstance.close($scope.password.text);
-                            // If notifications service has been injected notify user
-                            !notifications || notifications.add('success', 'Password is changed.');
-
-                        },
-                        function () {
-                            // On failure
-                            $scope.disableInputs = false;
-                            // If notifications service has been injected notify user
-                            !notifications ||notifications.add('danger', 'Server can not reset password.');
-                        }
-                    );
-                };
-
-                // Requests a server to generate new password
-                $scope.generatePassword = function ($event) {
-
-                    $scope.showPasswords = false;
-                    $scope.disableInputs = true;
-
-                    // Call to resource API
-                    $scope.password.$generate().then(
-                        function () {
-                            // On success
-                            $scope.showPasswords = true;
-                            $scope.disableInputs = false;
-                            // If notifications service has been injected notify user
-                            !notifications || notifications.add('success', 'New password generated.');
-                        },
-                        function () {
-                            // On failure
-                            $scope.disableInputs = false;
-                            // If notifications service has been injected notify user
-                            !notifications || notifications.add('danger', 'Server can not generate password.');
-                        }
-                    );
-                };
-
-                // Close dialog without apply changes
-                $scope.cancel = function () {
-                    // Reject dialog result promise
-                    $modalInstance.dismiss();
-                }
-
-            };
+        this.$get = ['$modal', 'ModalCtrl', function ($modal, ModalCtrl) {
 
             return {
 
@@ -110,7 +117,7 @@ angular.module('myApp.components.resetPassword', ['ui.bootstrap.modal'])
                     // Create and open dialog
                     var modalInstance = $modal.open({
                         templateUrl: self.templateUrl,  //Get templateUrl from provider
-                        controller: ModalInstanceCtrl,
+                        controller: ModalCtrl,
                         scope: scope,
                         resolve: {
                             // Pass empty password to dialog
@@ -119,7 +126,7 @@ angular.module('myApp.components.resetPassword', ['ui.bootstrap.modal'])
                             },
                             // Pass some specific server data
                             // which can be object identity
-                            customData : function () {
+                            customData: function () {
                                 return customData
                             }
                         }
