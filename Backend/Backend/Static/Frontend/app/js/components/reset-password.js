@@ -111,6 +111,7 @@ angular.module('myApp.components.resetPassword', ['ui.bootstrap.modal'])
             return {
 
                 // Opens a password reset dialog
+                //TODO change name
                 reset: function (scope, customData) {
 
                     // Create and open dialog
