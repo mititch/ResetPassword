@@ -132,23 +132,28 @@
     <Content Include="Static\Frontend\app\js\services.js" />
     <Content Include="Static\Frontend\app\pages\about\about.html" />
     <Content Include="Static\Frontend\app\pages\about\about.js" />
-    <Content Include="Static\Frontend\app\pages\password\password.html" />
-    <Content Include="Static\Frontend\app\pages\password\password.js" />
-    <Content Include="Static\Frontend\app\pages\reset\reset.html" />
-    <Content Include="Static\Frontend\app\pages\reset\reset.js" />
+    <Content Include="Static\Frontend\app\pages\passwords\passwords.html" />
+    <Content Include="Static\Frontend\app\pages\passwords\passwords.js" />
+    <Content Include="Static\Frontend\app\templates\modal\backdrop.html" />
+    <Content Include="Static\Frontend\app\templates\modal\window.html" />
     <Content Include="Static\Frontend\app\templates\notifications\notification.tpl.html" />
     <Content Include="Static\Frontend\app\templates\reset-password\dialog.tpl.html" />
     <Content Include="Static\Frontend\app\templates\ui\ui-form-field-wrapper.tpl.html" />
     <Content Include="Static\Frontend\app\templates\ui\ui-password-input.tpl.html" />
-    <Content Include="Static\Frontend\scripts\web-server.js" />
+    <Content Include="Static\Frontend\test\e2e\karma-e2e.conf.js" />
     <Content Include="Static\Frontend\test\e2e\runner.html" />
     <Content Include="Static\Frontend\test\e2e\scenarios.js" />
     <Content Include="Static\Frontend\test\lib\angular\angular-mocks.js" />
     <Content Include="Static\Frontend\test\lib\angular\angular-scenario.js" />
     <Content Include="Static\Frontend\test\lib\angular\version.txt" />
+    <Content Include="Static\Frontend\test\unit\components\notificationsSpec.js" />
+    <Content Include="Static\Frontend\test\unit\components\resetPasswordSpec.js" />
+    <Content Include="Static\Frontend\test\unit\components\uiSpec.js" />
+    <Content Include="Static\Frontend\test\unit\components\validationSpec.js" />
     <Content Include="Static\Frontend\test\unit\controllersSpec.js" />
     <Content Include="Static\Frontend\test\unit\directivesSpec.js" />
     <Content Include="Static\Frontend\test\unit\filtersSpec.js" />
+    <Content Include="Static\Frontend\test\unit\karma.conf.js" />
     <Content Include="Static\Frontend\test\unit\servicesSpec.js" />
     <Content Include="Static\Frontend\vendors\angular\angular-animate.js" />
     <Content Include="Static\Frontend\vendors\angular\angular-animate.min.js" />
@@ -418,12 +423,7 @@
     <Content Include="Static\Frontend\vendors\bootstrap\css\bootstrap.min.css" />
     <Content Include="Static\Frontend\vendors\bootstrap\js\bootstrap.js" />
     <Content Include="Static\Frontend\vendors\bootstrap\js\bootstrap.min.js" />
-    <Content Include="Static\Frontend\vendors\jquery\jquery-2.0.3.js" />
-    <Content Include="Static\Frontend\vendors\jquery\jquery-2.0.3.min.js" />
-    <Content Include="Static\Frontend\vendors\ui-bootstrap\ui-bootstrap-0.6.0.js" />
-    <Content Include="Static\Frontend\vendors\ui-bootstrap\ui-bootstrap-0.6.0.min.js" />
-    <Content Include="Static\Frontend\vendors\ui-bootstrap\ui-bootstrap-tpls-0.6.0.js" />
-    <Content Include="Static\Frontend\vendors\ui-bootstrap\ui-bootstrap-tpls-0.6.0.min.js" />
+    <Content Include="Static\Frontend\vendors\ui-bootstrap\modal.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -436,9 +436,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Static\Frontend\app\img\" />
-    <Folder Include="Static\Frontend\config\" />
-    <Folder Include="Static\Frontend\logs\" />
+    <Folder Include="Static\Frontend\app\assets\img\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
@@ -449,11 +447,7 @@
     <None Include="Static\Frontend\.gitignore" />
     <None Include="Static\Frontend\.idea\.name" />
     <None Include="Static\Frontend\.idea\Frontend.iml" />
-    <None Include="Static\Frontend\scripts\e2e-test.bat" />
-    <None Include="Static\Frontend\scripts\e2e-test.sh" />
-    <None Include="Static\Frontend\scripts\test.bat" />
-    <None Include="Static\Frontend\scripts\test.sh" />
-    <None Include="Static\Frontend\scripts\watchr.rb" />
+    <None Include="Static\Frontend\test\unit\test.bat" />
     <None Include="Static\Frontend\vendors\angular\angular-animate.min.js.map" />
     <None Include="Static\Frontend\vendors\angular\angular-cookies.min.js.map" />
     <None Include="Static\Frontend\vendors\angular\angular-loader.min.js.map" />

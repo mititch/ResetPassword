@@ -160,7 +160,7 @@ angular.module('myApp.components.ui', [])
                         var fieldName = attrs.uiFormFieldWrapper;
 
                         // Check field validation
-                        scope.isFieldInvalid = function () {
+                        scope.isDirtyAndInvalid = function () {
 
                             return formCtrl[fieldName].$dirty && formCtrl[fieldName].$invalid;
                         };
@@ -168,7 +168,7 @@ angular.module('myApp.components.ui', [])
                         // Check specified validator fail
                         scope.isValidatorFail = function (key) {
 
-                            return formCtrl[fieldName].$error[key];
+                            return formCtrl[fieldName].$error[key] ;
                         };
 
                         // Prepare validators data for repeater
@@ -200,7 +200,7 @@ angular.module('myApp.components.ui', [])
                     '<div class="col-sm-{{format().size}}" ng-transclude>' +
                     '</div>' +
                     '<div class="col-sm-offset-{{format().offset}} col-sm-{{format().size}}"' +
-                    'ng-show="isFieldInvalid()">' +
+                    'ng-show="isDirtyAndInvalid()">' +
                     '<span ng-repeat="(key, message) in validation()" ' +
                     'class="text-danger" ng-show="isValidatorFail(key)">' +
                     '{{message}}' +

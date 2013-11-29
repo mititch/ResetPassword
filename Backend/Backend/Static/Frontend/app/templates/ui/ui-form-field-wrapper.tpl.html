@@ -4,7 +4,7 @@
     </label>
     <div class="col-sm-{{format().size}}" ng-transclude>
     </div>
-    <div class="col-sm-offset-{{format().offset}} col-sm-{{format().size}}" ng-show="isFieldInvalid()">
+    <div class="col-sm-offset-{{format().offset}} col-sm-{{format().size}}" ng-show="isDirtyAndInvalid()">
         <span ng-repeat="(key, message) in validation()" class="text-danger" ng-show="isValidatorFail(key)">
             {{message}}
         </span>
