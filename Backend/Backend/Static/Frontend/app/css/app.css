@@ -16,8 +16,8 @@ div.ng-valid.ng-dirty input {
     background-color: #dffae1;
 }
 
-/* Notifications styles*/
-.notifications-container {
+/* Notifications panel styles*/
+.notifications-panel {
     z-index: 1200;
     display: block;
     right: 30px;

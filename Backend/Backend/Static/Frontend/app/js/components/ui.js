@@ -1,7 +1,16 @@
 'use strict';
 
 /**
- * Created by mititch on 26.11.13.
+ *  Set of directives which updates user interface
+ *
+ *  The 'uiProvider' may be used to configure directives templates
+ *      Usage: uiProvider.initialize(configurationObject)
+ *          configurationObject : object - hash object which contains template URLs
+ *              key - represents directive name
+ *              value - represents template URL
+ *
+ *
+ *
  */
 
 angular.module('myApp.components.ui', [])
@@ -18,8 +27,6 @@ angular.module('myApp.components.ui', [])
 
         // Setup ui provider
         // configurationObject - hash object to configure ui templates
-        //      "key" - represents directive name
-        //      "value" - represents template URL
         self.initialize = function (configurationObject) {
             angular.extend(self.templates, configurationObject)
         };
@@ -27,7 +34,7 @@ angular.module('myApp.components.ui', [])
         this.$get = ['$templateCache', function ($templateCache) {
 
             return {
-                // Returns a template URL for specified key
+                // Returns a template URL for specified key (directive name)
                 getTemplateUrl: function (key) {
                     return self.templates[key];
                 }

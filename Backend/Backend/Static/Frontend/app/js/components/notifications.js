@@ -12,16 +12,22 @@
  *          "notification.text" - string which represents a notification text
  *          "removeNotification($index)" - removes a current notification
  *
- *      The 'notifications-panel' directive may be used to show notifications
+ *   The 'notifications' service may be used to interact with notification storage
+ *      Usage: add(type, text)
+ *          type : string - represents a notification type
+ *          text : string - represents a notification text
  *
- *          Class '.notifications-container' may be used to update notifications panel CSS styles
+ *   The 'notifications-panel' directive may be used to show notifications
+ *      Usage: <div class="notifications-panel"></div>
+ *      Class '.notifications-container' may be used to update notifications panel CSS styles
  *
  */
 
 angular.module('myApp.components.notifications', [])
 
-    // Stores application notifications
-    // Provide access to add and remove operations
+    // Configures a 'notifications' service
+    // Service stores application notifications and
+    // provide access to add and remove operations
     .provider('notifications', function () {
 
         var self = this;
@@ -70,7 +76,7 @@ angular.module('myApp.components.notifications', [])
                 // Add new notification
                 add: function (type, text) {
 
-                    // Remove old notification if storage is full
+                    // Remove oldest notification if storage is full
                     if (self.notifications.length >= self.maxCount) {
                         this.remove(0);
                     }
@@ -95,7 +101,7 @@ angular.module('myApp.components.notifications', [])
             template: '<div ng-repeat="notification in notifications">' +
                 '<ng-include src="templateUrl"></ng-include>' +
                 '</div>',
-            restrict: 'A',
+            restrict: 'C',
             scope: {},
             link: function (scope, element, attrs) {
 
