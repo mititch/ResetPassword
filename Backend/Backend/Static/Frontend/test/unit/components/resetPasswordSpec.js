@@ -125,7 +125,7 @@ describe('myApp.components.resetPassword', function () {
 
             });
 
-            describe('then "reset" called', function () {
+            describe('then "update" called', function () {
 
                 var instance;
                 var test;
@@ -145,7 +145,7 @@ describe('myApp.components.resetPassword', function () {
                     spyOn(test, 'handler');
 
                     // Make the call.
-                    var returnedPromise = instance.$reset({});
+                    var returnedPromise = instance.$update({});
 
                     // Use the handler you're spying on to handle the resolution of the promise.
                     returnedPromise.then(test.handler);
@@ -176,7 +176,7 @@ describe('myApp.components.resetPassword', function () {
                     spyOn(test, 'handler');
 
                     // Make the call.
-                    var returnedPromise = instance.$reset({additionalProperty : 'additionalValue'});
+                    var returnedPromise = instance.$update({additionalProperty : 'additionalValue'});
 
                     // Use the handler you're spying on to handle the resolution of the promise.
                     returnedPromise.then(test.handler);
@@ -198,7 +198,7 @@ describe('myApp.components.resetPassword', function () {
     //
 
 
-    describe('ModalCtrl service', function () {
+    describe('resetPassword service', function () {
 
         var mockModal;
         var resetPassword;
@@ -241,7 +241,7 @@ describe('myApp.components.resetPassword', function () {
             spyOn(mockModal, 'open').andReturn({result : 'someResult'});
 
             // Make the call.
-            var returnedValue = resetPassword.reset('scope', 'customData');
+            var returnedValue = resetPassword.open('scope', 'customData');
 
             //check your spy to see if it's been called with the returned value.
             return expect(returnedValue).toBe('someResult');
@@ -254,7 +254,7 @@ describe('myApp.components.resetPassword', function () {
             spyOn(mockModal, 'open').andReturn({result : 'someResult'});
 
             // Make the call.
-            resetPassword.reset('scope', 'customData');
+            resetPassword.open('scope', 'customData');
 
             //check your spy to see if it's been called with the returned value.
             return expect(mockModal.open).toHaveBeenCalled();
@@ -263,7 +263,7 @@ describe('myApp.components.resetPassword', function () {
 
         it ('should configure $mobile with right data', function () {
             // Make the call.
-            resetPassword.reset('someScope', 'customData');
+            resetPassword.open('someScope', 'customData');
 
             expect(configData.templateUrl).toBe(TEMPLATE_Url);
             expect(configData.scope).toBe('someScope');
@@ -275,10 +275,10 @@ describe('myApp.components.resetPassword', function () {
     });
 
     //
-    //  ModalCtrl controller
+    //  ResetPasswordModalCtrl controller
     //
 
-    describe('ModalCtrl controller', function () {
+    describe('ResetPasswordModalCtrl controller', function () {
 
         var ctrl;
         var $controller;
@@ -327,7 +327,7 @@ describe('myApp.components.resetPassword', function () {
 
             passwordSpyHelper = {
 
-                $reset : function (customData) {
+                $update : function (customData) {
                     return defered.promise;
                 },
 
@@ -339,7 +339,7 @@ describe('myApp.components.resetPassword', function () {
             Password = function (configuration) {
                 angular.extend(this, configuration);
 
-                this.$reset = passwordSpyHelper.$reset;
+                this.$update = passwordSpyHelper.$update;
 
                 this.$generate = passwordSpyHelper.$generate;
 
@@ -378,7 +378,7 @@ describe('myApp.components.resetPassword', function () {
 
             it("should has right scope ", function () {
 
-                ctrl = $controller('ModalCtrl', locals);
+                ctrl = $controller('ResetPasswordModalCtrl', locals);
 
                 expect($scope.showPasswords).toBe(false);
 
@@ -394,17 +394,17 @@ describe('myApp.components.resetPassword', function () {
 
         describe("when scope applyChanges called", function () {
 
-            it("should call to Password reset", function () {
+            it("should call to Password update", function () {
 
-                spyOn(passwordSpyHelper, '$reset').andReturn({then : function () {}});
+                spyOn(passwordSpyHelper, '$update').andReturn({then : function () {}});
 
-                ctrl = $controller('ModalCtrl', locals);
+                ctrl = $controller('ResetPasswordModalCtrl', locals);
 
                 $scope.applyChanges();
 
                 expect($scope.disableInputs).toBe(true);
 
-                return expect(passwordSpyHelper.$reset).toHaveBeenCalledWith('customData');
+                return expect(passwordSpyHelper.$update).toHaveBeenCalledWith('customData');
 
             });
 
@@ -413,7 +413,7 @@ describe('myApp.components.resetPassword', function () {
                 beforeEach(function () {
                     spyOn($modalInstance, 'close');
                     spyOn(notifications, 'add');
-                    ctrl = $controller('ModalCtrl', locals);
+                    ctrl = $controller('ResetPasswordModalCtrl', locals);
                     $scope.applyChanges();
                     defered.resolve({});
                     $rootScope.$apply();
@@ -438,7 +438,7 @@ describe('myApp.components.resetPassword', function () {
                 beforeEach(function () {
                     spyOn($modalInstance, 'close');
                     spyOn(notifications, 'add');
-                    ctrl = $controller('ModalCtrl', locals);
+                    ctrl = $controller('ResetPasswordModalCtrl', locals);
                     $scope.applyChanges();
                     defered.reject({});
                     $rootScope.$apply();
@@ -466,7 +466,7 @@ describe('myApp.components.resetPassword', function () {
 
                 spyOn(passwordSpyHelper, '$generate').andReturn({then : function () {}});
 
-                ctrl = $controller('ModalCtrl', locals);
+                ctrl = $controller('ResetPasswordModalCtrl', locals);
 
                 $scope.generatePassword();
 
@@ -481,7 +481,7 @@ describe('myApp.components.resetPassword', function () {
 
                 beforeEach(function () {
                     spyOn(notifications, 'add');
-                    ctrl = $controller('ModalCtrl', locals);
+                    ctrl = $controller('ResetPasswordModalCtrl', locals);
                     $scope.generatePassword();
                     defered.resolve({});
                     $rootScope.$apply();
@@ -503,7 +503,7 @@ describe('myApp.components.resetPassword', function () {
 
                 beforeEach(function () {
                     spyOn(notifications, 'add');
-                    ctrl = $controller('ModalCtrl', locals);
+                    ctrl = $controller('ResetPasswordModalCtrl', locals);
                     $scope.generatePassword();
                     defered.reject({});
                     $rootScope.$apply();
@@ -529,7 +529,7 @@ describe('myApp.components.resetPassword', function () {
 
                 spyOn($modalInstance, 'dismiss');
 
-                ctrl = $controller('ModalCtrl', locals);
+                ctrl = $controller('ResetPasswordModalCtrl', locals);
 
                 $scope.cancel();
 

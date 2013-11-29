@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Created by mititch on 26.11.13.
+ * Configures 'passwords' page route and provide the page controller
  */
 
 angular.module('myApp.pages.passwords', ['myApp.components.resetPassword'])
@@ -29,13 +29,13 @@ angular.module('myApp.pages.passwords', ['myApp.components.resetPassword'])
             { id: 3, password : 'zxcvbn' }
         ];
 
-        $scope.resetPasswordAction = function (index) {
+        $scope.resetPassword = function (index) {
 
             // Call to resetPassword service with some specific object
             // (in this case with item id)
-            resetPassword.reset($scope, { id : $scope.itemsArray[index].id }).then(
+            resetPassword.open($scope, { id : $scope.itemsArray[index].id }).then(
                 function (result) {
-                    // On success update password value
+                    // On success update password value of current element
                     $scope.itemsArray[index].password = result;
                 }
             );

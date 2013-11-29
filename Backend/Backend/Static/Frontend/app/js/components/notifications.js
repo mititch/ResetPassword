@@ -1,7 +1,20 @@
 'use strict';
 
 /**
- * Created by mititch on 26.11.13.
+ *   The component allows to show application notifications
+ *
+ *   The 'notificationsProvider' may be used to configure component
+ *      Usage: notificationsProvider.initialize(templateUrl, maxCount)
+ *          templateUrl : string - URL to notification item template (optional)
+ *          maxCount : integer - notification collection length (optional, default - 2)
+ *      While overriding the default template next properties and methods can be used:
+ *          "notification.type"  - string which represents a notification type
+ *          "notification.text" - string which represents a notification text
+ *          "removeNotification($index)" - removes a current notification
+ *
+ *      The 'notifications-panel' directive may be used to show notifications
+ *
+ *          Class '.notifications-container' may be used to update notifications panel CSS styles
  *
  */
 
@@ -20,12 +33,6 @@ angular.module('myApp.components.notifications', [])
         self.maxCount = 2;
 
         // Configures a notifications provider
-        // templateUrl - URL of notification HTML template
-        //      template may contains
-        //          "notification.type" link - to show notification type
-        //          "notification.text" link - to show notification text
-        //          "removeNotification($index)" call - to remove current notification
-        // maxCount - max count of saved notifications
         self.initialize = function (templateUrl, maxCount) {
 
             // Save template URL

@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Created by mititch on 26.11.13.
+ * Configures 'about' page route and provide the page controller
  */
 
 angular.module('myApp.pages.about', [])
@@ -16,6 +16,8 @@ angular.module('myApp.pages.about', [])
 
     /* Page controller*/
     .controller('AboutPage', ['$scope', function ($scope) {
+
+        // TODO: remove all
         $scope.showPasswords = true;
         $scope.disableInputs = false;
         $scope.password = {text : ' sdvsdv'};
