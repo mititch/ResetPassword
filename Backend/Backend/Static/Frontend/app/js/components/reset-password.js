@@ -7,18 +7,19 @@
 angular.module('myApp.components.resetPassword', ['ui.bootstrap.modal'])
 
     // ModalCtrl factory
-    // Returns a ModalCtrl instance
-    .factory('ModalCtrl', [ 'Password', '$injector' , function (Password, $injector) {
+    // Definition of modal dialog controller
+    // '$scope', '$modalInstance', 'passwordText', 'customData' - will be injected by $modal as locals
+    // 'Password', '$injector' - will be injected by this module
+    .controller('ModalCtrl', [ '$scope', '$modalInstance', 'passwordText', 'customData', 'Password', '$injector' ,
+        function ($scope, $modalInstance, passwordText, customData, Password, $injector) {
 
-        // Declare notifications service link
-        var notifications = false;
+            // Declare notifications service link
+            var notifications = false;
 
-        // Inject notifications service if it present in collection
-        if ($injector.has('notifications')) {
-            notifications = $injector.get('notifications');
-        }
-
-        return function ($scope, $modalInstance, passwordText, customData) {
+            // Inject notifications service if it present in collection
+            if ($injector.has('notifications')) {
+                notifications = $injector.get('notifications');
+            }
 
             // Setting the hidden password mode for the all password inputs
             $scope.showPasswords = false;
@@ -85,12 +86,11 @@ angular.module('myApp.components.resetPassword', ['ui.bootstrap.modal'])
                 $modalInstance.dismiss();
             }
 
-        }
+
     }])
 
-    // Saves applications notifications
-    // Provide access to add and remove operations
-    // Configures with notification template url
+    // Creates modal dialog for the password reset
+    // Configures with server API url and dialog template url
     .provider('resetPassword', ['$provide', function ($provide) {
 
         var self = this;
@@ -107,17 +107,17 @@ angular.module('myApp.components.resetPassword', ['ui.bootstrap.modal'])
             self.templateUrl = templateUrl;
         };
 
-        this.$get = ['$modal', 'ModalCtrl', function ($modal, ModalCtrl) {
+        this.$get = ['$modal', function ($modal) {
 
             return {
 
-                // Open password reset dialog
+                // Opens a password reset dialog
                 reset: function (scope, customData) {
 
                     // Create and open dialog
                     var modalInstance = $modal.open({
-                        templateUrl: self.templateUrl,  //Get templateUrl from provider
-                        controller: ModalCtrl,
+                        templateUrl: self.templateUrl,  // Get templateUrl from provider
+                        controller: 'ModalCtrl',        // Minification critical
                         scope: scope,
                         resolve: {
                             // Pass empty password to dialog
@@ -140,7 +140,8 @@ angular.module('myApp.components.resetPassword', ['ui.bootstrap.modal'])
 
     }])
 
-    // Password custom Angular resource
+    // Custom Angular resource for Password class
+    // Provide generate and reset operations
     .factory('Password', ['$http', 'PASSWORD_API_URL', function ($http, PASSWORD_API_URL) {
 
         // Get connection url from constant instantiated in provider
