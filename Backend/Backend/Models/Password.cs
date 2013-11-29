@@ -1,4 +1,15 @@
-﻿namespace Backend.Models
+﻿//
+// <copyright company="Softerra">
+//    Copyright (c) Softerra, Ltd. All rights reserved.
+// </copyright>
+//
+// <summary>
+//    Password view model
+// </summary>
+//
+// <author email="mititch@softerra.com">Alex Mitin</author>
+//
+namespace Backend.Models
 {
     using System;
     using System.ComponentModel.DataAnnotations;
@@ -38,7 +49,6 @@
         /// Gets and sets password confirmation field
         /// </summary>
         [Required]
-        // Validation error possible
         [StringLength(int.MaxValue, MinimumLength = 5)]
         public String Confirmation
         {
@@ -50,7 +60,6 @@
         /// Gets and sets password test field
         /// </summary>
         [Required]
-        // Validation error possible
         [StringLength(int.MaxValue, MinimumLength = 5)]
         public String Text 
         {

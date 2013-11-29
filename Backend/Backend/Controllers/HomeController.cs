@@ -1,4 +1,15 @@
-﻿namespace Backend.Controllers
+﻿//
+// <copyright company="Softerra">
+//    Copyright (c) Softerra, Ltd. All rights reserved.
+// </copyright>
+//
+// <summary>
+//    Default application controller
+// </summary>
+//
+// <author email="mititch@softerra.com">Alex Mitin</author>
+//
+namespace Backend.Controllers
 {
     using System.Web;
     using System.Web.Mvc;

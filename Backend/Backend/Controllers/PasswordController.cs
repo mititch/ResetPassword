@@ -1,8 +1,17 @@
-﻿namespace Backend.Controllers
+﻿//
+// <copyright company="Softerra">
+//    Copyright (c) Softerra, Ltd. All rights reserved.
+// </copyright>
+//
+// <summary>
+//    Represents access for the reset and generate password API
+// </summary>
+//
+// <author email="mititch@softerra.com">Alex Mitin</author>
+//
+namespace Backend.Controllers
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using System.Net;
     using System.Net.Http;
     using System.Web.Http;
@@ -29,8 +38,9 @@
         //
 
         /// <summary>
+        /// GET api/password
         /// Generates a new password
-        /// Usage: GET api/password
+        /// TRICK: Exception can be thrown to simulate a server error
         /// </summary>
         /// <returns>A new password object</returns>
         public Password Get()
@@ -45,8 +55,10 @@
         }
 
         /// <summary>
-        /// Reset the password if model is valid
-        /// Usage: POST api/password
+        /// POST api/password
+        /// Resets a password if model is valid
+        /// TRICK: Server side validation is different from client
+        /// it is made to simulate the validation error
         /// </summary>
         /// <param name="value">Password entity from request boby</param>
         /// <returns>Success of failure responce message which depends of the models state</returns>
@@ -60,6 +72,8 @@
                 ModelState.AddModelError("Confirmation", "Passwords not equals");
             }
 
+            // Server side validation is different from client
+            // It is simulate 
             if (ModelState.IsValid)
             {
                 // Return success http status
@@ -79,6 +93,7 @@
         /// Generates a random password string
         /// </summary>
         /// <returns>New password string</returns>
+        /// <exception>OutOfRange exception can be thrown</exception>
         private String GeneratePassword() {
             
             Random random = new Random();
@@ -90,9 +105,8 @@
             // Take random chars from VALID_CHARACTERS_STRING
             for (Int32 i = 0; i < PASSWORD_LENGTH; i++)
             {
-                //TRICK: Out of range exception possible
+                //Out of range exception possible
                 resultArray[i] = VALID_CHARACTERS_STRING[random.Next(maxValue + 2)];
-                //resultArray[i] = VALID_CHARACTERS_STRING[random.Next(maxValue)];
             }
             
             return new String(resultArray);
