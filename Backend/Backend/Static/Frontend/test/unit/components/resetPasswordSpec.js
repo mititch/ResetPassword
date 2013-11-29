@@ -13,7 +13,6 @@ describe('myApp.components.resetPassword', function () {
 
     describe('Password resource', function () {
 
-
         var $http, $httpBackend;
         var Password;
         var SOME_OBJECT = {text: 'password', confirmation: 'confirmation'};
@@ -49,7 +48,7 @@ describe('myApp.components.resetPassword', function () {
                 // Provide any mocks needed
                 module(function ($provide) {
 
-                    var mockNotificationService = {
+                    var mockMobile = {
                         getNotifications: function () {
                             return mockNotifications
                         },
@@ -60,7 +59,7 @@ describe('myApp.components.resetPassword', function () {
                         }
                     };
 
-                    $provide.value('$mobile', mockNotificationService);
+                    $provide.value('$mobile', mockMobile);
                 });
 
                 inject(function (_$http_, _$httpBackend_, _Password_) {
@@ -70,7 +69,6 @@ describe('myApp.components.resetPassword', function () {
                 });
 
             })
-
 
             afterEach(function () {
                 $httpBackend.verifyNoOutstandingExpectation();
@@ -95,12 +93,12 @@ describe('myApp.components.resetPassword', function () {
 
             });
 
-            xdescribe('then created from object', function () {
+            describe('then created from object', function () {
 
                 var password;
 
                 beforeEach(function () {
-                    password = new Password({text: 'password', confirmation: 'confirm'});
+                    password = new Password({text: 'password', confirmation: 'confirm', someProp : 'someValue'});
                 });
 
                 it('should have text value from object', function () {
@@ -111,14 +109,18 @@ describe('myApp.components.resetPassword', function () {
                     return expect(password.confirmation).toBe('confirm');
                 });
 
+                it('should have additional properties from object', function () {
+                    return expect(password.someProp).toBe('someValue');
+                });
+
             });
 
-            xdescribe('then "generate" called', function () {
+            describe('then "generate" called', function () {
 
                 var instance;
 
                 beforeEach(function () {
-                    $httpBackend.whenGET(API_URL + 'password').respond({
+                    $httpBackend.expectGET(API_URL).respond({
                         Text: 'newPassword',
                         Confirmation: 'newConfirmation'
                     });
@@ -138,23 +140,21 @@ describe('myApp.components.resetPassword', function () {
                     return expect(instance.confirmation).toBe('newConfirmation');
                 });
 
-                //todo test promise
-
             });
 
-            xdescribe('then "reset" called', function () {
+            describe('then "reset" called', function () {
 
                 var instance;
                 var test;
 
-                beforeEach(function () {
+                it('should send password data to server', function () {
 
                     test = {
                         handler: function () {
                         }
                     };
 
-                    $httpBackend.expectPOST(API_URL + 'password', SOME_OBJECT).respond({});
+                    $httpBackend.expectPOST(API_URL, SOME_OBJECT).respond({});
 
                     instance = new Password(SOME_OBJECT);
 
@@ -162,7 +162,7 @@ describe('myApp.components.resetPassword', function () {
                     spyOn(test, 'handler');
 
                     // Make the call.
-                    var returnedPromise = instance.$reset();
+                    var returnedPromise = instance.$reset({});
 
                     // Use the handler you're spying on to handle the resolution of the promise.
                     returnedPromise.then(test.handler);
@@ -170,9 +170,37 @@ describe('myApp.components.resetPassword', function () {
                     // Flush the backend
                     $httpBackend.flush();
 
+                    //check your spy to see if it's been called with the returned value.
+                    return expect(test.handler).toHaveBeenCalled();
+
                 });
 
-                it('should send data to server', function () {
+                it('should send additional data to server', function () {
+
+                    test = {
+                        handler: function () {
+                        }
+                    };
+
+                    $httpBackend.expectPOST(API_URL, function (data) {
+                        // Request data
+                        return angular.fromJson(data).additionalProperty ===  'additionalValue';
+                    }).respond({});
+
+                    instance = new Password(SOME_OBJECT);
+
+                    //set up a spy for the callback handler.
+                    spyOn(test, 'handler');
+
+                    // Make the call.
+                    var returnedPromise = instance.$reset({additionalProperty : 'additionalValue'});
+
+                    // Use the handler you're spying on to handle the resolution of the promise.
+                    returnedPromise.then(test.handler);
+
+                    // Flush the backend
+                    $httpBackend.flush();
+
                     //check your spy to see if it's been called with the returned value.
                     return expect(test.handler).toHaveBeenCalled();
 

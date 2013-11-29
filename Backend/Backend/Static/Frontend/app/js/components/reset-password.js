@@ -6,10 +6,9 @@
 
 angular.module('myApp.components.resetPassword', ['ui.bootstrap.modal'])
 
-    // ModalCtrl factory
     // Definition of modal dialog controller
-    // '$scope', '$modalInstance', 'passwordText', 'customData' - will be injected by $modal as locals
-    // 'Password', '$injector' - will be injected by this module
+    //      '$scope', '$modalInstance', 'passwordText', 'customData' - will be injected by $modal as locals
+    //      'Password', '$injector' - will be injected by this module
     .controller('ModalCtrl', [ '$scope', '$modalInstance', 'passwordText', 'customData', 'Password', '$injector' ,
         function ($scope, $modalInstance, passwordText, customData, Password, $injector) {
 
