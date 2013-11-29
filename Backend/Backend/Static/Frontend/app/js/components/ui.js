@@ -43,7 +43,7 @@ angular.module('myApp.components.ui', [])
 
             var configurationObject = {
                 require: '?ngModel',
-                restrict: "E",
+                restrict: "EA",
                 replace: true,
                 scope: {
                     showInput: '&',

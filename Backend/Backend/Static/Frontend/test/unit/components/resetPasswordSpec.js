@@ -1,6 +1,6 @@
 'use strict';
 
-/* jasmine specs for myApp.components.notifications module */
+/* jasmine specs for myApp.components.resetPassword module */
 
 describe('myApp.components.resetPassword', function () {
 
@@ -208,6 +208,15 @@ describe('myApp.components.resetPassword', function () {
 
             });
         });
+    });
+
+    //
+    //  resetPassword service
+    //
+
+
+    describe('resetPassword service', function () {
+
     });
 
 });

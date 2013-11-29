@@ -11,8 +11,8 @@
              format-data="{'offset' : '3', 'size' : '9'}"
              validation-data="{'required' : 'Required field.', 'minLength' : 'Password to short.'}">
 
-            <ui-password-input show-input="showPasswords" name="passwordText" ng-model="password.text"
-                               ng-disabled="disableInputs" min-length="4" required/>
+            <div ui-password-input show-input="showPasswords" name="passwordText" ng-model="password.text"
+                               ng-disabled="disableInputs" min-length="4" required></div>
         </div>
 
         <div ui-form-field-wrapper="passwordConfirmation"
@@ -20,9 +20,9 @@
              format-data="{'offset' : '3', 'size' : '9'}"
              validation-data="{'required' : 'Required field.', 'equals' : 'Passwords not equals.'}">
 
-            <ui-password-input show-input="showPasswords" name="passwordConfirmation"
+            <div ui-password-input show-input="showPasswords" name="passwordConfirmation"
                                ng-model="password.confirmation" ng-disabled="disableInputs"
-                               equals="{{password.text}}" required/>
+                               equals="{{password.text}}" required></div>
         </div>
 
         <div class="form-group">
