@@ -3,6 +3,9 @@
 /**
  *   The component allows to change the password in the dialog box.
  *   Server side API uses to generate and store password.
+ *   Required to module 'ui.bootstrap.modal' was loaded
+ *   (see http://angular-ui.github.io/bootstrap/)
+ *
  *
  *   The 'resetPasswordProvider' should be used to configure server API endpoint
  *      and to update default dialog template (optional).
@@ -132,7 +135,22 @@ angular.module('myApp.components.resetPassword', ['ui.bootstrap.modal'])
             self.templateUrl = templateUrl;
         };
 
-        this.$get = ['$modal', function ($modal) {
+        this.$get = ['$modal', '$templateCache', function ($modal, $templateCache) {
+
+            // Setup modal dialog backdrop template for $modal
+            $templateCache.put('template/modal/backdrop.html',
+                '<div class="modal-backdrop fade" ng-class="{in: animate}"' +
+                    'ng-style="{\'z-index\': 1040 + index*10}"></div>');
+
+            // Setup modal dialog window template for $modal
+            $templateCache.put('template/modal/window.html',
+                '<div class="modal fade {{ windowClass }}" ng-class="{in: animate}"' +
+                    'ng-style="{\'z-index\': 1050 + index*10, display: \'block\'}"' +
+                    'ng-click="close($event)">' +
+                '<div class="modal-dialog">' +
+                '<div class="modal-content" ng-transclude></div>' +
+                '</div>' +
+                '</div>');
 
             return {
 
@@ -162,7 +180,6 @@ angular.module('myApp.components.resetPassword', ['ui.bootstrap.modal'])
                 }
             };
         }];
-
     }])
 
     // Custom Angular resource for Password class

@@ -1,7 +1,17 @@
 'use strict';
 
 /**
- * Created by mititch on 26.11.13.
+ *  Set of directives which can be used in the input validation process
+ *
+ *  The 'min-length' directive can be used to validate the text input value minimal length
+ *      Usage: <input type="text" min-length="minValue">
+ *          minValue : integer - validation fails if input value length more then specified
+ *
+ *  The 'equals' directive can be used to validate the input value equals with other one
+ *      Usage: <input equals="expression">
+ *          expression : string - an Angular expression (or simple text) with which should
+ *          be made comparing
+ *
  */
 
 angular.module('myApp.components.validation', [])

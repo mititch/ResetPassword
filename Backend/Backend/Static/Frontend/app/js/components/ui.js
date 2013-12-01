@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- *  Set of directives which updates user interface
+ *  Set of directives which can expand user interface
  *
  *  The 'uiProvider' may be used to configure directives templates
  *      Usage: uiProvider.initialize(configurationObject)
@@ -9,8 +9,34 @@
  *              key - represents directive name
  *              value - represents template URL
  *
+ *  The 'ui-password-input' directive may be used to show passwords with specific behavior
+ *      Usage: <div ui-password-input show-input='showPasswords' ng-model='property'></div>
+ *          showPasswords : expression - if expression is truly input shows password as text
+ *          property - scope property which represents input value
+ *      Overridden the directives template should contain two inputs with 'data.innerInputModel'
+ *          property in kind of ng-model value (active input control via 'toggle' property)
+ *          and button which should trigger 'showInputs()' method to change 'toggle' value
  *
- *
+ *  The 'ui-form-field-wrapper' directive may be used to add specific decoration to form input
+ *      and controls of validations messages view
+ *      Usage: <div ui-form-field-wrapper="fieldName"
+ *                  label-text="labelText"
+ *                  format-data="formatData"
+ *                  validation-data="validationData"><input name="fieldName"/><div>
+ *             fieldName : string - form input name. Should be equals to input tag
+ *                  name attribute
+ *             labelText : string - text of label. Can bee obtained in
+ *                 overridden template through 'labelText' property
+ *             formatData : string - in format of JS object which can be used to
+ *                 transfer some data into directive template. Can bee obtained in
+ *                 overridden template through 'format()' method
+ *             validationData : string - in format of JS object which can be used to
+ *                 setup validation messages. Keys should contain validator names,
+ *                 values should contain validation messages. Can bee obtained in
+ *                 overridden template through 'validation()' method
+ *      In overridden directives template isDirtyAndInvalid() method can be used to check of input $dirty
+ *      and $invalid properties.
+ *      Also 'isValidatorFail(key)' method can be used to check specified validator fail.
  */
 
 angular.module('myApp.components.ui', [])
@@ -43,8 +69,7 @@ angular.module('myApp.components.ui', [])
 
     })
 
-    // Custom input
-    // Can show a password in open or hidden mode
+    // Can show a password text in open or hidden mode
     .directive('uiPasswordInput', ['$log', 'ui',
         function ($log, ui) {
 
@@ -91,8 +116,8 @@ angular.module('myApp.components.ui', [])
                         scope.$watch('data.innerInputModel', function (value, oldValue) {
 
                             // Angular ng-model behavior fix
-                            // set $dirty if model changed outside input
-                            // prevent $dirty set for model from first update
+                            // sets $dirty if model changed outside input
+                            // prevent $dirty set for model during first update
                             if (value != oldValue) {
                                 // Update ng-model value
                                 ngModelCtrl.$setViewValue(value);

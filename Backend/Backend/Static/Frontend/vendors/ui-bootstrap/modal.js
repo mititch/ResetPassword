@@ -60,7 +60,7 @@ angular.module('ui.bootstrap.modal', [])
         return {
             restrict: 'EA',
             replace: true,
-            templateUrl: 'templates/modal/backdrop.html',
+            templateUrl: 'template/modal/backdrop.html',
             link: function (scope, element, attrs) {
                 //trigger CSS transitions
                 $timeout(function () {
@@ -78,7 +78,7 @@ angular.module('ui.bootstrap.modal', [])
             },
             replace: true,
             transclude: true,
-            templateUrl: 'templates/modal/window.html',
+            templateUrl: 'template/modal/window.html',
             link: function (scope, element, attrs) {
                 scope.windowClass = attrs.windowClass || '';
 
