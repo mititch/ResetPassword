@@ -16,27 +16,29 @@
  *          disableInputs - returns true if dialog elements should be disabled
  *          password.text - password text value (may be bound to input)
  *          password.confirmation - password text value (may be bound to input)
- *          applyChanges() - send server request to update password, on success closes a dialog box and returns
- *              updated password value
+ *          applyChanges() - send server request to update password, on success closes a dialog box
+ *          and returns updated password value
  *          generatePassword() - send server request to generate new password
  *          cancel() - close dialog box without changes
- *      It is recommended (but not necessary) to use 'ui-password-input' as input for 'password.text' and
- *          'password.confirmation'
+ *      It is recommended (but not necessary) to use 'ui-password-input' as input
+ *          for 'password.text' and 'password.confirmation'
  *
  *   The 'resetPassword' service may be used to open reset password dialog box
  *      Usage: resetPassword.open(scope, customData)
  *          scope : object - an Angular scope to which dialog boх will be attached
- *          customData : object - some specific data which will be sent to server with update password request
- *      Returns: a promise which will be resolved with new password value or rejected when canceling.
- *      If 'notifications' service is available in  Angular injector collection, it's used to inform the user about
- *      the execution process.
+ *          customData : object - some specific data which will be sent to server with update
+ *              password request
+ *      Returns: a promise which will be resolved with new password value or rejected
+ *          when canceling.
+ *      If 'notifications' service is available in  Angular injector collection, it's used
+ *          to inform the user about the execution process.
  *
  */
 
 angular.module('myApp.components.resetPassword', ['ui.bootstrap.modal'])
 
     // Definition of modal dialog controller
-    //      '$scope', '$modalInstance', 'passwordText', 'customData' - will be injected by $modal as locals
+    //      '$scope', '$modalInstance', 'passwordText', 'customData' - will be injected by $modal
     //      'Password', '$injector' - will be injected by Angular injector
     .controller('ResetPasswordModalCtrl',
         [ '$scope', '$modalInstance', 'passwordText', 'customData', 'Password', '$injector' ,
@@ -46,7 +48,8 @@ angular.module('myApp.components.resetPassword', ['ui.bootstrap.modal'])
             var notifications = false;
 
             // Inject notifications service, if it exists in the collection
-            if ($injector.has('notifications')) {
+            if ($injector.has('notifications'))
+            {
                 notifications = $injector.get('notifications');
             }
 
@@ -75,13 +78,15 @@ angular.module('myApp.components.resetPassword', ['ui.bootstrap.modal'])
                         $scope.disableInputs = false;
                         $modalInstance.close($scope.password.text);
                         // If notifications service has been injected notify user
-                        !notifications || notifications.add('success', 'Password is changed.');
+                        !notifications || notifications.add('success',
+                            'Password is changed.');
                     },
                     function () {
                         // On failure
                         $scope.disableInputs = false;
                         // If notifications service has been injected notify user
-                        !notifications || notifications.add('danger', 'Server can not reset password.');
+                        !notifications || notifications.add('danger',
+                            'Server can not reset password.');
                     }
                 );
             };
@@ -100,13 +105,15 @@ angular.module('myApp.components.resetPassword', ['ui.bootstrap.modal'])
                         $scope.showPasswords = true;
                         $scope.disableInputs = false;
                         // If notifications service has been injected notify user
-                        !notifications || notifications.add('success', 'New password generated.');
+                        !notifications || notifications.add('success',
+                            'New password generated.');
                     },
                     function () {
                         // On failure
                         $scope.disableInputs = false;
                         // If notifications service has been injected notify user
-                        !notifications || notifications.add('danger', 'Server can not generate password.');
+                        !notifications || notifications.add('danger',
+                            'Server can not generate password.');
                     }
                 );
             };
@@ -250,5 +257,4 @@ angular.module('myApp.components.resetPassword', ['ui.bootstrap.modal'])
 
         // Return the constructor function
         return Resource;
-    }])
-;
+    }]);

@@ -1,6 +1,6 @@
 'use strict';
 
-/* jasmine specs for directives go here */
+/* jasmine specs for myApp.components.ui module */
 
 describe('myApp.components.ui', function () {
     beforeEach(module('myApp.components.ui'));
@@ -10,7 +10,8 @@ describe('myApp.components.ui', function () {
     var validTemplate;    //object with default data
     var defaultData;    //object with default data
 
-    function createDirective(data, template, element) {
+    function createDirective(data, template, element)
+    {
 
         // Setup scope state
         $rootScope.data = data || defaultData;
@@ -85,7 +86,13 @@ describe('myApp.components.ui', function () {
             describe('in "form" tag', function () {
 
                 it('should not update element $dirty value', function () {
-                    var template = '<form name="form"><ui-password-input name="textLineInput" ng-model="data.textLine" show-input="data.isPasswordsShown"></ui-password-input><form>'
+                    var template =
+                        '<form name="form">' +
+                        '<ui-password-input name="textLineInput" ' +
+                            'ng-model="data.textLine" show-input="data.isPasswordsShown">' +
+                        '</ui-password-input>' +
+                        '<form>';
+
                     var element = createDirective(defaultData, template);
                     return expect($rootScope.form.textLineInput.$dirty).toBe(false);
                 });
@@ -155,12 +162,14 @@ describe('myApp.components.ui', function () {
                 var element;
 
                 beforeEach(function () {
-                    var template = '<ui-password-input ng-model="data.textLine" show-input="data.isPasswordsShown" ng-disabled="data.disableInput"></ui-password-input>'
+                    var template =
+                        '<ui-password-input ng-model="data.textLine" show-input="data.isPasswordsShown" ' +
+                            'ng-disabled="data.disableInput"></ui-password-input>';
                     var data = {
                         textLine : 'some line',
                         isPasswordsShown : true,
                         disableInput : false
-                    }
+                    };
                     element = createDirective(data, template);
                     $rootScope.$apply();
                 })
@@ -276,14 +285,18 @@ describe('myApp.components.ui', function () {
 
             it('should get format object from his scope', function () {
 
-                expect(element.children().eq(0).isolateScope().format()['someProp1']).toBe('someVal1');
-                expect(element.children().eq(0).isolateScope().format()['someProp2']).toBe('someVal2');
+                expect(element.children().eq(0).isolateScope().format()['someProp1'])
+                    .toBe('someVal1');
+                expect(element.children().eq(0).isolateScope().format()['someProp2'])
+                    .toBe('someVal2');
             });
 
             it('should get validation object from his scope', function () {
 
-                expect(element.children().eq(0).isolateScope().validation()['validatorName1']).toBe('validationText1');
-                expect(element.children().eq(0).isolateScope().validation()['validatorName2']).toBe('validationText2');
+                expect(element.children().eq(0).isolateScope().validation()['validatorName1'])
+                    .toBe('validationText1');
+                expect(element.children().eq(0).isolateScope().validation()['validatorName2'])
+                    .toBe('validationText2');
             });
 
         });
@@ -326,8 +339,10 @@ describe('myApp.components.ui', function () {
 
                 $rootScope.$apply();
 
-                expect(element.children().eq(0).isolateScope().isValidatorFail('validatorName1')).toBe(false);
-                expect(element.children().eq(0).isolateScope().isValidatorFail('validatorName2')).toBe(true);
+                expect(element.children().eq(0).isolateScope().isValidatorFail('validatorName1'))
+                    .toBe(false);
+                expect(element.children().eq(0).isolateScope().isValidatorFail('validatorName2'))
+                    .toBe(true);
 
             });
         });

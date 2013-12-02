@@ -24,13 +24,14 @@ angular.module('myApp.components.validation', [])
                 link: function (scope, element, attrs, ngModelCtrl) {
 
                     // If ng-model exist
-                    if (ngModelCtrl) {
-
+                    if (ngModelCtrl)
+                    {
                         // Add parser and formatter for value in pipeline
                         ngModelCtrl.$parsers.push(function (viewValue) {
                             validateMinLength(viewValue, null);
                             return viewValue;
                         });
+
                         ngModelCtrl.$formatters.push(function (value) {
                             validateMinLength(value, null);
                             return value;
@@ -51,7 +52,7 @@ angular.module('myApp.components.validation', [])
                         };
                     }
                 }
-            }
+            };
         }]
     )
     // Add equals validation for the input element
@@ -63,8 +64,8 @@ angular.module('myApp.components.validation', [])
                 link: function (scope, element, attrs, ngModelCtrl) {
 
                     // If ng-model exist
-                    if (ngModelCtrl) {
-
+                    if (ngModelCtrl)
+                    {
                         // Add parser for this value
                         ngModelCtrl.$parsers.push(function (viewValue) {
                             validateEquals(viewValue, null);
@@ -92,7 +93,6 @@ angular.module('myApp.components.validation', [])
                         };
                     }
                 }
-            }
+            };
         }]
-    )
-;
+    );

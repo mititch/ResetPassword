@@ -1,6 +1,6 @@
 'use strict';
 
-/* jasmine specs for directives go here */
+/* jasmine specs for myApp.components.validation module */
 
 describe('myApp.components.validation', function () {
     beforeEach(module('myApp.components.validation'));
@@ -10,8 +10,8 @@ describe('myApp.components.validation', function () {
     var validTemplate;    //object with default data
     var defaultData;    //object with default data
 
-    function createDirective(data, template) {
-
+    function createDirective(data, template)
+    {
         // Setup scope state
         $rootScope.data = data || defaultData;
 
@@ -236,8 +236,5 @@ describe('myApp.components.validation', function () {
 
             });
         });
-
     });
-
-
 });

@@ -51,7 +51,8 @@ angular.module('myApp.components.notifications', [])
         this.$get = ['$templateCache', function ($templateCache) {
 
             // If service was not configured register default notification template
-            if (!self.templateUrl) {
+            if (!self.templateUrl)
+            {
                 $templateCache.put('default-notification.tpl.html',
                     '<div class="alert alert-{{notification.type}}">' +
                     '{{notification.text}}' +
@@ -77,7 +78,8 @@ angular.module('myApp.components.notifications', [])
                 add: function (type, text) {
 
                     // Remove oldest notification if storage is full
-                    if (self.notifications.length >= self.maxCount) {
+                    if (self.notifications.length >= self.maxCount)
+                    {
                         this.remove(0);
                     }
 
@@ -103,10 +105,11 @@ angular.module('myApp.components.notifications', [])
                 '</div>',
             restrict: 'C',
             scope: {},
-            link: function (scope, element, attrs) {
+            link: function (scope) {
 
                 // Get template url from storage or use default
-                scope.templateUrl = notifications.getTemplateUrl() || 'default-notification.tpl.html';
+                scope.templateUrl = notifications.getTemplateUrl()
+                    || 'default-notification.tpl.html';
 
                 // Get notifications from storage
                 scope.notifications = notifications.getNotifications();
@@ -115,7 +118,8 @@ angular.module('myApp.components.notifications', [])
                 scope.removeNotification = function (index) {
                     notifications.remove(index);
                 };
+
             }
-        }
+        };
     }])
 ;

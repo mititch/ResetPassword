@@ -13,15 +13,15 @@ describe('myApp.components.notifications', function () {
         var notifications;
 
         beforeEach(function () {
-                module('myApp.components.notifications', function (notificationsProvider) {
-                    notificationsProvider.initialize('someUrl', 3);
-                });
+            module('myApp.components.notifications', function (notificationsProvider) {
+                notificationsProvider.initialize('someUrl', 3);
+            });
 
-                inject(function (_notifications_) {
-                    notifications = _notifications_;
-                })
-            }
-        );
+            inject(function (_notifications_) {
+                notifications = _notifications_;
+            });
+
+        });
 
         it('should return correct notifications count', function () {
             return expect(notifications.getNotifications().length).toBe(0);
@@ -46,9 +46,10 @@ describe('myApp.components.notifications', function () {
         });
 
         it('should not overhead notification limit', function () {
-            for (var i = 0; i < 10; i++ ) {
-            notifications.add('type', 'text')
+            for (var i = 0; i < 10; i++) {
+                notifications.add('type', 'text')
             }
+
             return expect(notifications.getNotifications().length).toBe(3);
         });
     });
@@ -72,7 +73,6 @@ describe('myApp.components.notifications', function () {
             '<div class="notifications-panel"></div>';
 
         function createDirective(data, template) {
-
             // Setup scope state
             $rootScope.data = data || defaultData;
 
@@ -116,7 +116,6 @@ describe('myApp.components.notifications', function () {
                 $compile = _$compile_;
                 $templateCache = _$templateCache_;
             });
-
         });
 
         beforeEach(function () {
@@ -132,6 +131,7 @@ describe('myApp.components.notifications', function () {
         describe('when created', function () {
 
             var element;
+
             beforeEach(function () {
                 element = createDirective();
             });
@@ -141,7 +141,8 @@ describe('myApp.components.notifications', function () {
             });
 
             it('should have correct notification template', function () {
-                return expect(element.find('ng-include').html()).toBe('<span class="ng-scope"></span>');
+                return expect(element.find('ng-include').html())
+                    .toBe('<span class="ng-scope"></span>');
             });
 
             it('should make call remove notification', function () {
@@ -149,7 +150,6 @@ describe('myApp.components.notifications', function () {
                 element.isolateScope().removeNotification(1);
                 return expect(mockNotificationService.remove).toHaveBeenCalledWith(1);
             });
-
         });
 
         describe('when notifications updated', function () {
@@ -161,7 +161,6 @@ describe('myApp.components.notifications', function () {
                 });
                 return expect(element.find('div').children().length).toBe(4);
             });
-
         });
     });
 });

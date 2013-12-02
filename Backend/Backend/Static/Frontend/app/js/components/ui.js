@@ -34,8 +34,8 @@
  *                 setup validation messages. Keys should contain validator names,
  *                 values should contain validation messages. Can bee obtained in
  *                 overridden template through 'validation()' method
- *      In overridden directives template isDirtyAndInvalid() method can be used to check of input $dirty
- *      and $invalid properties.
+ *      In overridden directives template isDirtyAndInvalid() method can be used to check of input
+ *      $dirty and $invalid properties.
  *      Also 'isValidatorFail(key)' method can be used to check specified (by key) validator fail.
  */
 
@@ -65,6 +65,7 @@ angular.module('myApp.components.ui', [])
                     return self.templates[key];
                 }
             };
+
         }];
 
     })
@@ -97,7 +98,8 @@ angular.module('myApp.components.ui', [])
                     };
 
                     // Add watcher for switch the demonstration mode from outside scope
-                    if (attrs.showInput) {
+                    if (attrs.showInput)
+                    {
                         scope.$watch(
                             function () {
                                 // If outside value changed
@@ -110,8 +112,8 @@ angular.module('myApp.components.ui', [])
                         );
                     }
 
-                    if (ngModelCtrl) {
-
+                    if (ngModelCtrl)
+                    {
                         // Watch when the input element changes the value
                         scope.$watch('data.innerInputModel', function (value, oldValue) {
 
@@ -132,15 +134,18 @@ angular.module('myApp.components.ui', [])
                         };
                     }
                 }
-            }
+            };
 
             // Try to get custom template URL
             var templateUrl = ui.getTemplateUrl('uiPasswordInput');
 
-            if (templateUrl) {
+            if (templateUrl)
+            {
                 // Use custom template
                 configurationObject.templateUrl = templateUrl;
-            } else {
+            }
+            else
+            {
                 // Use default template
                 configurationObject.template = '<div class="input-group">' +
                     '<input type="text" class="form-control" ' +
@@ -148,7 +153,8 @@ angular.module('myApp.components.ui', [])
                     '<input type="password" class="form-control" ' +
                     'ng-if="!toggle" ng-model="data.innerInputModel" ng-disabled="disableInputs">' +
                     '<span class="input-group-btn">' +
-                    '<button class="btn btn-default" ng-click="toggleInput()" ng-disabled="disableInputs">' +
+                    '<button class="btn btn-default" ng-click="toggleInput()" ' +
+                    'ng-disabled="disableInputs">' +
                     '<span class="glyphicon" ' +
                     'ng-class="{\'glyphicon-eye-close\': toggle, \'glyphicon-eye-open\': !toggle}">' +
                     '</span>' +
@@ -165,12 +171,11 @@ angular.module('myApp.components.ui', [])
     // Creates a new scope
     .directive('uiFormFieldWrapper', ['$log', 'ui',
         function ($log, ui) {
-
             // Parses attribute text to JS object
             var parseAttributeData = function (data) {
                 // FIX: angular.fromJson works only with double quotes
                 return angular.fromJson(data.replace(/'/g, '\"'));
-            }
+            };
 
             var configurationObject =  {
                 restrict: 'A',
@@ -217,18 +222,22 @@ angular.module('myApp.components.ui', [])
 
                     }
                 }
-            }
+            };
 
             // Get custom template URL
             var templateUrl = ui.getTemplateUrl('uiFormFieldWrapper');
 
-            if (templateUrl) {
+            if (templateUrl)
+            {
                 // Use custom template
                 configurationObject.templateUrl = templateUrl;
-            } else {
+            }
+            else
+            {
                 // Use default template
                 configurationObject.template = '<div class="form-group">' +
-                    '<label class="control-label col-sm-{{format().offset}}">{{labelText}}</label>' +
+                    '<label class="control-label col-sm-{{format().offset}}">' +
+                    '{{labelText}}</label>' +
                     '<div class="col-sm-{{format().size}}" ng-transclude>' +
                     '</div>' +
                     '<div class="col-sm-offset-{{format().offset}} col-sm-{{format().size}}"' +
@@ -244,5 +253,4 @@ angular.module('myApp.components.ui', [])
             return configurationObject;
 
         }]
-    )
-;
+    );
