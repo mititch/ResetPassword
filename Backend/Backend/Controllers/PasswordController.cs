@@ -4,7 +4,7 @@
 // </copyright>
 //
 // <summary>
-//    Represents access for the reset and generate password API
+//    Provides an access for the reset and generate password API
 // </summary>
 //
 // <author email="mititch@softerra.com">Alex Mitin</author>
@@ -61,7 +61,7 @@ namespace Backend.Controllers
         /// it is made to simulate the validation error
         /// </summary>
         /// <param name="value">Password entity from request boby</param>
-        /// <returns>Success of failure responce message which depends of the models state</returns>
+        /// <returns>Success of failure responce message depends of the models state</returns>
         public HttpResponseMessage Post([FromBody]Password value)
         {
             HttpResponseMessage result;
@@ -73,7 +73,7 @@ namespace Backend.Controllers
             }
 
             // Server side validation is different from client
-            // It is simulate 
+            // It is made to simulate the server error
             if (ModelState.IsValid)
             {
                 // Return success http status
@@ -94,12 +94,10 @@ namespace Backend.Controllers
         /// </summary>
         /// <returns>New password string</returns>
         /// <exception>OutOfRange exception can be thrown</exception>
-        private String GeneratePassword() {
-            
+        private String GeneratePassword() 
+        {
             Random random = new Random();
-            
             Int32 maxValue = VALID_CHARACTERS_STRING.Length;
-
             Char[] resultArray = new Char[PASSWORD_LENGTH];
 
             // Take random chars from VALID_CHARACTERS_STRING

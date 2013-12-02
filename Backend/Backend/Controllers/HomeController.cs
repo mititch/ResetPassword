@@ -24,7 +24,7 @@ namespace Backend.Controllers
         /// </summary>
         public RedirectResult Index()
         {
-            /// Redirect request to static page
+            /// Redirect request to the static page
             return Redirect("~/Static/Frontend/app/index.html");
         }
     }

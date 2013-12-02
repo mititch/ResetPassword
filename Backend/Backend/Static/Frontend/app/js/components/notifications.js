@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- *   The component allows to show application notifications
+ *   The component allows to show the application notifications.
  *
  *   The 'notificationsProvider' may be used to configure component
  *      Usage: notificationsProvider.initialize(templateUrl, maxCount)

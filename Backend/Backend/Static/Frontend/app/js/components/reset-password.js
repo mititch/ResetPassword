@@ -2,10 +2,9 @@
 
 /**
  *   The component allows to change the password in the dialog box.
- *   Server side API uses to generate and store password.
+ *   Server side API must be used to generate and store password.
  *   Required to module 'ui.bootstrap.modal' was loaded
  *   (see http://angular-ui.github.io/bootstrap/)
- *
  *
  *   The 'resetPasswordProvider' should be used to configure server API endpoint
  *      and to update default dialog template (optional).
@@ -28,9 +27,9 @@
  *      Usage: resetPassword.open(scope, customData)
  *          scope : object - an Angular scope to which dialog boх will be attached
  *          customData : object - some specific data which will be sent to server with update password request
- *      Returns: a promise which will be resolved with new password value or rejected when canceling
- *      If 'notifications' service is available in a injector collection, it's used to inform the user about
- *      the execution process
+ *      Returns: a promise which will be resolved with new password value or rejected when canceling.
+ *      If 'notifications' service is available in  Angular injector collection, it's used to inform the user about
+ *      the execution process.
  *
  */
 
@@ -38,7 +37,7 @@ angular.module('myApp.components.resetPassword', ['ui.bootstrap.modal'])
 
     // Definition of modal dialog controller
     //      '$scope', '$modalInstance', 'passwordText', 'customData' - will be injected by $modal as locals
-    //      'Password', '$injector' - will be injected by this module
+    //      'Password', '$injector' - will be injected by Angular injector
     .controller('ResetPasswordModalCtrl',
         [ '$scope', '$modalInstance', 'passwordText', 'customData', 'Password', '$injector' ,
         function ($scope, $modalInstance, passwordText, customData, Password, $injector) {
@@ -65,6 +64,8 @@ angular.module('myApp.components.resetPassword', ['ui.bootstrap.modal'])
 
             // Requests a server to save the password update
             $scope.applyChanges = function () {
+
+                // Block inputs
                 $scope.disableInputs = true;
 
                 // Call to server API with some specific server data
@@ -88,6 +89,7 @@ angular.module('myApp.components.resetPassword', ['ui.bootstrap.modal'])
             // Requests a server to generate new password
             $scope.generatePassword = function () {
 
+                // Block inputs
                 $scope.showPasswords = false;
                 $scope.disableInputs = true;
 
@@ -191,13 +193,14 @@ angular.module('myApp.components.resetPassword', ['ui.bootstrap.modal'])
 
         // Prepare resource constructor
         var Resource = function (data) {
+            // Create required field
             this.text = '';
             this.confirmation = '';
+            // Extend object with additional data
             angular.extend(this, data);
         };
 
-        // Requests a new password generation methods
-
+        // Requests a new password generation
         // Add class method
         Resource.generate = function (data) {
 
@@ -214,13 +217,14 @@ angular.module('myApp.components.resetPassword', ['ui.bootstrap.modal'])
             );
 
             // Return promise to caller
+            // Can be used to handle success or failure response
             return promise;
         };
 
         // Add instance method
         Resource.prototype.$generate = function () {
 
-            // Call to class method
+            // Call to the class method
             return Resource.generate(this);
         };
 
@@ -229,21 +233,22 @@ angular.module('myApp.components.resetPassword', ['ui.bootstrap.modal'])
         Resource.update = function (data) {
 
             // Make post request and return promise to caller
+            // Can be used to handle success or failure response
             return $http.post(connectionUrl, data);
         };
 
         // Add instance method
         Resource.prototype.$update = function (customData) {
 
-            // Extend specific server data with this
+            // Extend specific server data with this.
+            // The 'customData' will be sent to server with request
             angular.extend(customData, this);
 
-            // Call to class method
+            // Call to the class method
             return Resource.update(customData);
         };
 
-        // Return constructor function
+        // Return the constructor function
         return Resource;
-
     }])
 ;

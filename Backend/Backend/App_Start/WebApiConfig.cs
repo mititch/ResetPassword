@@ -1,4 +1,15 @@
-﻿namespace Backend
+﻿//
+// <copyright company="Softerra">
+//    Copyright (c) Softerra, Ltd. All rights reserved.
+// </copyright>
+//
+// <summary>
+//    Registers an ASP.NET WEB API routes
+// </summary>
+//
+// <author email="mititch@softerra.com">Alex Mitin</author>
+//
+namespace Backend
 {
     using System.Web.Http;
 

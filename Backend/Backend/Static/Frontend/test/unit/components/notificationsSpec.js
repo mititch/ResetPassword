@@ -69,7 +69,7 @@ describe('myApp.components.notifications', function () {
         var mockNotifications =
             ['1', '2', '3'];
         var DEFAULT_TEMPLATE =
-            '<div notifications-panel></div>';
+            '<div class="notifications-panel"></div>';
 
         function createDirective(data, template) {
 

@@ -36,7 +36,7 @@
  *                 overridden template through 'validation()' method
  *      In overridden directives template isDirtyAndInvalid() method can be used to check of input $dirty
  *      and $invalid properties.
- *      Also 'isValidatorFail(key)' method can be used to check specified validator fail.
+ *      Also 'isValidatorFail(key)' method can be used to check specified (by key) validator fail.
  */
 
 angular.module('myApp.components.ui', [])
