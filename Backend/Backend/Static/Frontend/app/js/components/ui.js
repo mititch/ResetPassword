@@ -3,23 +3,18 @@
 /**
  *  Set of directives which can expand user interface
  *
- *  The 'uiProvider' may be used to configure directives templates
- *      Usage: uiProvider.initialize(configurationObject)
- *          configurationObject : object - hash object which contains template URLs
- *              key - represents directive name
- *              value - represents template URL
- *
  *  The 'ui-password-input' directive may be used to show passwords with specific behavior
  *      Usage: <div ui-password-input show-input='showPasswords' ng-model='property'></div>
  *          showPasswords : expression - if expression is truly input shows password as text
  *          property - scope property which represents input value
- *      Overridden the directives template should contain two inputs with 'data.innerInputModel'
- *          property in kind of ng-model value (active input control via 'toggle' property)
- *          and button which should trigger 'showInputs()' method to change 'toggle' value
+ *      While overriding the default template, new template should contain two inputs with
+ *          'data.innerInputModel' property in kind of ng-model value
+ *          (active input control via 'toggle' property)
+ *          and button which should trigger 'showInputs()' method to change 'toggle' value.
  *
- *  The 'ui-form-field-wrapper' directive may be used to add specific decoration to form input
+ *  The 'ui-form-field' directive may be used to add specific decoration to form input
  *      and controls of validations messages view
- *      Usage: <div ui-form-field-wrapper="fieldName"
+ *      Usage: <div ui-form-field="fieldName"
  *                  label-text="labelText"
  *                  format-data="formatData"
  *                  validation-data="validationData"><input name="fieldName"/><div>
@@ -40,43 +35,17 @@
  */
 
 angular.module('myApp.components.ui', [])
-
-    // Saves applications notifications
-    // Provide access to add and remove operations
-    // Configures with notification template url
-    .provider('ui', function () {
-
-        var self = this;
-
-        // Templates URL storage
-        self.templates = {};
-
-        // Setup ui provider
-        // configurationObject - hash object to configure ui templates
-        self.initialize = function (configurationObject) {
-            angular.extend(self.templates, configurationObject)
-        };
-
-        this.$get = ['$templateCache', function ($templateCache) {
-
-            return {
-                // Returns a template URL for specified key (directive name)
-                getTemplateUrl: function (key) {
-                    return self.templates[key];
-                }
-            };
-
-        }];
-
-    })
+    .constant('uiPasswordInputTplUrl', 'templates/ui/ui-password-input.tpl.html')
+    .constant('uiFormFieldTplUrl', 'templates/ui/ui-form-field.tpl.html')
 
     // Can show a password text in open or hidden mode
-    .directive('uiPasswordInput', ['$log', 'ui',
-        function ($log, ui) {
+    .directive('uiPasswordInput', ['uiPasswordInputTplUrl',
+        function (uiPasswordInputTplUrl) {
 
-            var configurationObject = {
+            return {
                 require: '?ngModel',
                 restrict: "EA",
+                templateUrl : uiPasswordInputTplUrl,
                 replace: true,
                 scope: {
                     showInput: '&',
@@ -135,51 +104,23 @@ angular.module('myApp.components.ui', [])
                     }
                 }
             };
-
-            // Try to get custom template URL
-            var templateUrl = ui.getTemplateUrl('uiPasswordInput');
-
-            if (templateUrl)
-            {
-                // Use custom template
-                configurationObject.templateUrl = templateUrl;
-            }
-            else
-            {
-                // Use default template
-                configurationObject.template = '<div class="input-group">' +
-                    '<input type="text" class="form-control" ' +
-                    'ng-if="toggle" ng-model="data.innerInputModel" ng-disabled="disableInputs">' +
-                    '<input type="password" class="form-control" ' +
-                    'ng-if="!toggle" ng-model="data.innerInputModel" ng-disabled="disableInputs">' +
-                    '<span class="input-group-btn">' +
-                    '<button class="btn btn-default" ng-click="toggleInput()" ' +
-                    'ng-disabled="disableInputs">' +
-                    '<span class="glyphicon" ' +
-                    'ng-class="{\'glyphicon-eye-close\': toggle, \'glyphicon-eye-open\': !toggle}">' +
-                    '</span>' +
-                    '</button>' +
-                    '</span>' +
-                    '</div>';
-            }
-
-            return configurationObject;
         }]
     )
 
     // Wrap input with styling and validation elements (uses transclusion)
     // Creates a new scope
-    .directive('uiFormFieldWrapper', ['$log', 'ui',
-        function ($log, ui) {
+    .directive('uiFormField', ['uiFormFieldTplUrl',
+        function (uiFormFieldTplUrl) {
             // Parses attribute text to JS object
             var parseAttributeData = function (data) {
                 // FIX: angular.fromJson works only with double quotes
                 return angular.fromJson(data.replace(/'/g, '\"'));
             };
 
-            var configurationObject =  {
+            return {
                 restrict: 'A',
                 require : '^form',
+                templateUrl : uiFormFieldTplUrl,
                 transclude: true,
                 replace: true,
                 scope: {
@@ -194,7 +135,7 @@ angular.module('myApp.components.ui', [])
                         // Get field name
                         // It is possible to get name from transcluded input
                         // but it can effect execution performance
-                        var fieldName = attrs.uiFormFieldWrapper;
+                        var fieldName = attrs.uiFormField;
 
                         // Check field validation
                         scope.isDirtyAndInvalid = function () {
@@ -223,34 +164,5 @@ angular.module('myApp.components.ui', [])
                     }
                 }
             };
-
-            // Get custom template URL
-            var templateUrl = ui.getTemplateUrl('uiFormFieldWrapper');
-
-            if (templateUrl)
-            {
-                // Use custom template
-                configurationObject.templateUrl = templateUrl;
-            }
-            else
-            {
-                // Use default template
-                configurationObject.template = '<div class="form-group">' +
-                    '<label class="control-label col-sm-{{format().offset}}">' +
-                    '{{labelText}}</label>' +
-                    '<div class="col-sm-{{format().size}}" ng-transclude>' +
-                    '</div>' +
-                    '<div class="col-sm-offset-{{format().offset}} col-sm-{{format().size}}"' +
-                    'ng-show="isDirtyAndInvalid()">' +
-                    '<span ng-repeat="(key, message) in validation()" ' +
-                    'class="text-danger" ng-show="isValidatorFail(key)">' +
-                    '{{message}}' +
-                    '</span>' +
-                    '</div>' +
-                    '</div>';
-            }
-
-            return configurationObject;
-
         }]
     );

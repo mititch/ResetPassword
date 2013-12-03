@@ -3,15 +3,6 @@
 /**
  *   The component allows to show the application notifications.
  *
- *   The 'notificationsProvider' may be used to configure component
- *      Usage: notificationsProvider.initialize(templateUrl, maxCount)
- *          templateUrl : string - URL to notification item template (optional)
- *          maxCount : integer - notification collection length (optional, default - 2)
- *      While overriding the default template next properties and methods can be used:
- *          "notification.type"  - string which represents a notification type
- *          "notification.text" - string which represents a notification text
- *          "removeNotification($index)" - removes a current notification
- *
  *   The 'notifications' service may be used to interact with notification storage
  *      Usage: add(type, text)
  *          type : string - represents a notification type
@@ -21,11 +12,17 @@
  *      Usage: <div class="notifications-panel"></div>
  *      Class '.notifications-container' may be used to update notifications panel CSS styles
  *
+ *   While overriding the default template next properties and methods can be used:
+ *          "notification.type"  - string which represents a notification type
+ *          "notification.text" - string which represents a notification text
+ *          "removeNotification($index)" - removes a current notification
  */
 
 angular.module('myApp.components.notifications', [])
+    .constant('notificationsMaxCount', 3)
+    .constant('notificationTplUrl', 'templates/notifications/notification.tpl.html')
 
-    // Configures a 'notifications' service
+    // Provider for the 'notifications' service
     // Service stores application notifications and
     // provide access to add and remove operations
     .provider('notifications', function () {
@@ -35,32 +32,7 @@ angular.module('myApp.components.notifications', [])
         // Notifications storage
         self.notifications = [];
 
-        // Max count of saved notifications
-        self.maxCount = 2;
-
-        // Configures a notifications provider
-        self.initialize = function (templateUrl, maxCount) {
-
-            // Save template URL
-            self.templateUrl = templateUrl;
-
-            // Save notifications max count
-            self.maxCount = maxCount || self.maxCount;
-        };
-
-        this.$get = ['$templateCache', function ($templateCache) {
-
-            // If service was not configured register default notification template
-            if (!self.templateUrl)
-            {
-                $templateCache.put('default-notification.tpl.html',
-                    '<div class="alert alert-{{notification.type}}">' +
-                    '{{notification.text}}' +
-                    '<button ng-click="removeNotification($index)"' +
-                    'type="button" class="close" aria-hidden="true">&times;</button>' +
-                    '</div>'
-                );
-            }
+        this.$get = ['notificationsMaxCount', function (notificationsMaxCount) {
 
             return {
 
@@ -69,16 +41,11 @@ angular.module('myApp.components.notifications', [])
                     return self.notifications;
                 },
 
-                // Returns a template URL
-                getTemplateUrl: function () {
-                    return self.templateUrl;
-                },
-
                 // Add new notification
                 add: function (type, text) {
 
                     // Remove oldest notification if storage is full
-                    if (self.notifications.length >= self.maxCount)
+                    if (self.notifications.length >= notificationsMaxCount)
                     {
                         this.remove(0);
                     }
@@ -98,18 +65,15 @@ angular.module('myApp.components.notifications', [])
     })
 
     // Shows a notifications from storage
-    .directive('notificationsPanel', ['notifications', function (notifications) {
+    .directive('notificationsPanel', ['notifications', 'notificationTplUrl',
+        function (notifications, notificationTplUrl) {
         return {
             template: '<div ng-repeat="notification in notifications">' +
-                '<ng-include src="templateUrl"></ng-include>' +
+                '<ng-include src="\'' +notificationTplUrl + '\'"></ng-include>' +
                 '</div>',
             restrict: 'C',
             scope: {},
             link: function (scope) {
-
-                // Get template url from storage or use default
-                scope.templateUrl = notifications.getTemplateUrl()
-                    || 'default-notification.tpl.html';
 
                 // Get notifications from storage
                 scope.notifications = notifications.getNotifications();

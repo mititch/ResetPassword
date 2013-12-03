@@ -13,9 +13,8 @@ describe('myApp.components.notifications', function () {
         var notifications;
 
         beforeEach(function () {
-            module('myApp.components.notifications', function (notificationsProvider) {
-                notificationsProvider.initialize('someUrl', 3);
-            });
+
+            module('myApp.components.notifications');
 
             inject(function (_notifications_) {
                 notifications = _notifications_;
@@ -25,10 +24,6 @@ describe('myApp.components.notifications', function () {
 
         it('should return correct notifications count', function () {
             return expect(notifications.getNotifications().length).toBe(0);
-        });
-
-        it('should return correct templateUrl', function () {
-            return expect(notifications.getTemplateUrl()).toBe('someUrl');
         });
 
         it('should add notification', function () {
@@ -100,14 +95,12 @@ describe('myApp.components.notifications', function () {
                     getNotifications: function () {
                         return mockNotifications
                     },
-                    getTemplateUrl: function () {
-                        return 'templateUrl';
-                    },
                     remove: function (index) {
                     }
                 };
 
                 $provide.value('notifications', mockNotificationService);
+
             });
 
             // Inject in angular and module constructs
@@ -116,6 +109,11 @@ describe('myApp.components.notifications', function () {
                 $compile = _$compile_;
                 $templateCache = _$templateCache_;
             });
+
+            $templateCache.put('templates/notifications/notification.tpl.html',
+                '<span></span>'
+             );
+
         });
 
         beforeEach(function () {

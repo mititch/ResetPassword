@@ -113,12 +113,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <Content Include="Static\Frontend\.idea\encodings.xml" />
-    <Content Include="Static\Frontend\.idea\misc.xml" />
-    <Content Include="Static\Frontend\.idea\modules.xml" />
-    <Content Include="Static\Frontend\.idea\scopes\scope_settings.xml" />
-    <Content Include="Static\Frontend\.idea\vcs.xml" />
-    <Content Include="Static\Frontend\.idea\workspace.xml" />
     <Content Include="Static\Frontend\app\css\app.css" />
     <Content Include="Static\Frontend\app\index.html" />
     <Content Include="Static\Frontend\app\js\app.js" />
@@ -126,23 +120,14 @@
     <Content Include="Static\Frontend\app\js\components\reset-password.js" />
     <Content Include="Static\Frontend\app\js\components\ui.js" />
     <Content Include="Static\Frontend\app\js\components\validation.js" />
-    <Content Include="Static\Frontend\app\js\controllers.js" />
-    <Content Include="Static\Frontend\app\js\directives.js" />
-    <Content Include="Static\Frontend\app\js\filters.js" />
-    <Content Include="Static\Frontend\app\js\services.js" />
     <Content Include="Static\Frontend\app\pages\about\about.html" />
     <Content Include="Static\Frontend\app\pages\about\about.js" />
-    <Content Include="Static\Frontend\app\pages\passwords\passwords.html" />
-    <Content Include="Static\Frontend\app\pages\passwords\passwords.js" />
-    <Content Include="Static\Frontend\app\templates\modal\backdrop.html" />
-    <Content Include="Static\Frontend\app\templates\modal\window.html" />
+    <Content Include="Static\Frontend\app\pages\resetPassword\resetPassword.html" />
+    <Content Include="Static\Frontend\app\pages\resetPassword\resetPassword.js" />
     <Content Include="Static\Frontend\app\templates\notifications\notification.tpl.html" />
-    <Content Include="Static\Frontend\app\templates\reset-password\dialog.tpl.html" />
-    <Content Include="Static\Frontend\app\templates\ui\ui-form-field-wrapper.tpl.html" />
+    <Content Include="Static\Frontend\app\templates\reset-password\reset-password.tpl.html" />
+    <Content Include="Static\Frontend\app\templates\ui\ui-form-field.tpl.html" />
     <Content Include="Static\Frontend\app\templates\ui\ui-password-input.tpl.html" />
-    <Content Include="Static\Frontend\test\e2e\karma-e2e.conf.js" />
-    <Content Include="Static\Frontend\test\e2e\runner.html" />
-    <Content Include="Static\Frontend\test\e2e\scenarios.js" />
     <Content Include="Static\Frontend\test\lib\angular\angular-mocks.js" />
     <Content Include="Static\Frontend\test\lib\angular\angular-scenario.js" />
     <Content Include="Static\Frontend\test\lib\angular\version.txt" />
@@ -150,11 +135,7 @@
     <Content Include="Static\Frontend\test\unit\components\resetPasswordSpec.js" />
     <Content Include="Static\Frontend\test\unit\components\uiSpec.js" />
     <Content Include="Static\Frontend\test\unit\components\validationSpec.js" />
-    <Content Include="Static\Frontend\test\unit\controllersSpec.js" />
-    <Content Include="Static\Frontend\test\unit\directivesSpec.js" />
-    <Content Include="Static\Frontend\test\unit\filtersSpec.js" />
     <Content Include="Static\Frontend\test\unit\karma.conf.js" />
-    <Content Include="Static\Frontend\test\unit\servicesSpec.js" />
     <Content Include="Static\Frontend\vendors\angular\angular-animate.js" />
     <Content Include="Static\Frontend\vendors\angular\angular-animate.min.js" />
     <Content Include="Static\Frontend\vendors\angular\angular-cookies.js" />
@@ -423,7 +404,6 @@
     <Content Include="Static\Frontend\vendors\bootstrap\css\bootstrap.min.css" />
     <Content Include="Static\Frontend\vendors\bootstrap\js\bootstrap.js" />
     <Content Include="Static\Frontend\vendors\bootstrap\js\bootstrap.min.js" />
-    <Content Include="Static\Frontend\vendors\ui-bootstrap\modal.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -444,9 +424,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Static\Frontend\.gitignore" />
-    <None Include="Static\Frontend\.idea\.name" />
-    <None Include="Static\Frontend\.idea\Frontend.iml" />
     <None Include="Static\Frontend\test\unit\test.bat" />
     <None Include="Static\Frontend\vendors\angular\angular-animate.min.js.map" />
     <None Include="Static\Frontend\vendors\angular\angular-cookies.min.js.map" />

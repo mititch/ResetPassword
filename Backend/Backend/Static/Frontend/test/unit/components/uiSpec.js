@@ -7,6 +7,7 @@ describe('myApp.components.ui', function () {
 
     var $rootScope;     //root scope object reference
     var $compile;       //compile function reference
+    var $templateCache;
     var validTemplate;    //object with default data
     var defaultData;    //object with default data
 
@@ -37,10 +38,37 @@ describe('myApp.components.ui', function () {
         });
 
         // Inject in angular and module constructs
-        inject(function (_$rootScope_, _$compile_) {
+        inject(function (_$rootScope_, _$compile_, _$templateCache_) {
+            $templateCache = _$templateCache_;
             $rootScope = _$rootScope_.$new();
             $compile = _$compile_;
         });
+
+        $templateCache.put('templates/ui/ui-password-input.tpl.html',
+            '<div class="input-group">'+
+            '<input type="text" class="form-control" ng-if="toggle" ng-model="data.innerInputModel" ng-disabled="disableInputs">' +
+            '<input type="password" class="form-control" ng-if="!toggle" ng-model="data.innerInputModel" ng-disabled="disableInputs">'+
+            '<span class="input-group-btn">'+
+            '<button class="btn btn-default" ng-click="toggleInput()" ng-disabled="disableInputs">'+
+            '<span class="glyphicon" ng-class="{\'glyphicon-eye-close\': toggle, \'glyphicon-eye-open\': !toggle}"></span>'+
+            '</button>'+
+            '</span>'+
+            '</div>'
+        );
+        $templateCache.put('templates/ui/ui-form-field.tpl.html',
+            '<div class="form-group">'+
+            '<label class="control-label col-sm-{{format().offset}}">'+
+            '{{labelText}}'+
+            '</label>'+
+            '<div class="col-sm-{{format().size}}" ng-transclude>'+
+            '</div>'+
+            '<div class="col-sm-offset-{{format().offset}} col-sm-{{format().size}}" ng-show="isDirtyAndInvalid()">'+
+            '<span ng-repeat="(key, message) in validation()" class="text-danger" ng-show="isValidatorFail(key)">'+
+            '{{message}}'+
+            '</span>'+
+            '</div>'+
+            '</div>'
+        );
 
     });
 
@@ -241,13 +269,13 @@ describe('myApp.components.ui', function () {
     // ui-form-field-wrapper directive
     //
 
-    describe('ui-form-field-wrapper directive', function () {
+    describe('ui-form-field directive', function () {
 
         var DEFAULT_MODEL_VALUE = 'someInputValue';
 
         var DEFAULT_TEMPLATE =
             '<form name="form" novalidate>' +
-            '<div ui-form-field-wrapper="fieldName"' +
+            '<div ui-form-field="fieldName"' +
             'label-text="labelText"' +
             'format-data="{\'someProp1\' : \'someVal1\', \'someProp2\' : \'someVal2\'}"' +
             'validation-data="{\'validatorName1\' : \'validationText1\', \'validatorName2\' : \'validationText2\'}">' +

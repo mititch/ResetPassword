@@ -4,7 +4,7 @@
 
 describe('myApp.components.resetPassword', function () {
 
-    var API_URL = 'http:/someUrl.com/';
+    var API_URL = '/api/password';
     var TEMPLATE_Url = 'some.template.tpl.html';
 
     //
@@ -17,376 +17,295 @@ describe('myApp.components.resetPassword', function () {
         var Password;
         var SOME_OBJECT = {text: 'password', confirmation: 'confirmation'};
 
-        describe('then resetPassword provides was not configured', function () {
-
-            beforeEach(module('myApp.components.resetPassword'));
-
-            it('should throw', function () {
-
-                function errorFunctionWrapper() {
-                    inject(function (_Password_) {
-                        Password = _Password_;
-                    })
-                }
-
-                expect(errorFunctionWrapper).toThrow();
-            });
-
-        });
-
-        describe('then resetPassword provides was configured', function () {
-
-            beforeEach(function () {
-
-                module('myApp.components.resetPassword');
-
-                module(function (resetPasswordProvider) {
-
-                    resetPasswordProvider.initialize(API_URL, TEMPLATE_Url);
-
-                });
-
-                inject(function (_$http_, _$httpBackend_, _Password_) {
-                    $http = _$http_;
-                    $httpBackend = _$httpBackend_;
-                    Password = _Password_;
-                });
-            });
-
-            afterEach(function () {
-                $httpBackend.verifyNoOutstandingExpectation();
-                $httpBackend.verifyNoOutstandingRequest();
-            });
-
-            describe('then created', function () {
-
-                var password;
-
-                beforeEach(function () {
-                    password = new Password();
-                });
-
-                it('should have empty text value', function () {
-                    return expect(password.text).toBe('');
-                });
-
-                it('should have empty confirmation value', function () {
-                    return expect(password.confirmation).toBe('');
-                });
-
-            });
-
-            describe('then created from object', function () {
-
-                var password;
-
-                beforeEach(function () {
-                    password = new Password({
-                        text: 'password',
-                        confirmation: 'confirm',
-                        someProp: 'someValue'});
-                });
-
-                it('should have text value from object', function () {
-                    return expect(password.text).toBe('password');
-                });
-
-                it('should have confirmation value from object', function () {
-                    return expect(password.confirmation).toBe('confirm');
-                });
-
-                it('should have additional properties from object', function () {
-                    return expect(password.someProp).toBe('someValue');
-                });
-
-            });
-
-            describe('then "generate" called', function () {
-
-                var instance;
-
-                beforeEach(function () {
-                    $httpBackend.expectGET(API_URL).respond({
-                        Text: 'newPassword',
-                        Confirmation: 'newConfirmation'
-                    });
-
-                    instance = new Password(SOME_OBJECT);
-                    instance.$generate();
-                    $httpBackend.flush();
-                });
-
-                it('should have new text value', function () {
-                    return expect(instance.text).toBe('newPassword');
-                });
-
-                it('should have new text value', function () {
-                    return expect(instance.confirmation).toBe('newConfirmation');
-                });
-
-            });
-
-            describe('then "update" called', function () {
-
-                var instance;
-                var test;
-
-                it('should send password data to server', function () {
-
-                    test = {
-                        handler: function () {
-                        }
-                    };
-
-                    $httpBackend.expectPOST(API_URL, SOME_OBJECT).respond({});
-
-                    instance = new Password(SOME_OBJECT);
-
-                    //set up a spy for the callback handler.
-                    spyOn(test, 'handler');
-
-                    // Make the call.
-                    var returnedPromise = instance.$update({});
-
-                    // Use the handler you're spying on to handle the resolution of the promise.
-                    returnedPromise.then(test.handler);
-
-                    // Flush the backend
-                    $httpBackend.flush();
-
-                    //check your spy to see if it's been called with the returned value.
-                    return expect(test.handler).toHaveBeenCalled();
-
-                });
-
-                it('should send additional data to server', function () {
-
-                    test = {
-                        handler: function () {
-                        }
-                    };
-
-                    $httpBackend.expectPOST(API_URL,function (data) {
-                        // Request data
-                        return angular.fromJson(data).additionalProperty === 'additionalValue';
-                    }).respond({});
-
-                    instance = new Password(SOME_OBJECT);
-
-                    //set up a spy for the callback handler.
-                    spyOn(test, 'handler');
-
-                    // Make the call.
-                    var returnedPromise = instance.$update({additionalProperty: 'additionalValue'});
-
-                    // Use the handler you're spying on to handle the resolution of the promise.
-                    returnedPromise.then(test.handler);
-
-                    // Flush the backend
-                    $httpBackend.flush();
-
-                    //check your spy to see if it's been called with the returned value.
-                    return expect(test.handler).toHaveBeenCalled();
-
-                });
-
-            });
-        });
-    });
-
-    //
-    //  resetPassword service
-    //
-
-
-    describe('resetPassword service', function () {
-
-        var mockModal;
-        var resetPassword;
-        var configData;
 
         beforeEach(function () {
 
             module('myApp.components.resetPassword');
 
-            module(function (resetPasswordProvider) {
-
-                resetPasswordProvider.initialize(API_URL, TEMPLATE_Url);
-
-            });
-
             // Provide any mocks needed
             module(function ($provide) {
 
-                mockModal = {
-                    open: function (data) {
-                        configData = data;
-                        return {
-                            result: 'someResult'
-                        }
+            });
+
+            inject(function (_$http_, _$httpBackend_, _Password_) {
+                $http = _$http_;
+                $httpBackend = _$httpBackend_;
+                Password = _Password_;
+            });
+        });
+
+        afterEach(function () {
+            $httpBackend.verifyNoOutstandingExpectation();
+            $httpBackend.verifyNoOutstandingRequest();
+        });
+
+        describe('then created', function () {
+
+            var password;
+
+            beforeEach(function () {
+                password = new Password();
+            });
+
+            it('should have empty text value', function () {
+                return expect(password.text).toBe('');
+            });
+
+            it('should have empty confirmation value', function () {
+                return expect(password.confirmation).toBe('');
+            });
+
+        });
+
+        describe('then created from object', function () {
+
+            var password;
+
+            beforeEach(function () {
+                password = new Password({
+                    text: 'password',
+                    confirmation: 'confirm',
+                    someProp: 'someValue'});
+            });
+
+            it('should have text value from object', function () {
+                return expect(password.text).toBe('password');
+            });
+
+            it('should have confirmation value from object', function () {
+                return expect(password.confirmation).toBe('confirm');
+            });
+
+            it('should have additional properties from object', function () {
+                return expect(password.someProp).toBe('someValue');
+            });
+
+        });
+
+        describe('then "generate" called', function () {
+
+            var instance;
+
+            beforeEach(function () {
+                $httpBackend.expectGET(API_URL).respond({
+                    Text: 'newPassword',
+                    Confirmation: 'newConfirmation'
+                });
+
+                instance = new Password(SOME_OBJECT);
+                instance.$generate();
+                $httpBackend.flush();
+            });
+
+            it('should have new text value', function () {
+                return expect(instance.text).toBe('newPassword');
+            });
+
+            it('should have new text value', function () {
+                return expect(instance.confirmation).toBe('newConfirmation');
+            });
+
+        });
+
+        describe('then "update" called', function () {
+
+            var instance;
+            var test;
+
+            it('should send password data to server', function () {
+
+                test = {
+                    handler: function () {
                     }
                 };
 
-                $provide.value('$modal', mockModal);
+                $httpBackend.expectPOST(API_URL, SOME_OBJECT).respond({});
+
+                instance = new Password(SOME_OBJECT);
+
+                //set up a spy for the callback handler.
+                spyOn(test, 'handler');
+
+                // Make the call.
+                var returnedPromise = instance.$update({});
+
+                // Use the handler you're spying on to handle the resolution of the promise.
+                returnedPromise.then(test.handler);
+
+                // Flush the backend
+                $httpBackend.flush();
+
+                //check your spy to see if it's been called with the returned value.
+                return expect(test.handler).toHaveBeenCalled();
+
             });
 
-            inject(function (_resetPassword_) {
-                resetPassword = _resetPassword_;
+            it('should send additional data to server', function () {
+
+                test = {
+                    handler: function () {
+                    }
+                };
+
+                $httpBackend.expectPOST(API_URL,function (data) {
+                    // Request data
+                    return angular.fromJson(data).additionalProperty === 'additionalValue';
+                }).respond({});
+
+                instance = new Password(SOME_OBJECT);
+
+                //set up a spy for the callback handler.
+                spyOn(test, 'handler');
+
+                // Make the call.
+                var returnedPromise = instance.$update({additionalProperty: 'additionalValue'});
+
+                // Use the handler you're spying on to handle the resolution of the promise.
+                returnedPromise.then(test.handler);
+
+                // Flush the backend
+                $httpBackend.flush();
+
+                //check your spy to see if it's been called with the returned value.
+                return expect(test.handler).toHaveBeenCalled();
+
             });
 
-        })
-
-        it('should return result', function () {
-
-            spyOn(mockModal, 'open').andReturn({result: 'someResult'});
-
-            // Make the call.
-            var returnedValue = resetPassword.open('scope', 'customData');
-
-            //check your spy to see if it's been called with the returned value.
-            return expect(returnedValue).toBe('someResult');
-
-        });
-
-        it('should call $mobile open', function () {
-
-            //set up a spy for the callback handler.
-            spyOn(mockModal, 'open').andReturn({result: 'someResult'});
-
-            // Make the call.
-            resetPassword.open('scope', 'customData');
-
-            //check your spy to see if it's been called with the returned value.
-            return expect(mockModal.open).toHaveBeenCalled();
-
-        });
-
-        it('should configure $mobile with right data', function () {
-            // Make the call.
-            resetPassword.open('someScope', 'customData');
-
-            expect(configData.templateUrl).toBe(TEMPLATE_Url);
-            expect(configData.scope).toBe('someScope');
-            expect(configData.resolve.passwordText()).toBe('');
-            expect(configData.resolve.customData()).toBe('customData');
         });
 
     });
 
     //
-    //  ResetPasswordModalCtrl controller
+    //  resetPassword directive
     //
 
-    describe('ResetPasswordModalCtrl controller', function () {
+    describe('resetPassword directive', function () {
 
-        var ctrl;
-        var $controller;
-        var locals;
-        var $scope;
-        var $modalInstance;
-        var Password;
+        var $rootScope;                 //root scope object reference
+        var $compile;                   //compile function reference
+        var $templateCache              //templateCache reference
+        var validTemplate;              //object with default data
+        var defaultData;                //object with default data
+        var mockNotificationService;    //notification service link
+
         var $q;
-        var $injector;
-        var notifications;
         var defered;
+        var element;
         var passwordSpyHelper;
-        var $rootScope;
+        var Password;
+        var notifications;
+        var $injector;
+
+        var DEFAULT_TEMPLATE =
+            '<div reset-password="password" custom-data="customData"></div>';
+
+        function createDirective(data, template) {
+            // Setup scope state
+            $rootScope.data = data || defaultData;
+
+            // Create directive element
+            var element = angular.element(template || validTemplate);
+
+            // Create directive
+            $compile(element)($rootScope);
+
+            // Trigger watchers
+            $rootScope.$apply();
+
+            // Return
+            return element;
+        }
 
         beforeEach(function () {
 
             module('myApp.components.resetPassword');
 
-            module(function (resetPasswordProvider) {
-
-                resetPasswordProvider.initialize(API_URL, TEMPLATE_Url);
-
-            });
-
             // Provide any mocks needed
             module(function ($provide) {
-                $provide.value('$modal', {});
+
+                passwordSpyHelper = {
+
+                    $update: function (customData) {
+                    },
+
+                    $generate: function () {
+                    }
+                };
+
+                Password = function (configuration) {
+                    angular.extend(this, configuration);
+
+                    this.$update = passwordSpyHelper.$update;
+
+                    this.$generate = passwordSpyHelper.$generate;
+
+                };
+
+                notifications = {
+                    add: function () {
+                    }
+                };
+
+                /*$injector = {
+                    has: function () {
+                        return true;
+                    },
+                    get: function () {
+                        return notifications;
+                    }
+                };*/
+
+                $provide.value('Password', Password);
+                $provide.value('Password', Password);
+                $provide.value('notifications', notifications);
+
             });
 
-            inject(function (_$controller_, _$q_, _$rootScope_) {
-                $controller = _$controller_;
+            // Inject in angular and module constructs
+            inject(function (_$rootScope_, _$compile_, _$templateCache_, _$q_) {
+                $rootScope = _$rootScope_.$new();
+                $compile = _$compile_;
                 $q = _$q_;
-                $rootScope = _$rootScope_;
+                $templateCache = _$templateCache_;
             });
+
+            $templateCache.put('templates/reset-password/reset-password.tpl.html', '');
 
         });
 
         beforeEach(function () {
+            // Reset template
+            validTemplate = DEFAULT_TEMPLATE;
 
-            defered = $q.defer();
-
-            $modalInstance = {
-                close: function () {
-                },
-                dismiss: function () {
-                }
-            };
-
-            passwordSpyHelper = {
-
-                $update: function (customData) {
-                    return defered.promise;
-                },
-
-                $generate: function () {
-                    return defered.promise;
-                }
-            };
-
-            Password = function (configuration) {
-                angular.extend(this, configuration);
-
-                this.$update = passwordSpyHelper.$update;
-
-                this.$generate = passwordSpyHelper.$generate;
-
-            };
-
-            notifications = {
-                add: function () {
-                }
-            };
-
-            $injector = {
-                has: function () {
-                    return true;
-                },
-                get: function () {
-                    return notifications;
-                }
-            };
-
-            $scope = $rootScope.$new();
-
-            locals = {
-                $scope: $scope,
-                $modalInstance: $modalInstance,
-                passwordText: 'someText',
-                customData: 'customData',
-                Password: Password,
-                $injector: $injector
-            };
+            // Reset data each time
+            defaultData = {};
 
         });
-
 
         describe("when created", function () {
 
             it("should has right scope ", function () {
 
-                ctrl = $controller('ResetPasswordModalCtrl', locals);
+                var someData = {
+                  someProp : 'someVal'
+                };
 
-                expect($scope.showPasswords).toBe(false);
+                $rootScope.password = 'someText';
+                $rootScope.customData = someData;
 
-                expect($scope.disableInputs).toBe(false);
+                element = createDirective();
 
-                expect($scope.password.text).toBe('someText');
+                $rootScope.$apply();
 
-                expect($scope.password.confirmation).toBe('someText');
+                expect(element.isolateScope().showPasswords).toBe(false);
+
+                expect(element.isolateScope().disableInputs).toBe(false);
+
+                expect(element.isolateScope().password.text).toBe('someText');
+
+                expect(element.isolateScope().password.confirmation).toBe('someText');
+
+                expect(element.isolateScope().customData).toBe(someData);
 
             });
 
@@ -399,11 +318,15 @@ describe('myApp.components.resetPassword', function () {
                 spyOn(passwordSpyHelper, '$update').andReturn({then: function () {
                 }});
 
-                ctrl = $controller('ResetPasswordModalCtrl', locals);
+                $rootScope.customData = 'customData';
 
-                $scope.applyChanges();
+                element = createDirective();
 
-                expect($scope.disableInputs).toBe(true);
+                $rootScope.$apply();
+
+                element.isolateScope().applyChanges();
+
+                expect(element.isolateScope().disableInputs).toBe(true);
 
                 return expect(passwordSpyHelper.$update).toHaveBeenCalledWith('customData');
 
@@ -411,24 +334,41 @@ describe('myApp.components.resetPassword', function () {
 
             describe("and resolved", function () {
 
+                var defered;
+                var theForm;
+
                 beforeEach(function () {
-                    spyOn($modalInstance, 'close');
+                    //spyOn(form, '$setPristine');
+
+                    theForm = {
+                        $setPristine : function () {}
+                    }
+
+                    defered = $q.defer();
+
+                    spyOn(theForm, '$setPristine');
+
+                    spyOn(passwordSpyHelper, '$update').andReturn(defered.promise);
+
                     spyOn(notifications, 'add');
-                    ctrl = $controller('ResetPasswordModalCtrl', locals);
-                    $scope.applyChanges();
+
+                    element = createDirective();
+
+                    element.isolateScope().form = theForm;
+
+                    element.isolateScope().applyChanges();
                     defered.resolve({});
                     $rootScope.$apply();
+
                 });
 
-                it("should call to $modalInstance close method with scope password text",
-                    function () {
-                        return expect($modalInstance.close)
-                            .toHaveBeenCalledWith($scope.password.text);
-                    }
-                );
+                it("should call to form.$setPristine", function () {
+                        return expect(theForm.$setPristine)
+                            .toHaveBeenCalled();
+                });
 
                 it("should update inputs", function () {
-                    return expect($scope.disableInputs).toBe(false);
+                    return expect(element.isolateScope().disableInputs).toBe(false);
                 });
 
                 it("should call to notifications add method", function () {
@@ -440,21 +380,32 @@ describe('myApp.components.resetPassword', function () {
 
             describe("and rejected", function () {
 
+                var defered;
+                var theForm;
+
                 beforeEach(function () {
-                    spyOn($modalInstance, 'close');
+                    theForm = {
+                        $setPristine : function () {}
+                    }
+
+                    defered = $q.defer();
+
+                    spyOn(passwordSpyHelper, '$update').andReturn(defered.promise);
+
                     spyOn(notifications, 'add');
-                    ctrl = $controller('ResetPasswordModalCtrl', locals);
-                    $scope.applyChanges();
+
+                    element = createDirective();
+
+                    element.isolateScope().form = theForm;
+
+                    element.isolateScope().applyChanges();
                     defered.reject({});
                     $rootScope.$apply();
-                });
 
-                it("should not call to $modalInstance close method", function () {
-                    return expect($modalInstance.close).not.toHaveBeenCalled();
                 });
 
                 it("should update inputs", function () {
-                    return expect($scope.disableInputs).toBe(false);
+                    return expect(element.isolateScope().disableInputs).toBe(false);
                 });
 
                 it("should call to notifications add method", function () {
@@ -473,12 +424,16 @@ describe('myApp.components.resetPassword', function () {
                 spyOn(passwordSpyHelper, '$generate').andReturn({then: function () {
                 }});
 
-                ctrl = $controller('ResetPasswordModalCtrl', locals);
+                $rootScope.customData = 'customData';
 
-                $scope.generatePassword();
+                $rootScope.$apply();
 
-                expect($scope.disableInputs).toBe(true);
-                expect($scope.showPasswords).toBe(false);
+                element = createDirective();
+
+                element.isolateScope().generatePassword();
+
+                expect(element.isolateScope().disableInputs).toBe(true);
+                expect(element.isolateScope().showPasswords).toBe(false);
 
                 return expect(passwordSpyHelper.$generate).toHaveBeenCalled();
 
@@ -486,18 +441,28 @@ describe('myApp.components.resetPassword', function () {
 
             describe("and resolved", function () {
 
+                var defered;
+                var theForm;
+
                 beforeEach(function () {
+
+                    defered = $q.defer();
+
+                    spyOn(passwordSpyHelper, '$generate').andReturn(defered.promise);
+
                     spyOn(notifications, 'add');
-                    ctrl = $controller('ResetPasswordModalCtrl', locals);
-                    $scope.generatePassword();
+
+                    element = createDirective();
+
+                    element.isolateScope().generatePassword();
                     defered.resolve({});
                     $rootScope.$apply();
+
                 });
 
                 it("should update inputs", function () {
-                    return expect($scope.disableInputs).toBe(false);
-                    return expect($scope.showPasswords).toBe(true);
-
+                    return expect(element.isolateScope().disableInputs).toBe(false);
+                    return expect(element.isolateScope().showPasswords).toBe(true);
                 });
 
                 it("should call to notifications add method", function () {
@@ -509,16 +474,27 @@ describe('myApp.components.resetPassword', function () {
 
             describe("and rejected", function () {
 
+                var defered;
+                var theForm;
+
                 beforeEach(function () {
+
+                    defered = $q.defer();
+
+                    spyOn(passwordSpyHelper, '$generate').andReturn(defered.promise);
+
                     spyOn(notifications, 'add');
-                    ctrl = $controller('ResetPasswordModalCtrl', locals);
-                    $scope.generatePassword();
+
+                    element = createDirective();
+
+                    element.isolateScope().generatePassword();
                     defered.reject({});
                     $rootScope.$apply();
+
                 });
 
                 it("should update inputs", function () {
-                    return expect($scope.disableInputs).toBe(false);
+                    return expect(element.isolateScope().disableInputs).toBe(false);
                 });
 
                 it("should call to notifications add method", function () {
@@ -530,23 +506,8 @@ describe('myApp.components.resetPassword', function () {
 
         });
 
-        describe("when scope cancel", function () {
-
-            it("should call to $modalInstance dismiss", function () {
-
-                spyOn($modalInstance, 'dismiss');
-
-                ctrl = $controller('ResetPasswordModalCtrl', locals);
-
-                $scope.cancel();
-
-                return expect($modalInstance.dismiss).toHaveBeenCalled();
-
-            });
-
-        });
-
     });
+
 
 });
 

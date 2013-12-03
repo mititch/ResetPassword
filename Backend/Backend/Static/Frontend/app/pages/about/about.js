@@ -17,3 +17,4 @@ angular.module('myApp.pages.about', [])
     /* Page controller*/
     .controller('AboutPage', ['$scope', function ($scope) {
     }]);
+

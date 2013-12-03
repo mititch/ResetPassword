@@ -3,10 +3,6 @@ body {
     padding-top: 50px;
 }
 
-.main-view {
-    height: 500px;
-}
-
 /* Inputs validation visualization styles*/
 div.ng-invalid.ng-dirty input{
     background-color: #f8dbe4 !important;

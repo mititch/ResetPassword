@@ -104,7 +104,7 @@ namespace Backend.Controllers
             for (Int32 i = 0; i < PASSWORD_LENGTH; i++)
             {
                 //Out of range exception possible
-                resultArray[i] = VALID_CHARACTERS_STRING[random.Next(maxValue + 2)];
+                resultArray[i] = VALID_CHARACTERS_STRING[random.Next(maxValue + 1)];
             }
             
             return new String(resultArray);
