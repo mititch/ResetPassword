@@ -5,10 +5,10 @@
 describe('myApp.components.notifications', function () {
 
     //
-    //  notifications service
+    //  notificationsStorage service
     //
 
-    describe('notifications service', function () {
+    describe('notificationsStorage service', function () {
 
         var notifications;
 
@@ -16,8 +16,8 @@ describe('myApp.components.notifications', function () {
 
             module('myApp.components.notifications');
 
-            inject(function (_notifications_) {
-                notifications = _notifications_;
+            inject(function (_notificationsStorage_) {
+                notifications = _notificationsStorage_;
             });
 
         });
@@ -99,7 +99,7 @@ describe('myApp.components.notifications', function () {
                     }
                 };
 
-                $provide.value('notifications', mockNotificationService);
+                $provide.value('notificationsStorage', mockNotificationService);
 
             });
 

@@ -33,6 +33,12 @@ angular.module('myApp.components.resetPassword', [])
     // Shows a reset password inputs
     .directive('resetPassword', ['resetPasswordTplUrl', 'Password', '$injector',
         function (resetPasswordTplUrl, Password, $injector) {
+
+            // Inject notifications service, if it exists in the collection
+            if ($injector.has('notificationsStorage')) {
+                var notificationsStorage = $injector.get('notificationsStorage');
+            }
+
             return {
                 restrict: 'A',
                 templateUrl: resetPasswordTplUrl,
@@ -42,14 +48,8 @@ angular.module('myApp.components.resetPassword', [])
                 },
                 link: function (scope, element, attrs) {
 
-                    // Inject notifications service, if it exists in the collection
-                    if ($injector.has('notifications')) {
-                        var notifications = $injector.get('notifications');
-                    }
-
                     // Setting the hidden password mode for the all password inputs
                     scope.showPasswords = false;
-
                     // Setting the form inputs to the active state
                     scope.disableInputs = false;
 
@@ -71,7 +71,7 @@ angular.module('myApp.components.resetPassword', [])
                                 // On success
                                 scope.disableInputs = false;
                                 // If notifications service has been injected notify user
-                                !notifications || notifications.add('success',
+                                !notificationsStorage || notificationsStorage.add('success',
                                     'Password is changed.');
                                 // Set form to pristine state
                                 scope.form.$setPristine();
@@ -80,7 +80,7 @@ angular.module('myApp.components.resetPassword', [])
                                 // On failure
                                 scope.disableInputs = false;
                                 // If notifications service has been injected notify user
-                                !notifications || notifications.add('danger',
+                                !notificationsStorage || notificationsStorage.add('danger',
                                     'Server can not reset password.');
                             }
                         );
@@ -100,14 +100,14 @@ angular.module('myApp.components.resetPassword', [])
                                 scope.showPasswords = true;
                                 scope.disableInputs = false;
                                 // If notifications service has been injected notify user
-                                !notifications || notifications.add('success',
+                                !notificationsStorage || notificationsStorage.add('success',
                                     'New password generated.');
                             },
                             function () {
                                 // On failure
                                 scope.disableInputs = false;
                                 // If notifications service has been injected notify user
-                                !notifications || notifications.add('danger',
+                                !notificationsStorage || notificationsStorage.add('danger',
                                     'Server can not generate password.');
                             }
                         );
@@ -183,6 +183,6 @@ angular.module('myApp.components.resetPassword', [])
             return Resource.update(data);
         };
 
-        // Return the constructor function
+        // Return constructor function
         return Resource;
     }]);

@@ -189,7 +189,6 @@ describe('myApp.components.resetPassword', function () {
         var mockNotificationService;    //notification service link
 
         var $q;
-        var defered;
         var element;
         var passwordSpyHelper;
         var Password;
@@ -257,7 +256,7 @@ describe('myApp.components.resetPassword', function () {
 
                 $provide.value('Password', Password);
                 $provide.value('Password', Password);
-                $provide.value('notifications', notifications);
+                $provide.value('notificationsStorage', notifications);
 
             });
 

@@ -22,10 +22,9 @@ angular.module('myApp.components.notifications', [])
     .constant('notificationsMaxCount', 3)
     .constant('notificationTplUrl', 'templates/notifications/notification.tpl.html')
 
-    // Provider for the 'notifications' service
-    // Service stores application notifications and
+    // Stores application notifications and
     // provide access to add and remove operations
-    .provider('notifications', function () {
+    .provider('notificationsStorage', function () {
 
         var self = this;
 
@@ -65,25 +64,26 @@ angular.module('myApp.components.notifications', [])
     })
 
     // Shows a notifications from storage
-    .directive('notificationsPanel', ['notifications', 'notificationTplUrl',
-        function (notifications, notificationTplUrl) {
-        return {
-            template: '<div ng-repeat="notification in notifications">' +
-                '<ng-include src="\'' +notificationTplUrl + '\'"></ng-include>' +
-                '</div>',
-            restrict: 'C',
-            scope: {},
-            link: function (scope) {
+    .directive('notificationsPanel', ['notificationsStorage', 'notificationTplUrl',
+        function (notificationsStorage, notificationTplUrl) {
+            return {
+                template: '<div ng-repeat="notification in notifications">' +
+                    '<ng-include src="\'' +notificationTplUrl + '\'"></ng-include>' +
+                    '</div>',
+                restrict: 'C',
+                scope: {},
+                link: function (scope) {
 
-                // Get notifications from storage
-                scope.notifications = notifications.getNotifications();
+                    // Get notifications from storage
+                    scope.notifications = notificationsStorage.getNotifications();
 
-                // Remove notification from storage by index
-                scope.removeNotification = function (index) {
-                    notifications.remove(index);
-                };
+                    // Remove notification from storage by index
+                    scope.removeNotification = function (index) {
+                        notificationsStorage.remove(index);
+                    };
 
-            }
-        };
-    }])
+                }
+            };
+        }
+    ])
 ;
