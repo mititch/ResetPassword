@@ -116,7 +116,6 @@
     <Content Include="Static\Frontend\app\css\app.css" />
     <Content Include="Static\Frontend\app\index.html" />
     <Content Include="Static\Frontend\app\js\app.js" />
-    <Content Include="Static\Frontend\app\js\components\notifications.js" />
     <Content Include="Static\Frontend\app\js\components\reset-password.js" />
     <Content Include="Static\Frontend\app\js\components\ui.js" />
     <Content Include="Static\Frontend\app\js\components\validation.js" />
@@ -124,14 +123,12 @@
     <Content Include="Static\Frontend\app\pages\about\about.js" />
     <Content Include="Static\Frontend\app\pages\resetPassword\resetPassword.html" />
     <Content Include="Static\Frontend\app\pages\resetPassword\resetPassword.js" />
-    <Content Include="Static\Frontend\app\templates\notifications\notification.tpl.html" />
     <Content Include="Static\Frontend\app\templates\reset-password\reset-password.tpl.html" />
     <Content Include="Static\Frontend\app\templates\ui\ui-form-field.tpl.html" />
     <Content Include="Static\Frontend\app\templates\ui\ui-password-input.tpl.html" />
     <Content Include="Static\Frontend\test\lib\angular\angular-mocks.js" />
     <Content Include="Static\Frontend\test\lib\angular\angular-scenario.js" />
     <Content Include="Static\Frontend\test\lib\angular\version.txt" />
-    <Content Include="Static\Frontend\test\unit\components\notificationsSpec.js" />
     <Content Include="Static\Frontend\test\unit\components\resetPasswordSpec.js" />
     <Content Include="Static\Frontend\test\unit\components\uiSpec.js" />
     <Content Include="Static\Frontend\test\unit\components\validationSpec.js" />

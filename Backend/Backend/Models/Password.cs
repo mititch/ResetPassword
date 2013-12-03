@@ -23,9 +23,6 @@ namespace Backend.Models
         // Fields
         //
 
-        // Some identificator
-        private Int32 id;
-
         // Password confirmation string
         private String confirmation;
 
@@ -35,15 +32,6 @@ namespace Backend.Models
         //
         // Properties
         //
-
-        /// <summary>
-        /// Gets and sets entity identificator
-        /// </summary>
-        public Int32 Id
-        {
-            get { return this.id; }
-            set { this.id = value; }
-        }
 
         /// <summary>
         /// Gets and sets password confirmation field

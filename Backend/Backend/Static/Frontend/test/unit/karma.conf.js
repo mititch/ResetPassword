@@ -15,10 +15,8 @@ module.exports = function(config) {
         files : [
             'vendors/angular/angular.js',
             'vendors/angular/angular-*.js',
-            'vendors/ui-bootstrap/modal.js',
             'test/lib/angular/angular-mocks.js',
             'app/js/**/*.js',
-            'test/unit/components/notificationsSpec.js',
             'test/unit/components/resetPasswordSpec.js',
             'test/unit/components/uiSpec.js',
             'test/unit/components/validationSpec.js'

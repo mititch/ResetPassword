@@ -20,11 +20,6 @@ angular.module('myApp.pages.resetPassword', ['myApp.components.resetPassword'])
     /* Page controller*/
     .controller('ResetPasswordPage', ['$scope',
         function ($scope) {
-
-            $scope.data = {
-                id : 10
-            };
             $scope.password = 'qwerty';
-
         }
     ]);
