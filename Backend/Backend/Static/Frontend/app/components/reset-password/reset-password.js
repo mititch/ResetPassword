@@ -27,13 +27,67 @@
  */
 
 angular.module('myApp.components.resetPassword', [])
-    .constant('resetPasswordTplUrl', 'templates/reset-password/reset-password.tpl.html')
+    //TODO remove
+    .constant('resetPasswordTplUrl', 'components/reset-password/reset-password.tpl.html')
     .constant('passwordApiUrl', '/api/password')
 
     // Shows a reset password inputs
-    .directive('resetPassword', ['resetPasswordTplUrl', 'Password', '$injector',
+    .directive('resetPassword', ['resetPasswordTplUrl', 'Password', 'notificationsStorage',
+        function (resetPasswordTplUrl, Password, notificationsStorage) {
+
+            return {
+                restrict: 'A',
+                templateUrl: 'components/reset-password/reset-password.tpl.html',
+                scope: {
+                    password: '=resetPassword'
+                },
+                link: function (scope, element, attrs, ngModelCtrl) {
+
+                    scope.confirmation = angular.copy(scope.password);
+
+                    // Setting the hidden password mode for the all password inputs
+                    scope.showPasswords = false;
+                    // Setting the form inputs to the active state
+                    scope.disableInputs = false;
+
+                    // Requests a server to generate new password
+                    scope.generatePassword = function () {
+
+                        // Block inputs
+                        scope.showPasswords = false;
+                        scope.disableInputs = true;
+
+                        // Call to resource API
+                        scope.password.$generate().then(
+                            function (newPassword) {
+                                // On success
+                                scope.showPasswords = true;
+                                scope.disableInputs = false;
+                                scope.confirmation.Text = scope.password.Text;
+
+                                // Notify user
+                                notificationsStorage.add('success',
+                                    'New password generated.');
+                            },
+                            function () {
+                                // On failure
+                                scope.disableInputs = false;
+                                // Notify user
+                                notificationsStorage.add('danger',
+                                    'Server can not generate password.');
+                            }
+                        );
+                    };
+                }
+            };
+        }
+    ])
+
+    // Shows a reset password inputs
+    .directive('xresetPassword', ['resetPasswordTplUrl', 'Password', '$injector',
         function (resetPasswordTplUrl, Password, $injector) {
 
+            // TODO remove, load allways
             // Inject notifications service, if it exists in the collection
             if ($injector.has('notificationsStorage')) {
                 var notificationsStorage = $injector.get('notificationsStorage');
@@ -44,6 +98,7 @@ angular.module('myApp.components.resetPassword', [])
                 templateUrl: resetPasswordTplUrl,
                 scope: {
                     passwordText: '=resetPassword',
+                    // TODO rename
                     customData: '='
                 },
                 link: function (scope, element, attrs) {
@@ -119,7 +174,7 @@ angular.module('myApp.components.resetPassword', [])
 
     // Custom Angular resource for Password class
     // Provide generate and update operations
-    .factory('Password', ['$http', 'passwordApiUrl', function ($http, passwordApiUrl) {
+    .factory('xPassword', ['$http', 'passwordApiUrl', function ($http, passwordApiUrl) {
 
         // Get connection url from constant instantiated in provider
         var connectionUrl = passwordApiUrl;

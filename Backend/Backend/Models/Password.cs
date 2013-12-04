@@ -23,38 +23,15 @@ namespace Backend.Models
         // Fields
         //
 
-        // Some identificator
-        private Int32 id;
-
-        // Password confirmation string
-        private String confirmation;
-
         // Password string
         private String text;
+
+        // Some user identificator
+        private Int32 userId;
         
         //
         // Properties
         //
-
-        /// <summary>
-        /// Gets and sets entity identificator
-        /// </summary>
-        public Int32 Id
-        {
-            get { return this.id; }
-            set { this.id = value; }
-        }
-
-        /// <summary>
-        /// Gets and sets password confirmation field
-        /// </summary>
-        [Required]
-        [StringLength(int.MaxValue, MinimumLength = 5)]
-        public String Confirmation
-        {
-            get { return this.confirmation; }
-            set { this.confirmation = value; }
-        }
 
         /// <summary>
         /// Gets and sets password test field
@@ -65,6 +42,15 @@ namespace Backend.Models
         {
             get { return this.text; }
             set { this.text = value; }
+        }
+
+        /// <summary>
+        /// Gets and sets entity identificator
+        /// </summary>
+        public Int32 UserId
+        {
+            get { return this.userId; }
+            set { this.userId = value; }
         }
     }
 }

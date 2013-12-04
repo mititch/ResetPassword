@@ -1,0 +1,12 @@
+<h3> User {{user.Id}} details :</h3>
+
+Change password:
+<form name="form" novalidate>
+
+<div reset-password="password"></div>
+
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="applyChanges()"
+            ng-disabled="form.$invalid || form.$pristine">Apply</button>
+</div>
+</form>

@@ -10,15 +10,15 @@ angular.module('myApp.pages.resetPassword', ['myApp.components.resetPassword'])
         function ($routeProvider) {
 
             // Configure route for this page
-            $routeProvider.when('/resetPassword', {
-                templateUrl: 'pages/resetPassword/resetPassword.html',
-                controller: 'ResetPasswordPage'
+            $routeProvider.when('/reset-password', {
+                templateUrl: 'pages/reset-password/reset-password.html',
+                controller: 'resetPasswordPage'
             });
         }
     ])
 
     /* Page controller*/
-    .controller('ResetPasswordPage', ['$scope',
+    .controller('resetPasswordPage', ['$scope',
         function ($scope) {
 
             $scope.data = {

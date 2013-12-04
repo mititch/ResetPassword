@@ -23,40 +23,96 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="reset-password.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/js/components/reset-password.js">
+      <file leaf-file-name="reset-password.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/components/reset-password/reset-password.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="32" selection-start="1634" selection-end="1634" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="748">
+            <state line="80" column="16" selection-start="3725" selection-end="3725" vertical-scroll-proportion="0.053268764" vertical-offset="1316" max-vertical-offset="3111">
               <folding>
-                <element signature="e#1634#5543#0" expanded="false" />
-                <element signature="e#5667#7697#0" expanded="false" />
-                <element signature="e#7074#7265#0" expanded="false" />
-                <element signature="e#7358#7624#0" expanded="false" />
+                <element signature="e#7940#9970#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="notifications.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/js/components/notifications.js">
+      <file leaf-file-name="ui-form-field.tpl.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/components/ui/ui-form-field.tpl.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="87" column="6" selection-start="3181" selection-end="3181" vertical-scroll-proportion="0.5820543" vertical-offset="0" max-vertical-offset="847">
-              <folding>
-                <element signature="e#1195#2273#0" expanded="false" />
-                <element signature="e#2355#3180#0" expanded="false" />
-              </folding>
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="289">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="resources.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/components/resources/resources.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="95" column="12" selection-start="3669" selection-end="3669" vertical-scroll-proportion="0.0" vertical-offset="959" max-vertical-offset="1785">
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="ui.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/js/components/ui.js">
+        <entry file="file://$PROJECT_DIR$/app/components/ui/ui.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="167" column="6" selection-start="7094" selection-end="7094" vertical-scroll-proportion="0.0" vertical-offset="88" max-vertical-offset="935">
+            <state line="101" column="43" selection-start="4813" selection-end="4813" vertical-scroll-proportion="17.0" vertical-offset="2142" max-vertical-offset="3179">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="validation.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/components/validation/validation.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="867" max-vertical-offset="1768">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="user-details.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/pages/user-details/user-details.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="49" column="20" selection-start="1737" selection-end="1737" vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="1054">
               <folding>
-                <element signature="e#2490#4939#0" expanded="false" />
-                <element signature="e#5080#7087#0" expanded="false" />
+                <element signature="e#15#95#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="reset-password.tpl.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/components/reset-password/reset-password.tpl.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="15" column="17" selection-start="631" selection-end="631" vertical-scroll-proportion="-9.807693" vertical-offset="0" max-vertical-offset="646">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ui-password-input.tpl.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/components/ui/ui-password-input.tpl.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="255">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="user-details.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/pages/user-details/user-details.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="12" column="0" selection-start="302" selection-end="302" vertical-scroll-proportion="-7.8461537" vertical-offset="0" max-vertical-offset="306">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="reset-password.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/pages/reset-password/reset-password.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="2" column="9" selection-start="37" selection-end="37" vertical-scroll-proportion="-1.3076923" vertical-offset="0" max-vertical-offset="136">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -71,22 +127,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/pages/passwords/passwords.js" />
-        <option value="$PROJECT_DIR$/app/pages/about/about.html" />
-        <option value="$PROJECT_DIR$/app/pages/about/about.js" />
-        <option value="$PROJECT_DIR$/app/templates/reset-password/reset-password.tpl.html" />
-        <option value="$PROJECT_DIR$/app/css/app.css" />
-        <option value="$PROJECT_DIR$/app/js/components/ui.js" />
-        <option value="$PROJECT_DIR$/test/unit/components/uiSpec.js" />
-        <option value="$PROJECT_DIR$/app/pages/resetPassword/resetPassword.html" />
-        <option value="$PROJECT_DIR$/app/js/app.js" />
+        <option value="$PROJECT_DIR$/app/pages/reset-password/reset-password.js" />
+        <option value="$PROJECT_DIR$/app/components/notifications/notifications.js" />
+        <option value="$PROJECT_DIR$/app/components/validation/validation.js" />
+        <option value="$PROJECT_DIR$/app/pages/details/details.html" />
+        <option value="$PROJECT_DIR$/app/pages/details/details.js" />
         <option value="$PROJECT_DIR$/app/index.html" />
-        <option value="$PROJECT_DIR$/test/unit/karma.conf.js" />
-        <option value="$PROJECT_DIR$/app/pages/resetPassword/resetPassword.js" />
-        <option value="$PROJECT_DIR$/app/js/components/notifications.js" />
-        <option value="$PROJECT_DIR$/app/js/components/reset-password.js" />
-        <option value="$PROJECT_DIR$/test/unit/components/resetPasswordSpec.js" />
-        <option value="$PROJECT_DIR$/test/unit/components/notificationsSpec.js" />
+        <option value="$PROJECT_DIR$/app/pages/users/users.js" />
+        <option value="$PROJECT_DIR$/app/js/app.js" />
+        <option value="$PROJECT_DIR$/app/pages/users/users.html" />
+        <option value="$PROJECT_DIR$/app/components/reset-password/reset-password-for.tpl.html" />
+        <option value="$PROJECT_DIR$/app/components/resources/resources.js" />
+        <option value="$PROJECT_DIR$/app/components/ui/ui.js" />
+        <option value="$PROJECT_DIR$/app/components/reset-password/reset-password.tpl.html" />
+        <option value="$PROJECT_DIR$/app/pages/user-details/user-details.js" />
+        <option value="$PROJECT_DIR$/app/pages/user-details/user-details.html" />
+        <option value="$PROJECT_DIR$/app/components/reset-password/reset-password.js" />
       </list>
     </option>
   </component>
@@ -94,8 +150,7 @@
     <data>C:\Users\mititch\AppData\Roaming\npm\node_modules\karma</data>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="width" value="1793" />
+    <option name="width" value="1545" />
     <option name="height" value="1030" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -124,6 +179,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -201,6 +257,72 @@
               <option name="myItemId" value="pages" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="users" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Frontend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Frontend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="user-details" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Frontend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Frontend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="reset-password" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Frontend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Frontend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -231,47 +353,134 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="components" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="validation" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Frontend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Frontend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Frontend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Frontend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Frontend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Frontend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="reset-password" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Frontend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Frontend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="notifications" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="options.lastSelected" value="preferences.sourceCode.General" />
     <property name="recentsLimit" value="5" />
+    <property name="options.lastSelected" value="preferences.sourceCode.General" />
     <property name="restartRequiresConfirmation" value="true" />
     <property name="FullScreen" value="false" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\mititch\Documents\GitHub\ResetPassword\Backend\Backend\Static\Frontend\app\components\reset-password" />
       <recent name="C:\Users\mititch\Documents\GitHub\ResetPassword\Backend\Backend\Static\Frontend\vendors\ui-bootstrap" />
       <recent name="C:\Users\mititch\Documents\GitHub\ResetPassword\Backend\Backend\Static\Frontend\app\pages\reset" />
       <recent name="C:\Users\mititch\Documents\GitHub\ResetPassword\Backend\Backend\Static\Frontend\app" />
       <recent name="C:\Users\mititch\Documents\GitHub\ResetPassword\Backend\Backend\Static\Frontend\test\unit\components" />
-      <recent name="C:\Users\mititch\Documents\GitHub\ResetPassword\Backend\Backend\Static\Frontend\scripts" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\mititch\Documents\GitHub\ResetPassword\Backend\Backend\Static\Frontend\app\templates\notifications" />
-      <recent name="C:\Users\mititch\Documents\GitHub\ResetPassword\Backend\Backend\Static\Frontend\app\pages\password" />
-      <recent name="C:\Users\mititch\Documents\GitHub\ResetPassword\Backend\Backend\Static\Frontend\app\pages\about" />
-      <recent name="C:\Users\mititch\Documents\GitHub\ResetPassword\Backend\Backend\Static\Frontend\Vendors" />
-      <recent name="C:\Users\mititch\Documents\GitHub\ResetPassword\Backend\Backend\Static\Frontend\test\e2e" />
+      <recent name="C:\Users\mititch\Documents\GitHub\ResetPassword\Backend\Backend\Static\Frontend\app" />
+      <recent name="C:\Users\mititch\Documents\GitHub\ResetPassword\Backend\Backend\Static\Frontend\app\js\components\ui" />
+      <recent name="C:\Users\mititch\Documents\GitHub\ResetPassword\Backend\Backend\Static\Frontend\app\js\components\reset-password" />
+      <recent name="C:\Users\mititch\Documents\GitHub\ResetPassword\Backend\Backend\Static\Frontend\app\js\components\notifications" />
+      <recent name="C:\Users\mititch\Documents\GitHub\ResetPassword\Backend\Backend\Static\Frontend\app\js\components\validation" />
     </key>
   </component>
   <component name="RunManager" selected="Karma.karma.conf.js">
@@ -290,6 +499,14 @@
       <ConfigurationWrapper RunnerId="JavascriptDebugRunner" />
       <method />
     </configuration>
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <option name="VMOptions" />
+      <option name="arguments" />
+      <option name="filePath" />
+      <option name="scope" value="ALL" />
+      <option name="testName" />
+      <method />
+    </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
       <option name="VMOptions" />
       <option name="arguments" />
@@ -300,23 +517,15 @@
       <option name="showConsoleOnStdOut" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
-      <option name="VMOptions" />
-      <option name="arguments" />
-      <option name="filePath" />
-      <option name="scope" value="ALL" />
-      <option name="testName" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" singleton="true" config-file="">
-      <envs />
-      <method />
-    </configuration>
     <configuration default="true" type="JSTestDriver:ConfigurationType" factoryName="JsTestDriver">
       <setting name="configLocationType" value="CONFIG_FILE" />
       <setting name="settingsFile" value="" />
       <setting name="serverType" value="INTERNAL" />
       <setting name="preferredDebugBrowser" value="CHROME" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" singleton="true" config-file="">
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
@@ -393,14 +602,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="0" width="1793" height="1030" extended-state="0" />
-    <editor active="true" />
+    <frame x="0" y="0" width="1545" height="1030" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295583" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32875144" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18129988" sideWeight="0.513173" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21115538" sideWeight="0.67124856" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3997735" sideWeight="0.49915966" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29105324" sideWeight="0.50084037" order="8" side_tool="true" content_ui="tabs" />
@@ -425,133 +634,125 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="21" />
+      <option name="time" value="22" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/test/unit/test.bat">
+    <entry file="file://$PROJECT_DIR$/app/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="681">
+        <state line="12" column="25" selection-start="325" selection-end="325" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="476">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/unit/karma.conf.js">
+    <entry file="file://$PROJECT_DIR$/app/pages/users/users.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="0" selection-start="762" selection-end="762" vertical-scroll-proportion="0.9279476" vertical-offset="0" max-vertical-offset="1360">
+        <state line="29" column="7" selection-start="755" selection-end="755" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="595">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/pages/users/users.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="8" selection-start="325" selection-end="325" vertical-scroll-proportion="-11.115385" vertical-offset="0" max-vertical-offset="391">
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <marker date="1386166384344" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1386166384344" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/css/app.css">
+    <entry file="file://$PROJECT_DIR$/app/components/reset-password/x-reset-password.tpl.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="476">
+        <state line="37" column="7" selection-start="1523" selection-end="1523" vertical-scroll-proportion="-24.192308" vertical-offset="0" max-vertical-offset="731">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/notifications/notification.tpl.html">
+    <entry file="file://$PROJECT_DIR$/app/components/notifications/notifications.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="206" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="170">
+        <state line="26" column="50" selection-start="1164" selection-end="1164" vertical-scroll-proportion="0.0" vertical-offset="836" max-vertical-offset="1683">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/components/validation.js">
+    <entry file="file://$PROJECT_DIR$/app/pages/reset-password/reset-password.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1751">
+        <state line="21" column="27" selection-start="599" selection-end="599" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="595">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/app.js">
+    <entry file="file://$PROJECT_DIR$/app/pages/reset-password/reset-password.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="35" selection-start="268" selection-end="268" vertical-scroll-proportion="0.24355301" vertical-offset="0" max-vertical-offset="698">
+        <state line="2" column="9" selection-start="37" selection-end="37" vertical-scroll-proportion="-1.3076923" vertical-offset="0" max-vertical-offset="136">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/pages/about/about.html">
+    <entry file="file://$PROJECT_DIR$/app/components/validation/validation.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="102">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="867" max-vertical-offset="1768">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/pages/about/about.js">
+    <entry file="file://$PROJECT_DIR$/app/components/resources/resources.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="458">
+        <state line="95" column="12" selection-start="3669" selection-end="3669" vertical-scroll-proportion="0.0" vertical-offset="959" max-vertical-offset="1785">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/pages/resetPassword/resetPassword.html">
+    <entry file="file://$PROJECT_DIR$/app/components/ui/ui.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="0" selection-start="28" selection-end="84" vertical-scroll-proportion="0.05059524" vertical-offset="0" max-vertical-offset="672">
+        <state line="101" column="43" selection-start="4813" selection-end="4813" vertical-scroll-proportion="17.0" vertical-offset="2142" max-vertical-offset="3179">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/pages/resetPassword/resetPassword.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="24" selection-start="520" selection-end="520" vertical-scroll-proportion="0.4627507" vertical-offset="0" max-vertical-offset="698">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/reset-password/reset-password.tpl.html">
+    <entry file="file://$PROJECT_DIR$/app/components/ui/ui-form-field.tpl.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="847">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/unit/components/resetPasswordSpec.js">
+    <entry file="file://$PROJECT_DIR$/app/pages/user-details/user-details.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="258" column="52" selection-start="7503" selection-end="7503" vertical-scroll-proportion="0.050143268" vertical-offset="1597" max-vertical-offset="6052">
+        <state line="49" column="20" selection-start="1737" selection-end="1737" vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="1054">
           <folding>
-            <element signature="e#308#5117#0" expanded="false" />
+            <element signature="e#15#95#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/unit/components/notificationsSpec.js">
+    <entry file="file://$PROJECT_DIR$/app/components/reset-password/reset-password.tpl.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="101" column="52" selection-start="3109" selection-end="3109" vertical-scroll-proportion="1.6561605" vertical-offset="561" max-vertical-offset="2873">
+        <state line="15" column="17" selection-start="631" selection-end="631" vertical-scroll-proportion="-9.807693" vertical-offset="0" max-vertical-offset="646">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/components/ui.js">
+    <entry file="file://$PROJECT_DIR$/app/components/ui/ui-password-input.tpl.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="167" column="6" selection-start="7094" selection-end="7094" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="935">
-          <folding>
-            <element signature="e#2490#4939#0" expanded="false" />
-            <element signature="e#5080#7087#0" expanded="false" />
-          </folding>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="826">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/components/reset-password.js">
+    <entry file="file://$PROJECT_DIR$/app/pages/user-details/user-details.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="32" selection-start="1634" selection-end="1634" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="748">
-          <folding>
-            <element signature="e#1634#5543#0" expanded="false" />
-            <element signature="e#5667#7697#0" expanded="false" />
-            <element signature="e#7074#7265#0" expanded="false" />
-            <element signature="e#7358#7624#0" expanded="false" />
-          </folding>
+        <state line="12" column="0" selection-start="302" selection-end="302" vertical-scroll-proportion="-7.8461537" vertical-offset="0" max-vertical-offset="306">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/components/notifications.js">
+    <entry file="file://$PROJECT_DIR$/app/components/reset-password/reset-password.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="87" column="6" selection-start="3181" selection-end="3181" vertical-scroll-proportion="0.5820543" vertical-offset="0" max-vertical-offset="847">
+        <state line="80" column="16" selection-start="3725" selection-end="3725" vertical-scroll-proportion="0.053268764" vertical-offset="1316" max-vertical-offset="3111">
           <folding>
-            <element signature="e#1195#2273#0" expanded="false" />
-            <element signature="e#2355#3180#0" expanded="false" />
+            <element signature="e#7940#9970#0" expanded="false" />
           </folding>
         </state>
       </provider>

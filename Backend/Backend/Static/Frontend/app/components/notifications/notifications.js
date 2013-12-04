@@ -20,10 +20,12 @@
 
 angular.module('myApp.components.notifications', [])
     .constant('notificationsMaxCount', 3)
-    .constant('notificationTplUrl', 'templates/notifications/notification.tpl.html')
+    // TODO remove
+    .constant('notificationTplUrl', 'components/notifications/notification.tpl.html')
 
     // Stores application notifications and
     // provide access to add and remove operations
+    //TODO update to servise
     .provider('notificationsStorage', function () {
 
         var self = this;
@@ -67,6 +69,8 @@ angular.module('myApp.components.notifications', [])
     .directive('notificationsPanel', ['notificationsStorage', 'notificationTplUrl',
         function (notificationsStorage, notificationTplUrl) {
             return {
+                //TODO move to tpl
+                //TODO kill include
                 template: '<div ng-repeat="notification in notifications">' +
                     '<ng-include src="\'' +notificationTplUrl + '\'"></ng-include>' +
                     '</div>',
@@ -75,6 +79,7 @@ angular.module('myApp.components.notifications', [])
                 link: function (scope) {
 
                     // Get notifications from storage
+                    //TODO check incapsulation
                     scope.notifications = notificationsStorage.getNotifications();
 
                     // Remove notification from storage by index

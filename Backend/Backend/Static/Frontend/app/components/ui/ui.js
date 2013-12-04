@@ -35,8 +35,8 @@
  */
 
 angular.module('myApp.components.ui', [])
-    .constant('uiPasswordInputTplUrl', 'templates/ui/ui-password-input.tpl.html')
-    .constant('uiFormFieldTplUrl', 'templates/ui/ui-form-field.tpl.html')
+    .constant('uiPasswordInputTplUrl', 'components/ui/ui-password-input.tpl.html')
+    .constant('uiFormFieldTplUrl', 'components/ui/ui-form-field.tpl.html')
 
     // Can show a password text in open or hidden mode
     .directive('uiPasswordInput', ['uiPasswordInputTplUrl',
@@ -48,6 +48,7 @@ angular.module('myApp.components.ui', [])
                 templateUrl : uiPasswordInputTplUrl,
                 replace: true,
                 scope: {
+                    // TODO !refactor
                     showInput: '&',
                     ngModel : '=',
                     disableInputs: '=ngDisabled'
@@ -56,6 +57,7 @@ angular.module('myApp.components.ui', [])
 
                     // Save the inner input data as object field
                     // Important for ng-if scope inheritance
+                    // TODO refactor
                     scope.data = {};
 
                     // Shows of hides inputs text
@@ -66,6 +68,8 @@ angular.module('myApp.components.ui', [])
                         scope.toggle = !scope.toggle;
                     };
 
+
+                    // TODO change to attrs.observe
                     // Add watcher for switch the demonstration mode from outside scope
                     if (attrs.showInput)
                     {
@@ -95,12 +99,19 @@ angular.module('myApp.components.ui', [])
                             }
                         });
 
+                        scope.$watch('ngModel' , function (value, oldValue) {
+                                if (value != oldValue) {
+                                    scope.data.innerInputModel = ngModelCtrl.$viewValue;
+                                }
+                        });
+
+
                         // Update inner model then render called
-                        ngModelCtrl.$render = function () {
+                        /*ngModelCtrl.$render = function () {
 
                             scope.data.innerInputModel = ngModelCtrl.$viewValue;
 
-                        };
+                        };*/
                     }
                 }
             };
@@ -119,7 +130,6 @@ angular.module('myApp.components.ui', [])
 
             return {
                 restrict: 'A',
-                require : '^form',
                 templateUrl : uiFormFieldTplUrl,
                 transclude: true,
                 replace: true,
@@ -130,7 +140,10 @@ angular.module('myApp.components.ui', [])
                 },
                 compile: function (tElement, tAttrs) {
 
-                    return function (scope, element, attrs, formCtrl) {
+                    return function (scope, element, attrs) {
+
+                        // Get nearest form controller
+                        var formCtrl = element.controller('form');
 
                         // Get field name
                         // It is possible to get name from transcluded input

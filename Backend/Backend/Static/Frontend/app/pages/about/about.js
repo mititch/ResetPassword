@@ -10,11 +10,11 @@ angular.module('myApp.pages.about', [])
         // Configure route for this page
         $routeProvider.when('/about', {
             templateUrl: 'pages/about/about.html',
-            controller: 'AboutPage'
+            controller: 'aboutPage'
         });
     }])
 
     /* Page controller*/
-    .controller('AboutPage', ['$scope', function ($scope) {
+    .controller('aboutPage', ['$scope', function ($scope) {
     }]);
 

@@ -26,6 +26,12 @@ namespace Backend
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+            config.Routes.MapHttpRoute(
+                name: null,
+                routeTemplate: "api/User/{UserId}/Password",
+                defaults: new { controller = "Password"}
+            );
+
         }
     }
 }

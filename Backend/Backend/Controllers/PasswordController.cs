@@ -17,6 +17,8 @@ namespace Backend.Controllers
     using System.Web.Http;
     using Backend.Models;
     using System.Web;
+    using System.Collections.Generic;
+    using System.Linq;
 
     /// <summary>
     /// Represents access for the reset and generate password API
@@ -43,15 +45,10 @@ namespace Backend.Controllers
         /// TRICK: Exception can be thrown to simulate a server error
         /// </summary>
         /// <returns>A new password object</returns>
-        public Password Get()
+        public object Get(int UserId)
         {
-            String newPassword = GeneratePassword();
-            
-            return new Password
-            {
-                Text = newPassword,
-                Confirmation = newPassword
-            };
+            // TODO remove oruvate function
+            return new { text = GeneratePassword() };
         }
 
         /// <summary>
@@ -62,20 +59,21 @@ namespace Backend.Controllers
         /// </summary>
         /// <param name="value">Password entity from request boby</param>
         /// <returns>Success of failure responce message depends of the models state</returns>
-        public HttpResponseMessage Post([FromBody]Password value)
+        public HttpResponseMessage Post(Int32 userId, [FromBody]Password value)
         {
             HttpResponseMessage result;
-
-            // Add password equals validation
-            if (value.Text != value.Confirmation)
-            {
-                ModelState.AddModelError("Confirmation", "Passwords not equals");
-            }
 
             // Server side validation is different from client
             // It is made to simulate the server error
             if (ModelState.IsValid)
             {
+                //TODO comments
+                IList<Password> storage = HttpContext.Current.Application["Passwords"] as IList<Password>;
+                
+                Password password = storage.First(x => x.UserId == userId);
+
+                password.Text = value.Text;
+                
                 // Return success http status
                 result = new HttpResponseMessage(HttpStatusCode.OK);
             }
@@ -104,7 +102,7 @@ namespace Backend.Controllers
             for (Int32 i = 0; i < PASSWORD_LENGTH; i++)
             {
                 //Out of range exception possible
-                resultArray[i] = VALID_CHARACTERS_STRING[random.Next(maxValue + 1)];
+                resultArray[i] = VALID_CHARACTERS_STRING[random.Next(maxValue)];
             }
             
             return new String(resultArray);
