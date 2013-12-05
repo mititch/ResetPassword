@@ -1,0 +1,8 @@
+<div ng-repeat="notification in notifications">
+    <div class="alert alert-{{notification.type}}">
+        {{notification.text}}
+        <button ng-click="removeNotification($index)"
+                type="button" class="close" aria-hidden="true">&times;</button>
+    </div>
+</div>
+

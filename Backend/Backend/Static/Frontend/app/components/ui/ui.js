@@ -8,9 +8,9 @@
  *          showPasswords : expression - if expression is truly input shows password as text
  *          property - scope property which represents input value
  *      While overriding the default template, new template should contain two inputs with
- *          'data.innerInputModel' property in kind of ng-model value
+ *          'innerModel.value' property in kind of ng-model value
  *          (active input control via 'toggle' property)
- *          and button which should trigger 'showInputs()' method to change 'toggle' value.
+ *          and button which should trigger 'toggleInput()' method to change 'toggle' value.
  *
  *  The 'ui-form-field' directive may be used to add specific decoration to form input
  *      and controls of validations messages view
@@ -35,30 +35,26 @@
  */
 
 angular.module('myApp.components.ui', [])
-    .constant('uiPasswordInputTplUrl', 'components/ui/ui-password-input.tpl.html')
-    .constant('uiFormFieldTplUrl', 'components/ui/ui-form-field.tpl.html')
-
     // Can show a password text in open or hidden mode
-    .directive('uiPasswordInput', ['uiPasswordInputTplUrl',
-        function (uiPasswordInputTplUrl) {
+    .directive('uiPasswordInput', ['$log',
+        function ($log) {
 
             return {
                 require: '?ngModel',
                 restrict: "EA",
-                templateUrl : uiPasswordInputTplUrl,
+                templateUrl: 'components/ui/ui-password-input.tpl.html',
                 replace: true,
                 scope: {
-                    // TODO !refactor
-                    showInput: '&',
-                    ngModel : '=',
+                    // TODO: discuss '&'
+                    showInput: '=',
+                    outerModel: '=ngModel',
                     disableInputs: '=ngDisabled'
                 },
                 link: function (scope, element, attrs, ngModelCtrl) {
 
-                    // Save the inner input data as object field
+                    // Save the inner input value as object field
                     // Important for ng-if scope inheritance
-                    // TODO refactor
-                    scope.data = {};
+                    scope.innerModel = {};
 
                     // Shows of hides inputs text
                     scope.toggle = false;
@@ -68,16 +64,9 @@ angular.module('myApp.components.ui', [])
                         scope.toggle = !scope.toggle;
                     };
 
-
-                    // TODO change to attrs.observe
                     // Add watcher for switch the demonstration mode from outside scope
-                    if (attrs.showInput)
-                    {
-                        scope.$watch(
-                            function () {
-                                // If outside value changed
-                                return scope.showInput();
-                            },
+                    if (attrs.showInput) {
+                        scope.$watch('showInput',
                             function (value) {
                                 // Apply changes
                                 scope.toggle = value;
@@ -85,10 +74,9 @@ angular.module('myApp.components.ui', [])
                         );
                     }
 
-                    if (ngModelCtrl)
-                    {
+                    if (ngModelCtrl) {
                         // Watch when the input element changes the value
-                        scope.$watch('data.innerInputModel', function (value, oldValue) {
+                        scope.$watch('innerModel.value', function (value, oldValue) {
 
                             // Angular ng-model behavior fix
                             // sets $dirty if model changed outside input
@@ -99,19 +87,11 @@ angular.module('myApp.components.ui', [])
                             }
                         });
 
-                        scope.$watch('ngModel' , function (value, oldValue) {
-                                if (value != oldValue) {
-                                    scope.data.innerInputModel = ngModelCtrl.$viewValue;
-                                }
+                        scope.$watch('outerModel', function (value, oldValue) {
+
+                            // Update inner model
+                            scope.innerModel.value = ngModelCtrl.$viewValue;
                         });
-
-
-                        // Update inner model then render called
-                        /*ngModelCtrl.$render = function () {
-
-                            scope.data.innerInputModel = ngModelCtrl.$viewValue;
-
-                        };*/
                     }
                 }
             };
@@ -120,8 +100,8 @@ angular.module('myApp.components.ui', [])
 
     // Wrap input with styling and validation elements (uses transclusion)
     // Creates a new scope
-    .directive('uiFormField', ['uiFormFieldTplUrl',
-        function (uiFormFieldTplUrl) {
+    .directive('uiFormField', ['$log',
+        function ($log) {
             // Parses attribute text to JS object
             var parseAttributeData = function (data) {
                 // FIX: angular.fromJson works only with double quotes
@@ -130,51 +110,48 @@ angular.module('myApp.components.ui', [])
 
             return {
                 restrict: 'A',
-                templateUrl : uiFormFieldTplUrl,
+                templateUrl: 'components/ui/ui-form-field.tpl.html',
                 transclude: true,
                 replace: true,
                 scope: {
                     validationData: '@',
-                    formatData : '@',
+                    formatData: '@',
                     labelText: '@'
                 },
-                compile: function (tElement, tAttrs) {
+                link: function (scope, element, attrs) {
 
-                    return function (scope, element, attrs) {
+                    // Get nearest form controller
+                    var formCtrl = element.controller('form');
 
-                        // Get nearest form controller
-                        var formCtrl = element.controller('form');
+                    // Get field name
+                    // It is possible to get name from transcluded input
+                    // but it can effect execution performance
+                    var fieldName = attrs.uiFormField;
 
-                        // Get field name
-                        // It is possible to get name from transcluded input
-                        // but it can effect execution performance
-                        var fieldName = attrs.uiFormField;
+                    // Check field validation
+                    scope.isDirtyAndInvalid = function () {
 
-                        // Check field validation
-                        scope.isDirtyAndInvalid = function () {
+                        return formCtrl[fieldName].$dirty && formCtrl[fieldName].$invalid;
+                    };
 
-                            return formCtrl[fieldName].$dirty && formCtrl[fieldName].$invalid;
-                        };
+                    // Check specified validator fail
+                    scope.isValidatorFail = function (key) {
 
-                        // Check specified validator fail
-                        scope.isValidatorFail = function (key) {
+                        return formCtrl[fieldName].$error[key];
+                    };
 
-                            return formCtrl[fieldName].$error[key] ;
-                        };
+                    // Prepare validators data for repeater
+                    scope.validation = function () {
 
-                        // Prepare validators data for repeater
-                        scope.validation = function () {
+                        return parseAttributeData(scope.validationData);
+                    };
 
-                            return parseAttributeData(scope.validationData);
-                        };
+                    // Prepare format data
+                    scope.format = function () {
 
-                        // Prepare format data
-                        scope.format = function () {
+                        return parseAttributeData(scope.formatData);
+                    };
 
-                            return parseAttributeData(scope.formatData);
-                        };
-
-                    }
                 }
             };
         }]

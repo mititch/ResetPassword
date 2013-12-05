@@ -21,11 +21,14 @@ namespace Backend
         /// <param name="config">HttpConfiguration object</param>
         public static void Register(HttpConfiguration config)
         {
+            // User API route
             config.Routes.MapHttpRoute(
-                name: "DefaultApi",
+                name: null,
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+            
+            // Password API route
             config.Routes.MapHttpRoute(
                 name: null,
                 routeTemplate: "api/User/{UserId}/Password",

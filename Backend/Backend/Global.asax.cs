@@ -20,12 +20,14 @@ using Backend.Models;
     {
         protected void Application_Start()
         {
+            // Fake passwords storage
             Application.Add("Passwords", new List<Password> {
                 new Password { UserId = 1, Text = "qwerty"},
                 new Password { UserId = 2, Text = "asdfgh"},
                 new Password { UserId = 3, Text = "zxcvbn"}
             });
 
+            // Fake users storage
             Application.Add("Users", new List<User> {
                 new User { Id = 1},
                 new User { Id = 2},

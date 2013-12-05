@@ -115,21 +115,24 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Static\Frontend\app\components\notifications\notifications-panel.tpl.html" />
+    <Content Include="Static\Frontend\app\components\notifications\notifications.js" />
+    <Content Include="Static\Frontend\app\components\reset-password\reset-password.js" />
+    <Content Include="Static\Frontend\app\components\reset-password\reset-password.tpl.html" />
+    <Content Include="Static\Frontend\app\components\resources\resources.js" />
+    <Content Include="Static\Frontend\app\components\ui\ui-form-field.tpl.html" />
+    <Content Include="Static\Frontend\app\components\ui\ui-password-input.tpl.html" />
+    <Content Include="Static\Frontend\app\components\ui\ui.js" />
+    <Content Include="Static\Frontend\app\components\validation\validation.js" />
     <Content Include="Static\Frontend\app\css\app.css" />
     <Content Include="Static\Frontend\app\index.html" />
     <Content Include="Static\Frontend\app\js\app.js" />
-    <Content Include="Static\Frontend\app\js\components\notifications.js" />
-    <Content Include="Static\Frontend\app\js\components\reset-password.js" />
-    <Content Include="Static\Frontend\app\js\components\ui.js" />
-    <Content Include="Static\Frontend\app\js\components\validation.js" />
     <Content Include="Static\Frontend\app\pages\about\about.html" />
     <Content Include="Static\Frontend\app\pages\about\about.js" />
-    <Content Include="Static\Frontend\app\pages\resetPassword\resetPassword.html" />
-    <Content Include="Static\Frontend\app\pages\resetPassword\resetPassword.js" />
-    <Content Include="Static\Frontend\app\templates\notifications\notification.tpl.html" />
-    <Content Include="Static\Frontend\app\templates\reset-password\reset-password.tpl.html" />
-    <Content Include="Static\Frontend\app\templates\ui\ui-form-field.tpl.html" />
-    <Content Include="Static\Frontend\app\templates\ui\ui-password-input.tpl.html" />
+    <Content Include="Static\Frontend\app\pages\user-details\user-details.html" />
+    <Content Include="Static\Frontend\app\pages\user-details\user-details.js" />
+    <Content Include="Static\Frontend\app\pages\users\users.html" />
+    <Content Include="Static\Frontend\app\pages\users\users.js" />
     <Content Include="Static\Frontend\test\lib\angular\angular-mocks.js" />
     <Content Include="Static\Frontend\test\lib\angular\angular-scenario.js" />
     <Content Include="Static\Frontend\test\lib\angular\version.txt" />

@@ -40,7 +40,7 @@ namespace Backend.Controllers
         //
 
         /// <summary>
-        /// GET api/password
+        /// GET api/user/5/password
         /// Generates a new password
         /// TRICK: Exception can be thrown to simulate a server error
         /// </summary>
@@ -52,7 +52,7 @@ namespace Backend.Controllers
         }
 
         /// <summary>
-        /// POST api/password
+        /// POST api/user/5/password
         /// Resets a password if model is valid
         /// TRICK: Server side validation is different from client
         /// it is made to simulate the validation error
@@ -67,7 +67,7 @@ namespace Backend.Controllers
             // It is made to simulate the server error
             if (ModelState.IsValid)
             {
-                //TODO comments
+                // Update password in storage
                 IList<Password> storage = HttpContext.Current.Application["Passwords"] as IList<Password>;
                 
                 Password password = storage.First(x => x.UserId == userId);
@@ -102,7 +102,7 @@ namespace Backend.Controllers
             for (Int32 i = 0; i < PASSWORD_LENGTH; i++)
             {
                 //Out of range exception possible
-                resultArray[i] = VALID_CHARACTERS_STRING[random.Next(maxValue)];
+                resultArray[i] = VALID_CHARACTERS_STRING[random.Next(maxValue + 1)];
             }
             
             return new String(resultArray);

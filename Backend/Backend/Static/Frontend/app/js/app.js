@@ -8,10 +8,10 @@ angular.module('myApp', [
         'myApp.components.ui',
         'myApp.components.notifications',
         'myApp.components.resources',
+        'myApp.components.resetPassword',
         'myApp.pages.about',
         'myApp.pages.users',
-        'myApp.pages.userDetails',
-        'myApp.pages.resetPassword'
+        'myApp.pages.userDetails'
     ])
     .config(['$routeProvider',
         function ($routeProvider) {

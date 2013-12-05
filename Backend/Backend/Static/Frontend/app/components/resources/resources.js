@@ -1,28 +1,29 @@
 'use strict';
-//TODO update
+
 /**
- *   The component allows reset the password.
+ *   The component contains application resources
  *   The server side API is used to generate and store the password.
  *
  *
- *   The 'resetPassword' directive may be used to extend element with reset password markup
- *      Usage: <div reset-password="password" custom-data="data"></div>
- *          password : string - represents old password
- *          data : object - some specific data which will be sent to server with update
- *              password request
- *      If 'notifications' service is available in  Angular injector collection, it's used
- *          to inform the user about the execution process.
+ *   The 'Password' factory may be used to instantiate Password object
+ *      Usage: new Password(userId, text)
+ *          userId : integer - user identifier
+ *          text : string - password text
+ *      Fields:
+ *          UserId - user identifier
+ *          Text - password text
+ *      Methods:
+ *          $generate() - requests server to generate new password
+ *          $update() - updates a server password value with the instance 'Text' field
  *
- *   While overriding the default template next properties and methods can be used:
- *      showPasswords - returns true if user should see the passwords text
- *      disableInputs - returns true if dialog elements should be disabled
- *      password.text - password text value (may be bound to input)
- *      password.confirmation - password text value (may be bound to input)
- *      applyChanges() - send server request to update password, on success closes a dialog box
- *      and returns updated password value
- *      generatePassword() - send server request to generate new password
- *   It is recommended (but not necessary) to use 'ui-password-input' as input
- *          for 'password.text' and 'password.confirmation'
+ *   The 'User' factory may be used to instantiate User object
+ *      Usage: standard Angular $resource
+ *      Fields:
+ *          Id - user identifier
+ *      Methods:
+ *          $query() - requests users list from server
+ *          $get({Id: userIdValue}) - requests single user by Id
+ *      Important: Other Angular $resource operations not implemented on the server side!
  *
  */
 

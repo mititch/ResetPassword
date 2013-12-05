@@ -1,48 +1,34 @@
 'use strict';
 
 /**
- *   The component allows reset the password.
- *   The server side API is used to generate and store the password.
+ *   The component allows to shows password widget
  *
- *
- *   The 'resetPassword' directive may be used to extend element with reset password markup
- *      Usage: <div reset-password="password" custom-data="data"></div>
- *          password : string - represents old password
- *          data : object - some specific data which will be sent to server with update
- *              password request
- *      If 'notifications' service is available in  Angular injector collection, it's used
- *          to inform the user about the execution process.
+ *   The 'passwordWidget' directive may be used to extend element with passwords widget markup
+ *      Usage: <div password-widget="password" ></div>
+ *          password : object - Password resource instance (see: myApp.components.resources)
  *
  *   While overriding the default template next properties and methods can be used:
  *      showPasswords - returns true if user should see the passwords text
  *      disableInputs - returns true if dialog elements should be disabled
- *      password.text - password text value (may be bound to input)
- *      password.confirmation - password text value (may be bound to input)
- *      applyChanges() - send server request to update password, on success closes a dialog box
- *      and returns updated password value
- *      generatePassword() - send server request to generate new password
- *   It is recommended (but not necessary) to use 'ui-password-input' as input
- *          for 'password.text' and 'password.confirmation'
- *
+ *      password.Text - password text value (may be bound to input)
+ *      confirmation.Text - confirmation text value (may be bound to input)
+ *      generatePassword() - request Password resource to generate a new password
  */
 
 angular.module('myApp.components.resetPassword', [])
-    //TODO remove
-    .constant('resetPasswordTplUrl', 'components/reset-password/reset-password.tpl.html')
-    .constant('passwordApiUrl', '/api/password')
-
-    // Shows a reset password inputs
-    .directive('resetPassword', ['resetPasswordTplUrl', 'Password', 'notificationsStorage',
-        function (resetPasswordTplUrl, Password, notificationsStorage) {
+    // Shows a passwords widget markup
+    .directive('passwordWidget', ['Password', 'notificationsStorage',
+        function (Password, notificationsStorage) {
 
             return {
                 restrict: 'A',
-                templateUrl: 'components/reset-password/reset-password.tpl.html',
+                templateUrl: 'components/reset-password/password-widget.tpl.html',
                 scope: {
-                    password: '=resetPassword'
+                    password: '=passwordWidget'
                 },
                 link: function (scope, element, attrs, ngModelCtrl) {
 
+                    // Make copy for confirmation input
                     scope.confirmation = angular.copy(scope.password);
 
                     // Setting the hidden password mode for the all password inputs
@@ -59,12 +45,11 @@ angular.module('myApp.components.resetPassword', [])
 
                         // Call to resource API
                         scope.password.$generate().then(
-                            function (newPassword) {
+                            function () {
                                 // On success
                                 scope.showPasswords = true;
                                 scope.disableInputs = false;
                                 scope.confirmation.Text = scope.password.Text;
-
                                 // Notify user
                                 notificationsStorage.add('success',
                                     'New password generated.');
@@ -81,163 +66,4 @@ angular.module('myApp.components.resetPassword', [])
                 }
             };
         }
-    ])
-
-    // Shows a reset password inputs
-    .directive('xresetPassword', ['resetPasswordTplUrl', 'Password', '$injector',
-        function (resetPasswordTplUrl, Password, $injector) {
-
-            // TODO remove, load allways
-            // Inject notifications service, if it exists in the collection
-            if ($injector.has('notificationsStorage')) {
-                var notificationsStorage = $injector.get('notificationsStorage');
-            }
-
-            return {
-                restrict: 'A',
-                templateUrl: resetPasswordTplUrl,
-                scope: {
-                    passwordText: '=resetPassword',
-                    // TODO rename
-                    customData: '='
-                },
-                link: function (scope, element, attrs) {
-
-                    // Setting the hidden password mode for the all password inputs
-                    scope.showPasswords = false;
-                    // Setting the form inputs to the active state
-                    scope.disableInputs = false;
-
-                    // Create a Password instance
-                    scope.password = new Password({
-                        text: scope.passwordText,
-                        confirmation: scope.passwordText
-                    });
-
-                    // Requests a server to save the password update
-                    scope.applyChanges = function () {
-
-                        // Block inputs
-                        scope.disableInputs = true;
-
-                        // Call to server API with some specific server data
-                        scope.password.$update(scope.customData).then(
-                            function () {
-                                // On success
-                                scope.disableInputs = false;
-                                // If notifications service has been injected notify user
-                                !notificationsStorage || notificationsStorage.add('success',
-                                    'Password is changed.');
-                                // Set form to pristine state
-                                scope.form.$setPristine();
-                            },
-                            function () {
-                                // On failure
-                                scope.disableInputs = false;
-                                // If notifications service has been injected notify user
-                                !notificationsStorage || notificationsStorage.add('danger',
-                                    'Server can not reset password.');
-                            }
-                        );
-                    };
-
-                    // Requests a server to generate new password
-                    scope.generatePassword = function () {
-
-                        // Block inputs
-                        scope.showPasswords = false;
-                        scope.disableInputs = true;
-
-                        // Call to resource API
-                        scope.password.$generate().then(
-                            function () {
-                                // On success
-                                scope.showPasswords = true;
-                                scope.disableInputs = false;
-                                // If notifications service has been injected notify user
-                                !notificationsStorage || notificationsStorage.add('success',
-                                    'New password generated.');
-                            },
-                            function () {
-                                // On failure
-                                scope.disableInputs = false;
-                                // If notifications service has been injected notify user
-                                !notificationsStorage || notificationsStorage.add('danger',
-                                    'Server can not generate password.');
-                            }
-                        );
-                    };
-                }
-            };
-        }
-    ])
-
-    // Custom Angular resource for Password class
-    // Provide generate and update operations
-    .factory('xPassword', ['$http', 'passwordApiUrl', function ($http, passwordApiUrl) {
-
-        // Get connection url from constant instantiated in provider
-        var connectionUrl = passwordApiUrl;
-
-        // Prepare resource constructor
-        var Resource = function (data) {
-            // Create required field
-            this.text = '';
-            this.confirmation = '';
-            // Extend object with additional data
-            angular.extend(this, data);
-        };
-
-        // Requests a new password generation
-        // Add class method
-        Resource.generate = function (data) {
-
-            // Make request
-            var promise = $http.get(connectionUrl);
-
-            // Update instance on success
-            promise.then(
-                function (response) {
-                    //On success update instance
-                    data.text = response.data.Text;
-                    data.confirmation = response.data.Confirmation;
-                }
-            );
-
-            // Return promise to caller
-            // Can be used to handle success or failure response
-            return promise;
-        };
-
-        // Add instance method
-        Resource.prototype.$generate = function () {
-
-            // Call to the class method
-            return Resource.generate(this);
-        };
-
-        // Requests a password update
-        // Add class method
-        Resource.update = function (data) {
-
-            // Make post request and return promise to caller
-            // Can be used to handle success or failure response
-            return $http.post(connectionUrl, data);
-        };
-
-        // Add instance method
-        Resource.prototype.$update = function (customData) {
-
-            // Make copy of data
-            var data = angular.copy(customData, {});
-
-            // Extend with Password values.
-            angular.extend(data, this);
-
-            // Call to the class method
-            return Resource.update(data);
-        };
-
-        // Return constructor function
-        return Resource;
-    }]);
+    ]);

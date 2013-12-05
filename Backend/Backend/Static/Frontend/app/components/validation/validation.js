@@ -57,7 +57,6 @@ angular.module('myApp.components.validation', [])
     )
     // Add equals validation for the input element
     .directive('equals', ['$log',
-        // TODO remove $log
         function ($log) {
             return {
                 require: '?ngModel',

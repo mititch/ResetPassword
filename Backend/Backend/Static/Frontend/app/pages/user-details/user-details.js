@@ -14,9 +14,14 @@ angular.module('myApp.pages.userDetails', [])
                 templateUrl: 'pages/user-details/user-details.html',
                 controller: 'userDetailsPage',
                 resolve: {
+                    user: ['$route', 'User', '$q', function ($route, User, $q) {
 
-                    user: ['$route', 'User', function ($route, User) {
-                        return User.get({ Id: $route.current.params.id });
+                        var defered = $q.defer();
+                        var user = User.get({ Id: $route.current.params.id }, function () {
+                            // Resolve a promise when the data is received
+                            defered.resolve(user);
+                        })
+                        return defered.promise;
                     }]
                 }
             });
@@ -24,17 +29,12 @@ angular.module('myApp.pages.userDetails', [])
     ])
 
     /* Page controller*/
-    .controller('userDetailsPage', ['$scope', 'user', 'Password', 'notificationsStorage',
+    .controller('userDetailsPage', ['$scope', 'user', 'Password', 'notificationsStorage', '$route',
         function ($scope, user, Password, notificationsStorage) {
-            $scope.user = user;
 
-            // TODO translate
-            // View will not generated while the promise not resolved
-            // but controller will invoked
-            user.$promise.then(function (data) {
-                // Create empty password
-                $scope.password = new Password(data.Id);
-            });
+            $scope.user = user;
+            // Now user data is received
+            $scope.password = new Password(user.Id);
 
             // Requests a server to save the password update
             $scope.applyChanges = function () {
