@@ -1,0 +1,19 @@
+<div ng-switch="isLogged">
+    <div ng-switch-when="false">
+
+        <h3> Logon page</h3>
+
+        Login: <input type="text" ng-model="login"> </br>
+
+        Password: <input type="text" ng-model="password"> </br>
+
+        <button class="btn" ng-click="logon()">Logon</button>
+
+    </div>
+
+    <div ng-switch-when="true">
+
+        <p> Loading... </p>
+
+    </div>
+</div>

@@ -4,11 +4,13 @@
 
 angular.module('myApp', [
         'ngRoute',
+        'myApp.components.auth',
         'myApp.components.validation',
         'myApp.components.ui',
         'myApp.components.notifications',
         'myApp.components.resources',
         'myApp.components.resetPassword',
+        'myApp.pages.logon',
         'myApp.pages.about',
         'myApp.pages.users',
         'myApp.pages.userDetails'

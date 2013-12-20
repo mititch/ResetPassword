@@ -31,8 +31,8 @@ angular.module('myApp.components.resources', ['ngResource'])
     .constant('passwordsApiUrl', '/api/user/:userId/password')
     .constant('usersApiUrl', '/api/user/:id')
 
-    // Custom Angular resource for Password class
-    // Provide generate and update operations
+// Custom Angular resource for Password class
+// Provide generate and update operations
     .factory('Password', ['$http', 'passwordsApiUrl', function ($http, passwordsApiUrl) {
 
         // Prepare resource constructor
@@ -47,7 +47,7 @@ angular.module('myApp.components.resources', ['ngResource'])
 
             // Make request
             var promise = $http.get(passwordsApiUrl.replace(':userId', data.UserId))
-                .then (function (responce) {
+                .then(function (responce) {
                     //On success update instance
                     data.Text = responce.data.text;
                 }
@@ -82,20 +82,20 @@ angular.module('myApp.components.resources', ['ngResource'])
 
         // Return constructor function
         return Resource;
-    }])
+    } ])
 
-    // Custom Angular resource for Password class
-    // Provide generate and update operations
+// Custom Angular resource for Password class
+// Provide generate and update operations
     .factory('User', ['$resource', 'usersApiUrl', 'Password', function ($resource, usersApiUrl, Password) {
 
 
-        var Resource = $resource(usersApiUrl, {id:'@Id'});
+        var Resource = $resource(usersApiUrl, { id: '@Id' });
 
         /*Resource.prototype.$resetPassword = function(text) {
-            var password = new Password(this.Id, text);
-            password.$update();
+        var password = new Password(this.Id, text);
+        password.$update();
         };*/
 
         // Return constructor function
         return Resource;
-    }]);
+    } ]);
