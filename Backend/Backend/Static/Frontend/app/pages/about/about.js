@@ -15,6 +15,7 @@ angular.module('myApp.pages.about', [])
     }])
 
     /* Page controller*/
-    .controller('aboutPage', ['$scope', function ($scope) {
+    .controller('aboutPage', ['$scope', 'CriticalData', function ($scope, CriticalData) {
+        $scope.data = CriticalData.get();
     }]);
 

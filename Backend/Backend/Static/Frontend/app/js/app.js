@@ -4,7 +4,7 @@
 
 angular.module('myApp', [
         'ngRoute',
-        'myApp.components.auth',
+        'myApp.components.authAndInit',
         'myApp.components.validation',
         'myApp.components.ui',
         'myApp.components.notifications',

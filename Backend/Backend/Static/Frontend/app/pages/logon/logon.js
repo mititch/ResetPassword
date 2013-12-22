@@ -7,11 +7,18 @@
 angular.module('myApp.pages.logon', [])
 
     .config(['$routeProvider', function ($routeProvider) {
+
         // Configure route for this page
         $routeProvider.when('/logon', {
             templateUrl: 'pages/logon/logon.html',
-            controller: 'logonPage'
+            controller: 'logonPage',
+            resolve: {
+                backRoute : ['$location', function ($location) {
+                    return $location.search()['backRoute'];
+                }]
+            }
         });
+
         $routeProvider.when('/logout', {
             template: '<p>Logout...</p>',
             controller: 'logoutPage'
@@ -20,22 +27,21 @@ angular.module('myApp.pages.logon', [])
 
     .run(['Auth', function (Auth) {
         // Setup logon url
-        Auth.logonUrl = '/logon';
+        Auth.logonPath = '/logon';
     }])
 
     /* Page controller*/
-    .controller('logonPage', ['$scope', '$location', 'CriticalData', 'Auth',
-        function ($scope, $location, CriticalData, Auth) {
+    .controller('logonPage', ['$scope', '$location', 'Initializer', 'Auth', 'backRoute',
+        function ($scope, $location, Initializer, Auth, backRoute) {
 
             $scope.isLoggedIn = Auth.isLoggedIn();
-            $scope.isReady = CriticalData.isReady();
+            $scope.isReady = Initializer.isReady();
 
             $scope.login = '';
             $scope.password = '';
 
             var leavePage = function () {
-                // TODO : redirect to previous URL
-                $location.path('/');
+                $location.url(backRoute);
             };
 
             $scope.logon = function () {
@@ -47,9 +53,8 @@ angular.module('myApp.pages.logon', [])
                 });
             };
 
-            // TODO : start loading once
-            if (!CriticalData.isReady()) {
-                CriticalData.reload().then(function () {
+            if (!Initializer.isReady()) {
+                Initializer.whenReady().then(function () {
                     $scope.isReady = true;
                     if ($scope.isLoggedIn) {
                         leavePage();
@@ -64,7 +69,7 @@ angular.module('myApp.pages.logon', [])
         function ($scope, $location, Auth) {
 
             Auth.logout().then(function () {
-                $location.path(Auth.logonUrl);
+                $location.path(Auth.logonPath);
             });
 
         }
