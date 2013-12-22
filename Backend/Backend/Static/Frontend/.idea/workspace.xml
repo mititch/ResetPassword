@@ -23,46 +23,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="auth.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/components/auth/auth.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="87" column="26" selection-start="2704" selection-end="2704" vertical-scroll-proportion="0.77362895" vertical-offset="816" max-vertical-offset="1700">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="logon.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/pages/logon/logon.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="10" selection-start="362" selection-end="362" vertical-scroll-proportion="-11.115385" vertical-offset="0" max-vertical-offset="408">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="logon.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/pages/logon/logon.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="0" selection-start="854" selection-end="854" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="986">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="notifications.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/components/notifications/notifications.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="39" column="31" selection-start="1520" selection-end="1521" vertical-scroll-proportion="0.0" vertical-offset="571" max-vertical-offset="1428">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="8" selection-start="325" selection-end="325" vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="510">
+            <state line="13" column="8" selection-start="354" selection-end="354" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
               <folding />
             </state>
           </provider>
@@ -71,8 +35,37 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="48" column="38" selection-start="1869" selection-end="1869" vertical-scroll-proportion="0.0" vertical-offset="816" max-vertical-offset="1292">
+            <state line="39" column="53" selection-start="1706" selection-end="1706" vertical-scroll-proportion="-17.653847" vertical-offset="204" max-vertical-offset="1292">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="auth.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/components/auth/auth.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="140" column="57" selection-start="3774" selection-end="3774" vertical-scroll-proportion="0.0" vertical-offset="2063" max-vertical-offset="2686">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="logon.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/pages/logon/logon.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="50" column="13" selection-start="1450" selection-end="1450" vertical-scroll-proportion="0.39967898" vertical-offset="601" max-vertical-offset="1326">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="logon.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/pages/logon/logon.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="32" column="0" selection-start="954" selection-end="954" vertical-scroll-proportion="-17.076923" vertical-offset="100" max-vertical-offset="697">
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -98,8 +91,8 @@
         <option value="$PROJECT_DIR$/app/components/reset-password/reset-password.js" />
         <option value="$PROJECT_DIR$/app/pages/logon/about.html" />
         <option value="$PROJECT_DIR$/app/pages/logon/about.js" />
-        <option value="$PROJECT_DIR$/app/pages/logon/logon.html" />
         <option value="$PROJECT_DIR$/app/js/app.js" />
+        <option value="$PROJECT_DIR$/app/pages/logon/logon.html" />
         <option value="$PROJECT_DIR$/app/index.html" />
         <option value="$PROJECT_DIR$/app/pages/logon/logon.js" />
         <option value="$PROJECT_DIR$/app/components/auth/auth.js" />
@@ -110,8 +103,8 @@
     <data>C:\Users\mititch\AppData\Roaming\npm\node_modules\karma</data>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="width" value="1922" />
-    <option name="height" value="1040" />
+    <option name="width" value="1382" />
+    <option name="height" value="784" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -139,7 +132,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -254,28 +246,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="pages" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="about" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Frontend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Frontend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -344,6 +314,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -492,14 +463,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1922" height="1040" extended-state="0" />
-    <editor active="false" />
+    <frame x="0" y="0" width="1382" height="784" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32842582" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32875144" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21242698" sideWeight="0.6715742" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.193265" sideWeight="0.6715742" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3997735" sideWeight="0.49915966" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29105324" sideWeight="0.50084037" order="8" side_tool="true" content_ui="tabs" />
@@ -528,44 +499,37 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="8" selection-start="354" selection-end="354" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="25" selection-start="1548" selection-end="1548" vertical-scroll-proportion="0.0" vertical-offset="595" max-vertical-offset="1292">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="8" selection-start="278" selection-end="278" vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="663">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="48" column="25" selection-start="1960" selection-end="1960" vertical-scroll-proportion="0.0" vertical-offset="816" max-vertical-offset="1513">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/pages/about/about.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="826" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/notifications/notifications-panel.tpl.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="821" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/reset-password/password-widget.tpl.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="28" selection-start="103" selection-end="103" vertical-scroll-proportion="0.041412912" vertical-offset="0" max-vertical-offset="821" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/reset-password/reset-password.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="25" selection-start="901" selection-end="901" vertical-scroll-proportion="0.38134593" vertical-offset="0" max-vertical-offset="1275" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/resources/resources.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="34" selection-start="866" selection-end="866" vertical-scroll-proportion="0.0" vertical-offset="955" max-vertical-offset="1802" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/validation/validation.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="10" selection-start="1454" selection-end="1454" vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="1751" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/ui/ui.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="11" selection-start="740" selection-end="740" vertical-scroll-proportion="0.0" vertical-offset="615" max-vertical-offset="2788" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/pages/user-details/user-details.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="16" selection-start="189" selection-end="189" vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="357" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/pages/about/about.js">
@@ -573,49 +537,39 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="826" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/pages/user-details/user-details.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="29" selection-start="616" selection-end="616" vertical-scroll-proportion="0.0" vertical-offset="88" max-vertical-offset="1088" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="8" selection-start="325" selection-end="325" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="38" selection-start="1869" selection-end="1869" vertical-scroll-proportion="0.0" vertical-offset="816" max-vertical-offset="1292">
+        <state line="39" column="53" selection-start="1706" selection-end="1706" vertical-scroll-proportion="-17.653847" vertical-offset="204" max-vertical-offset="1292">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/pages/logon/logon.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="10" selection-start="362" selection-end="362" vertical-scroll-proportion="-11.115385" vertical-offset="0" max-vertical-offset="408">
-          <folding />
+        <state line="32" column="0" selection-start="954" selection-end="954" vertical-scroll-proportion="-17.076923" vertical-offset="100" max-vertical-offset="697">
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/notifications/notifications.js">
+    <entry file="file://$PROJECT_DIR$/app/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="31" selection-start="1520" selection-end="1521" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1428">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/pages/logon/logon.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="0" selection-start="854" selection-end="854" vertical-scroll-proportion="0.0" vertical-offset="129" max-vertical-offset="986">
+        <state line="13" column="8" selection-start="354" selection-end="354" vertical-scroll-proportion="0.0" vertical-offset="221" max-vertical-offset="510">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/components/auth/auth.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="87" column="26" selection-start="2704" selection-end="2704" vertical-scroll-proportion="0.77362895" vertical-offset="816" max-vertical-offset="1700">
+        <state line="140" column="57" selection-start="3774" selection-end="3774" vertical-scroll-proportion="0.0" vertical-offset="2063" max-vertical-offset="2686">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/pages/logon/logon.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="50" column="13" selection-start="1450" selection-end="1450" vertical-scroll-proportion="0.39967898" vertical-offset="601" max-vertical-offset="1326">
           <folding />
         </state>
       </provider>

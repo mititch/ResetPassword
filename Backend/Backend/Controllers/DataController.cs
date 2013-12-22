@@ -26,7 +26,7 @@ namespace Backend.Controllers
         /// <returns></returns>
         public string Get()
         {
-            Thread.Sleep(1000);
+            Thread.Sleep(5000);
             return "data";
         }
 

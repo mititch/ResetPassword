@@ -11,6 +11,8 @@
 // <author email="mititch@softerra.com">Alex Mitin</author>
 //
 
+using Backend.Models;
+
 namespace Backend.Controllers
 {
     using System;
@@ -25,9 +27,8 @@ namespace Backend.Controllers
         /// <summary>
         /// Logon.
         /// </summary>
-        /// <param name="login">The login.</param>
-        /// <param name="password">The password.</param>
-        public void Post([FromBody]String login, [FromBody]String password)
+        /// <param name="model">The logon model.</param>
+        public void Post(LogonModel model)
         {
         }
 

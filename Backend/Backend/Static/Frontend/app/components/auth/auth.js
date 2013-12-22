@@ -20,11 +20,11 @@
 
 angular.module('myApp.components.auth', [])
 
-    .factory('CriticalData', ['$http', '$q', function ($http, $q) {
+    .factory('CriticalData', ['$http', '$q', 'Initializer',  function ($http, $q, Initializer) {
 
         var criticalData;
 
-        return {
+        var instance =  {
             reload : function () {
 
                 var deferred = $q.defer();
@@ -53,6 +53,50 @@ angular.module('myApp.components.auth', [])
 
         };
 
+        return instance;
+
+    }])
+
+    .factory('Initializer', ['$q', function ($q) {
+
+        var appReady = false;
+
+        var started = false;
+
+        var actions = [];
+
+        return {
+
+            isReady : function () {
+                return appReady;
+            },
+
+            register : function (action) {
+                actions.push(action);
+            },
+
+            initialize : function () {
+
+                if (started) { return;}
+
+                started = true;
+
+                var promises = [];
+
+                angular.forEach(actions, function (action) {
+                    promises.push(action());
+                })
+
+                var readyPromise = $q.all(promises);
+
+                readyPromise.then( function () {
+                    appReady = true;
+                });
+
+                return readyPromise;
+            }
+
+        };
     }])
 
     .factory('Auth', ['$http', function ($http) {
@@ -60,33 +104,47 @@ angular.module('myApp.components.auth', [])
         var isLoggedIn;
 
         return {
+            //logonUrl : '/logon',
 
             isLoggedIn: function () {
                  return isLoggedIn;
             },
 
             logon: function (login, password) {
-                $http.post('/api/auth', {login: login, password: password}).success(function (responce) {
+
+                //var promise = $http.post('/api/auth', {login: login, password: password});
+                var promise = $http.post('/api/auth', {login: login});
+
+                promise.success(function (responce) {
                     isLoggedIn = true;
                 });
+
+                return promise;
             },
 
             logout: function () {
-                $http.delete('/api/auth').success(function () {
+                var promise = $http.delete('/api/auth');
+
+                promise.success(function () {
                     isLoggedIn = false;
                 });
+
+                return promise;
             }
 
         };
     }])
-    .run(['$rootScope', '$location', 'Auth', 'CriticalData',
-        function ($rootScope, $location, Auth, CriticalData) {
-            var LOGON_URL = '/logon';
+    .run(['$rootScope', '$location', 'Auth', 'CriticalData', 'Initializer',
+        function ($rootScope, $location, Auth, CriticalData, Initializer) {
+
+            // TODO: or Initializer.initialize = Initializer.initialize();
+            Initializer.whenReady = Initializer.initialize();
 
             $rootScope.$on("$routeChangeStart", function (event, next, current) {
-                if (!(Auth.isLoggedIn() && CriticalData.isReady()) || next.$$route.originalPath == LOGON_URL) {
+                if (next.$$route && next.$$route.originalPath != Auth.logonUrl
+                    && !(Auth.isLoggedIn() && CriticalData.isReady())) {
                     // TODO: save previous path
-                    $location.path(LOGON_URL);
+                    $location.path(Auth.logonUrl);
                 }
             });
 
