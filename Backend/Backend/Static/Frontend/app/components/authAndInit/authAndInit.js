@@ -120,21 +120,22 @@ angular.module('myApp.components.authAndInit', [])
 
     }])
 
-    .run(['$rootScope', '$location', 'Auth', 'Initializer', 'CriticalData',
-        function ($rootScope, $location, Auth, Initializer, CriticalData) {
+    .run(['$rootScope', '$location', 'Auth', 'Initializer', 'CriticalData', '$route',
+        function ($rootScope, $location, Auth, Initializer, CriticalData, $route) {
 
             Initializer.register(CriticalData.load());
 
             Initializer.waitAll();
 
-            $rootScope.$on("$routeChangeStart", function (event, next, current) {
+            /*$rootScope.$on("$routeChangeStart", function (event, next, current) {
 
                 if ($location.path() != Auth.logonPath
                     && !(Auth.isLoggedIn() && Initializer.isReady()))
                 {
+                    // TODO: configure beckRoute parameter name
                     $location.search('backRoute', $location.path()).path(Auth.logonPath);
                 }
 
-            });
+            });*/
         }
     ]);

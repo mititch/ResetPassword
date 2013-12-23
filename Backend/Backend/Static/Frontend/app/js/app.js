@@ -10,6 +10,7 @@ angular.module('myApp', [
         'myApp.components.notifications',
         'myApp.components.resources',
         'myApp.components.resetPassword',
+        'myApp.pages.composite',
         'myApp.pages.logon',
         'myApp.pages.about',
         'myApp.pages.users',
